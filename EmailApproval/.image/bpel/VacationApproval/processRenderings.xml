@@ -1,0 +1,280 @@
+<processRenderings modified="1477586845368">
+   <layout-segments>
+      <segment height="623" id="Scope_1" tile-cols="2" tile-height="1000" tile-rows="1"
+               tile-width="1000"
+               tiled="true"
+               width="1453">
+         <image col="1" height="623" name="Scope_1_R1C1.jpg" row="1" width="1000"/>
+         <image col="2" height="623" name="Scope_1_R1C2.jpg" row="1" width="453"/>
+      </segment>
+      <segment height="653" id="process_0" tile-cols="2" tile-height="1000" tile-rows="1"
+               tile-width="1000"
+               tiled="true"
+               width="1453">
+         <image col="1" height="653" name="process_0_R1C1.jpg" row="1" width="1000"/>
+         <image col="2" height="653" name="process_0_R1C2.jpg" row="1" width="453"/>
+      </segment>
+   </layout-segments>
+   <process>
+      <bpel locationId="1" name="VacationApproval" path="/process" segment="process_0"
+            sheight="33"
+            swidth="33"
+            sx="608"
+            sy="122"
+            type="process">
+         <bpel locationId="1" name="Human Interactions" path="/process/humanInteractions"
+               type="humanInteractions">
+            <bpel locationId="2" name="Logical People Groups"
+                  path="/process/humanInteractions/logicalPeopleGroups"
+                  type="logicalPeopleGroups"/>
+            <bpel locationId="3" name="Tasks" path="/process/humanInteractions/tasks"
+                  type="tasks"/>
+            <bpel locationId="4" name="Notifications"
+                  path="/process/humanInteractions/notifications"
+                  type="notifications"/>
+         </bpel>
+         <bpel locationId="18" path="/process/partnerLinks" type="partnerLinks">
+            <bpel locationId="19" name="EmailSystem"
+                  path="/process/partnerLinks/partnerLink[@name='EmailSystem']"
+                  type="partnerLink"/>
+            <bpel locationId="20" name="ApproverByREST"
+                  path="/process/partnerLinks/partnerLink[@name='ApproverByREST']"
+                  type="partnerLink"/>
+            <bpel locationId="21" name="Requester"
+                  path="/process/partnerLinks/partnerLink[@name='Requester']"
+                  type="partnerLink"/>
+         </bpel>
+         <bpel locationId="23" path="/process/variables" type="variables">
+            <bpel locationId="24" name="BossEmail"
+                  path="/process/variables/variable[@name='BossEmail']"
+                  type="variable"/>
+            <bpel locationId="25" name="Answer"
+                  path="/process/variables/variable[@name='Answer']"
+                  type="variable"/>
+            <bpel locationId="26" name="EmailOutputVar"
+                  path="/process/variables/variable[@name='EmailOutputVar']"
+                  type="variable"/>
+            <bpel locationId="27" name="Request"
+                  path="/process/variables/variable[@name='Request']"
+                  type="variable"/>
+            <bpel locationId="28" name="RequestNum"
+                  path="/process/variables/variable[@name='RequestNum']"
+                  type="variable"/>
+            <bpel locationId="30" name="RequesterEmail"
+                  path="/process/variables/variable[@name='RequesterEmail']"
+                  type="variable"/>
+            <bpel locationId="31" name="_peopleActivityAttachments"
+                  path="/process/variables/variable[@name='_peopleActivityAttachments']"
+                  type="variable"/>
+         </bpel>
+         <bpel locationId="32" path="/process/correlationSets" type="correlationSets">
+            <bpel locationId="33" name="RequestCS"
+                  path="/process/correlationSets/correlationSet[@name='RequestCS']"
+                  type="correlationSet"/>
+         </bpel>
+         <bpel height="10" locationId="34" name="" path="/process/sequence" type="sequence"
+               width="1"
+               x="380"
+               y="95">
+            <bpel height="60" locationId="35" name="Vacation_Request"
+                  path="/process/sequence/scope[@name='Vacation_Request']"
+                  type="scope"
+                  width="70"
+                  x="100"
+                  y="109">
+               <bpel locationId="36"
+                     path="/process/sequence/scope[@name='Vacation_Request']/variables"
+                     type="variables">
+                  <bpel locationId="37" name="result"
+                        path="/process/sequence/scope[@name='Vacation_Request']/variables/variable[@name='result']"
+                        type="variable"/>
+               </bpel>
+               <bpel locationId="38" name=""
+                     path="/process/sequence/scope[@name='Vacation_Request']/sequence"
+                     type="sequence">
+                  <bpel locationId="39" name="Vacation_Request"
+                        path="/process/sequence/scope[@name='Vacation_Request']/sequence/receive[@name='Vacation_Request']"
+                        type="receive"/>
+                  <bpel locationId="40" name=""
+                        path="/process/sequence/scope[@name='Vacation_Request']/sequence/assign"
+                        type="assign"/>
+               </bpel>
+            </bpel>
+            <bpel height="60" locationId="50" name="Send_Req_Num"
+                  path="/process/sequence/scope[@name='Send_Req_Num']"
+                  type="scope"
+                  width="70"
+                  x="195"
+                  y="109">
+               <bpel locationId="51" path="/process/sequence/scope[@name='Send_Req_Num']/variables"
+                     type="variables">
+                  <bpel locationId="52" name="parameters"
+                        path="/process/sequence/scope[@name='Send_Req_Num']/variables/variable[@name='parameters']"
+                        type="variable"/>
+                  <bpel locationId="53" name="attachmentCopyResult"
+                        path="/process/sequence/scope[@name='Send_Req_Num']/variables/variable[@name='attachmentCopyResult']"
+                        type="variable"/>
+               </bpel>
+               <bpel locationId="54" name=""
+                     path="/process/sequence/scope[@name='Send_Req_Num']/sequence"
+                     type="sequence">
+                  <bpel locationId="55" name=""
+                        path="/process/sequence/scope[@name='Send_Req_Num']/sequence/assign"
+                        type="assign"/>
+                  <bpel locationId="62" name="Send_Req_Num"
+                        path="/process/sequence/scope[@name='Send_Req_Num']/sequence/reply[@name='Send_Req_Num']"
+                        type="reply"/>
+                  <bpel locationId="63"
+                        path="/process/sequence/scope[@name='Send_Req_Num']/sequence/reply[@name='Send_Req_Num']/correlations"
+                        type="correlations"/>
+               </bpel>
+            </bpel>
+            <bpel dheight="8" dwidth="8" dx="356" dy="163" height="68" locationId="65"
+                  name="Approve_by_email"
+                  path="/process/sequence/scope[@name='Approve_by_email']"
+                  segment="Scope_1"
+                  type="scope"
+                  width="125"
+                  x="290"
+                  y="105">
+               <bpel locationId="66"
+                     path="/process/sequence/scope[@name='Approve_by_email']/variables"
+                     type="variables">
+                  <bpel locationId="67" name="RestEPR"
+                        path="/process/sequence/scope[@name='Approve_by_email']/variables/variable[@name='RestEPR']"
+                        type="variable"/>
+                  <bpel locationId="69" name="MyAddress"
+                        path="/process/sequence/scope[@name='Approve_by_email']/variables/variable[@name='MyAddress']"
+                        type="variable"/>
+                  <bpel locationId="71" name="EmailOutputVar"
+                        path="/process/sequence/scope[@name='Approve_by_email']/variables/variable[@name='EmailOutputVar']"
+                        type="variable"/>
+               </bpel>
+               <bpel height="10" locationId="72" name=""
+                     path="/process/sequence/scope[@name='Approve_by_email']/sequence"
+                     type="sequence"
+                     width="1"
+                     x="332"
+                     y="20">
+                  <bpel height="60" locationId="73" name=""
+                        path="/process/sequence/scope[@name='Approve_by_email']/sequence/empty"
+                        type="empty"
+                        width="70"
+                        x="30"
+                        y="30"/>
+                  <bpel locationId="74" name="Send_email_approval_request"
+                        path="/process/sequence/scope[@name='Approve_by_email']/sequence/scope[@name='Send_email_approval_request']"
+                        type="scope">
+                     <bpel locationId="75"
+                           path="/process/sequence/scope[@name='Approve_by_email']/sequence/scope[@name='Send_email_approval_request']/variables"
+                           type="variables">
+                        <bpel locationId="76" name="parameters"
+                              path="/process/sequence/scope[@name='Approve_by_email']/sequence/scope[@name='Send_email_approval_request']/variables/variable[@name='parameters']"
+                              type="variable"/>
+                     </bpel>
+                     <bpel locationId="77" name=""
+                           path="/process/sequence/scope[@name='Approve_by_email']/sequence/scope[@name='Send_email_approval_request']/sequence"
+                           type="sequence">
+                        <bpel locationId="78" name=""
+                              path="/process/sequence/scope[@name='Approve_by_email']/sequence/scope[@name='Send_email_approval_request']/sequence/assign"
+                              type="assign"/>
+                        <bpel height="53" locationId="82" name="Send_email_approval_request"
+                              path="/process/sequence/scope[@name='Approve_by_email']/sequence/scope[@name='Send_email_approval_request']/sequence/invoke[@name='Send_email_approval_request']"
+                              type="invoke"
+                              width="125"
+                              x="150"
+                              y="34"/>
+                     </bpel>
+                  </bpel>
+                  <bpel locationId="83" name="Receive_answer"
+                        path="/process/sequence/scope[@name='Approve_by_email']/sequence/scope[@name='Receive_answer']"
+                        type="scope">
+                     <bpel locationId="84"
+                           path="/process/sequence/scope[@name='Approve_by_email']/sequence/scope[@name='Receive_answer']/variables"
+                           type="variables">
+                        <bpel locationId="85" name="result"
+                              path="/process/sequence/scope[@name='Approve_by_email']/sequence/scope[@name='Receive_answer']/variables/variable[@name='result']"
+                              type="variable"/>
+                     </bpel>
+                     <bpel locationId="86" name=""
+                           path="/process/sequence/scope[@name='Approve_by_email']/sequence/scope[@name='Receive_answer']/sequence"
+                           type="sequence">
+                        <bpel height="60" locationId="87" name="Receive_answer"
+                              path="/process/sequence/scope[@name='Approve_by_email']/sequence/scope[@name='Receive_answer']/sequence/receive[@name='Receive_answer']"
+                              type="receive"
+                              width="70"
+                              x="325"
+                              y="30"/>
+                        <bpel locationId="88"
+                              path="/process/sequence/scope[@name='Approve_by_email']/sequence/scope[@name='Receive_answer']/sequence/receive[@name='Receive_answer']/correlations"
+                              type="correlations"/>
+                        <bpel locationId="90" name=""
+                              path="/process/sequence/scope[@name='Approve_by_email']/sequence/scope[@name='Receive_answer']/sequence/assign"
+                              type="assign"/>
+                     </bpel>
+                  </bpel>
+                  <bpel locationId="94" name="Ack_answer"
+                        path="/process/sequence/scope[@name='Approve_by_email']/sequence/scope[@name='Ack_answer']"
+                        type="scope">
+                     <bpel locationId="95"
+                           path="/process/sequence/scope[@name='Approve_by_email']/sequence/scope[@name='Ack_answer']/variables"
+                           type="variables">
+                        <bpel locationId="96" name="parameters"
+                              path="/process/sequence/scope[@name='Approve_by_email']/sequence/scope[@name='Ack_answer']/variables/variable[@name='parameters']"
+                              type="variable"/>
+                     </bpel>
+                     <bpel height="60" locationId="97" name=""
+                           path="/process/sequence/scope[@name='Approve_by_email']/sequence/scope[@name='Ack_answer']/sequence"
+                           type="sequence"
+                           width="70"
+                           x="445"
+                           y="30">
+                        <bpel locationId="98" name=""
+                              path="/process/sequence/scope[@name='Approve_by_email']/sequence/scope[@name='Ack_answer']/sequence/assign"
+                              type="assign"/>
+                        <bpel locationId="102" name="Ack_answer"
+                              path="/process/sequence/scope[@name='Approve_by_email']/sequence/scope[@name='Ack_answer']/sequence/reply[@name='Ack_answer']"
+                              type="reply"/>
+                     </bpel>
+                  </bpel>
+                  <bpel height="60" locationId="103" name=""
+                        path="/process/sequence/scope[@name='Approve_by_email']/sequence/empty[2]"
+                        type="empty"
+                        width="70"
+                        x="565"
+                        y="30"/>
+               </bpel>
+            </bpel>
+            <bpel locationId="104" name="Send_Approval_Status_Email"
+                  path="/process/sequence/scope[@name='Send_Approval_Status_Email']"
+                  type="scope">
+               <bpel locationId="105"
+                     path="/process/sequence/scope[@name='Send_Approval_Status_Email']/variables"
+                     type="variables">
+                  <bpel locationId="106" name="parameters"
+                        path="/process/sequence/scope[@name='Send_Approval_Status_Email']/variables/variable[@name='parameters']"
+                        type="variable"/>
+               </bpel>
+               <bpel height="53" locationId="107" name=""
+                     path="/process/sequence/scope[@name='Send_Approval_Status_Email']/sequence"
+                     type="sequence"
+                     width="125"
+                     x="440"
+                     y="113">
+                  <bpel locationId="108" name=""
+                        path="/process/sequence/scope[@name='Send_Approval_Status_Email']/sequence/assign"
+                        type="assign"/>
+                  <bpel locationId="112" name="Send_Approval_Status_Email"
+                        path="/process/sequence/scope[@name='Send_Approval_Status_Email']/sequence/invoke[@name='Send_Approval_Status_Email']"
+                        type="invoke"/>
+               </bpel>
+            </bpel>
+            <bpel height="60" locationId="113" name="" path="/process/sequence/empty"
+                  type="empty"
+                  width="70"
+                  x="590"
+                  y="109"/>
+         </bpel>
+      </bpel>
+   </process>
+</processRenderings>

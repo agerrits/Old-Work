@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wsdl:definitions targetNamespace="http://www.solazyme.com/RequestIn/HT" xmlns:tns="http://www.solazyme.com/RequestIn/HT" xmlns:types1="http://www.solazyme.com/PurchaseRequest" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema">
+		<xs:import namespace="http://www.solazyme.com/PurchaseRequest" schemaLocation="../schema/PurchaseRequest.xsd"/>
+	</xs:schema>
+  </wsdl:types>
+  <wsdl:message name="PurRequestFullRequest">
+    <wsdl:part name="PurRequestFullRequest" element="types1:PurRequestFull"/>
+  </wsdl:message>
+  <wsdl:message name="PurRequestFullResponse">
+    <wsdl:part name="PurRequestFullResponse" element="types1:PurRequestFull"/>
+  </wsdl:message>
+  <wsdl:portType name="HTPurchaseRequestPT">
+    <wsdl:operation name="PurRequestFull">
+      <wsdl:input message="tns:PurRequestFullRequest"/>
+      <wsdl:output message="tns:PurRequestFullResponse"/>
+    </wsdl:operation>
+  </wsdl:portType>
+</wsdl:definitions>

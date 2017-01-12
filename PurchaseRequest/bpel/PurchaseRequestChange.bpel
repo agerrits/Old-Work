@@ -1,0 +1,238 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<bpel:process xmlns:bpel="http://docs.oasis-open.org/wsbpel/2.0/process/executable"
+              xmlns:htd="http://www.example.org/WS-HT"
+              xmlns:ns1="http://domain.com/demoPurchaseOrder"
+              xmlns:aei="http://www.activebpel.org/2009/02/bpel/extension/ignorable"
+              xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+              xmlns:ext="http://www.activebpel.org/2006/09/bpel/extension/query_handling"
+              xmlns:ns="http://PurchaseRequest/public"
+              xmlns:types1="http://domain.com/purchaserequest"
+              xmlns:ns2="http://undefined"
+              xmlns:b4p="http://www.example.org/BPEL4People"
+              ext:createTargetXPath="yes"
+              ext:disableSelectionFailure="yes"
+              name="PurchaseRequestChange"
+              suppressJoinFailure="yes"
+              targetNamespace="http://PurchaseRequest">
+   <b4p:humanInteractions>
+      <htd:logicalPeopleGroups>
+         <htd:logicalPeopleGroup name="Purchasers"/>
+         <htd:logicalPeopleGroup name="Managers"/>
+         <htd:logicalPeopleGroup name="Receivers"/>
+         <htd:logicalPeopleGroup name="Requesters"/>
+      </htd:logicalPeopleGroups>
+      <htd:tasks>
+         <htd:task name="Request">
+            <htd:priority>9</htd:priority>
+            <htd:peopleAssignments>
+               <htd:potentialOwners>
+                  <htd:from logicalPeopleGroup="Requesters"/>
+               </htd:potentialOwners>
+               <htd:taskInitiator>
+                  <htd:from logicalPeopleGroup="Requesters"/>
+               </htd:taskInitiator>
+            </htd:peopleAssignments>
+            <htd:presentationElements>
+               <htd:name/>
+               <htd:description/>
+            </htd:presentationElements>
+         </htd:task>
+         <htd:task name="Approve">
+            <htd:priority>2</htd:priority>
+            <htd:peopleAssignments>
+               <htd:potentialOwners>
+                  <htd:from logicalPeopleGroup="Managers"/>
+               </htd:potentialOwners>
+            </htd:peopleAssignments>
+            <htd:presentationElements/>
+         </htd:task>
+         <htd:task name="CheckCorrect">
+            <htd:interface xmlns:ns="http://undefined" operation="purchaseRequest"
+                           portType="ns:checkCorrectRequestPT"/>
+            <htd:peopleAssignments>
+               <htd:potentialOwners>
+                  <htd:from logicalPeopleGroup="Purchasers"/>
+               </htd:potentialOwners>
+               <htd:businessAdministrators>
+                  <htd:from logicalPeopleGroup="Managers"/>
+               </htd:businessAdministrators>
+            </htd:peopleAssignments>
+            <htd:presentationElements/>
+         </htd:task>
+         <htd:task name="GetBestPrice">
+            <htd:peopleAssignments>
+               <htd:potentialOwners>
+                  <htd:from logicalPeopleGroup="Purchasers"/>
+               </htd:potentialOwners>
+            </htd:peopleAssignments>
+            <htd:presentationElements/>
+         </htd:task>
+         <htd:task name="Order">
+            <htd:peopleAssignments>
+               <htd:potentialOwners>
+                  <htd:from logicalPeopleGroup="Purchasers"/>
+               </htd:potentialOwners>
+            </htd:peopleAssignments>
+            <htd:presentationElements/>
+         </htd:task>
+         <htd:task name="ReceiveItems">
+            <htd:peopleAssignments>
+               <htd:potentialOwners>
+                  <htd:from logicalPeopleGroup="Receivers"/>
+               </htd:potentialOwners>
+            </htd:peopleAssignments>
+            <htd:presentationElements/>
+         </htd:task>
+         <htd:task name="Confirm">
+            <htd:peopleAssignments>
+               <htd:potentialOwners>
+                  <htd:from logicalPeopleGroup="Receivers"/>
+               </htd:potentialOwners>
+            </htd:peopleAssignments>
+            <htd:presentationElements/>
+         </htd:task>
+      </htd:tasks>
+      <htd:notifications/>
+   </b4p:humanInteractions>
+   <bpel:extensions>
+      <bpel:extension mustUnderstand="yes"
+                      namespace="http://www.activebpel.org/2006/09/bpel/extension/query_handling"/>
+      <bpel:extension mustUnderstand="yes" namespace="http://www.example.org/BPEL4People"/>
+      <bpel:extension mustUnderstand="yes" namespace="http://www.example.org/WS-HT"/>
+      <bpel:extension mustUnderstand="no"
+                      namespace="http://www.activebpel.org/2009/02/bpel/extension/ignorable"/>
+   </bpel:extensions>
+   <bpel:import importType="http://schemas.xmlsoap.org/wsdl/"
+                location="../wsdl/purchaseRequest.wsdl"
+                namespace="http://domain.com/demoPurchaseOrder"/>
+   <bpel:import aei:implicit="true" importType="http://schemas.xmlsoap.org/wsdl/"
+                location="../wsdl/PurchaseRequestChange.public.wsdl"
+                namespace="http://PurchaseRequest/public"/>
+   <bpel:partnerLinks>
+      <bpel:partnerLink myRole="Provider" name="Process_Consumer"
+                        partnerLinkType="ns:purchaseRequestPTPLT"/>
+   </bpel:partnerLinks>
+   <bpel:variables>
+      <bpel:variable element="types1:purchaseRequest" name="purchaseRequestIn"/>
+   </bpel:variables>
+   <bpel:flow>
+      <bpel:links>
+         <bpel:link name="L1"/>
+         <bpel:link name="L6"/>
+         <bpel:link name="L2"/>
+         <bpel:link name="L4"/>
+      </bpel:links>
+      <bpel:receive createInstance="yes" name="ReceiveRequest" operation="purchaseRequest"
+                    partnerLink="Process_Consumer"
+                    variable="purchaseRequestIn">
+         <bpel:sources>
+            <bpel:source linkName="L1"/>
+         </bpel:sources>
+      </bpel:receive>
+      <bpel:if name="Correctness">
+         <bpel:targets>
+            <bpel:target linkName="L2"/>
+         </bpel:targets>
+         <bpel:sources>
+            <bpel:source linkName="L6"/>
+         </bpel:sources>
+         <bpel:flow>
+            <bpel:links>
+               <bpel:link name="L3"/>
+            </bpel:links>
+            <bpel:assign name="AssignDataForApproval">
+               <bpel:sources>
+                  <bpel:source linkName="L3"/>
+               </bpel:sources>
+            </bpel:assign>
+            <bpel:extensionActivity>
+               <b4p:peopleActivity name="Approve">
+                  <bpel:targets>
+                     <bpel:target linkName="L3"/>
+                  </bpel:targets>
+                  <b4p:localTask reference="Approve">
+                     <htd:peopleAssignments/>
+                  </b4p:localTask>
+               </b4p:peopleActivity>
+            </bpel:extensionActivity>
+         </bpel:flow>
+         <bpel:else>
+            <bpel:flow>
+               <bpel:links>
+                  <bpel:link name="L5"/>
+               </bpel:links>
+               <bpel:assign name="AssignDataForUpdate">
+                  <bpel:sources>
+                     <bpel:source linkName="L5"/>
+                  </bpel:sources>
+               </bpel:assign>
+               <bpel:extensionActivity>
+                  <b4p:peopleActivity name="Request">
+                     <bpel:targets>
+                        <bpel:target linkName="L5"/>
+                     </bpel:targets>
+                     <b4p:localTask reference="Request">
+                        <htd:peopleAssignments/>
+                     </b4p:localTask>
+                  </b4p:peopleActivity>
+               </bpel:extensionActivity>
+            </bpel:flow>
+         </bpel:else>
+      </bpel:if>
+      <bpel:extensionActivity>
+         <b4p:peopleActivity name="CheckCorrect">
+            <bpel:sources>
+               <bpel:source linkName="L2"/>
+            </bpel:sources>
+            <bpel:targets>
+               <bpel:target linkName="L1"/>
+            </bpel:targets>
+            <b4p:localTask reference="CheckCorrect">
+               <htd:peopleAssignments/>
+            </b4p:localTask>
+         </b4p:peopleActivity>
+      </bpel:extensionActivity>
+      <bpel:forEach counterName="AIndex" name="ForEachItem" parallel="no">
+         <bpel:targets>
+            <bpel:target linkName="L4"/>
+         </bpel:targets>
+         <bpel:startCounterValue>aStartValue</bpel:startCounterValue>
+         <bpel:finalCounterValue>aFinalValue</bpel:finalCounterValue>
+         <bpel:scope>
+            <bpel:flow>
+               <bpel:links>
+                  <bpel:link name="L7"/>
+               </bpel:links>
+               <bpel:extensionActivity>
+                  <b4p:peopleActivity name="Order">
+                     <bpel:targets>
+                        <bpel:target linkName="L7"/>
+                     </bpel:targets>
+                     <b4p:localTask reference="Order">
+                        <htd:peopleAssignments/>
+                     </b4p:localTask>
+                  </b4p:peopleActivity>
+               </bpel:extensionActivity>
+               <bpel:extensionActivity>
+                  <b4p:peopleActivity name="GetBestPrice">
+                     <bpel:sources>
+                        <bpel:source linkName="L7"/>
+                     </bpel:sources>
+                     <b4p:localTask reference="GetBestPrice">
+                        <htd:peopleAssignments/>
+                     </b4p:localTask>
+                  </b4p:peopleActivity>
+               </bpel:extensionActivity>
+            </bpel:flow>
+         </bpel:scope>
+      </bpel:forEach>
+      <bpel:assign name="InitEach">
+         <bpel:targets>
+            <bpel:target linkName="L6"/>
+         </bpel:targets>
+         <bpel:sources>
+            <bpel:source linkName="L4"/>
+         </bpel:sources>
+      </bpel:assign>
+   </bpel:flow>
+</bpel:process>

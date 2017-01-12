@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<Document>
+  <Element>
+    <line_item_id>3</line_item_id>
+    <purchase_req_id>3</purchase_req_id>
+    <product_num>thcrhcr</product_num>
+    <quantity>34</quantity>
+    <price>467.0</price>
+    <description>fchyhtxybgstyt</description>
+    <ordered>false</ordered>
+    <received>false</received>
+  </Element>
+  <Element>
+    <line_item_id>4</line_item_id>
+    <purchase_req_id>3</purchase_req_id>
+    <product_num>nbsadsad</product_num>
+    <quantity>5</quantity>
+    <price>600.0</price>
+    <description>gewyewfagjfds</description>
+    <ordered>false</ordered>
+    <received>false</received>
+  </Element>
+</Document>

@@ -1,0 +1,12 @@
+<wsdl:definitions xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/"
+                  xmlns:ns1="http://avosinternal.servicenow.com/attachment"
+                  name="POCAttachementProcess.public"
+                  targetNamespace="http://POCAttachementProcess/pocattachementprocess/public">
+   <plnk:partnerLinkType xmlns:plnk="http://docs.oasis-open.org/wsbpel/2.0/plnktype"
+                         name="POCAttachementPLT">
+      <plnk:role name="Provider" portType="ns1:POCAttachement"/>
+   </plnk:partnerLinkType>  
+   <wsdl:import location="../attachment.wsdl"
+                namespace="http://avosinternal.servicenow.com/attachment">
+    </wsdl:import>
+</wsdl:definitions>

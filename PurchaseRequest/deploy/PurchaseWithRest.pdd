@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<pdd:process xmlns:bpelns="PurchaseWithRest" xmlns:pdd="http://schemas.active-endpoints.com/pdd/2006/08/pdd.xsd" location="bpel/PurchaseRequest/bpel/PurchaseWithRest.bpel" name="bpelns:PurchaseWithRest" platform="enterprise">
+  <pdd:partnerLinks>
+    <pdd:partnerLink name="RESTService">
+      <pdd:partnerRole endpointReference="static" invokeHandler="rest:Address">
+        <wsa:EndpointReference xmlns:wsa="http://www.w3.org/2005/08/addressing" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/">
+   <wsa:Address>http://localhost:8090/xaware/bizview/BDSelectRFQDetail.xbd</wsa:Address>
+</wsa:EndpointReference>
+      </pdd:partnerRole>
+    </pdd:partnerLink>
+    <pdd:partnerLink name="RFQProcess">
+      <pdd:myRole allowedRoles="" binding="MSG" service="PurchaseWithRestService"/>
+    </pdd:partnerLink>
+  </pdd:partnerLinks>
+  <pdd:references>
+    <pdd:schema location="project:/com.activee.rt.rest.services/schema/aeREST.xsd" namespace="http://schemas.activebpel.org/REST/2007/12/01/aeREST.xsd"/>
+    <pdd:wsdl location="project:/com.activee.rt.rest.services/wsdl/aeREST.wsdl" namespace="http://www.activebpel.org/REST/2007/12/01/aeREST.wsdl"/>
+    <pdd:wsdl location="project:/PurchaseRequest/wsdl/bpel/PurchaseWithRest.public.wsdl" namespace="PurchaseWithRest/public"/>
+    <pdd:wsdl location="project:/PurchaseRequest/wsdl/RFQEnvelope.wsdl" namespace="http://www.solazyme.com/RequestIn"/>
+    <pdd:schema location="project:/PurchaseRequest/schema/NewRFQIn.xsd" namespace="http://www.example.org/NewRFQIn"/>
+    <pdd:schema location="project:/AriSampleCF5/schema/PurchaseRequest.xsd" namespace="http://www.solazyme.com/PurchaseRequest"/>
+  </pdd:references>
+</pdd:process>

@@ -1,0 +1,42 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+   <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+   <title>Loan Application</title>
+</head>
+<body>
+<h2>Loan Application Form</h2>
+   <p>This form submits the form data (loan application) to the
+   REST service located at <code>http://localhost:8080/active-bpel/services/REST/humantaskRestDemo</code>.
+   </p>
+   <form id="loanapp" method="GET" action="http://localhost:8080/active-bpel/services/REST/humantaskRestDemo"
+         style="border:1px solid #333; width:500px;" >
+      <table cellpadding="2">
+         <tr><th colspan="2">Loan Application</th></tr>
+         <tr><th colspan="2" style="background-color:#ccf">Applicant Information:</th></tr>
+         <tr><td align="right">First Name:</td><td><input name="firstName" size="40" type="text" value="John"/></td></tr>
+         <tr><td align="right">Last Name:</td><td><input name="lastName" size="40" type="text" value="Smith"/></td></tr>
+         <tr><td align="right">Email:</td><td><input  name="responseEmail" size="40" type="text" value="john.smith@example.com"/></td></tr>
+         <tr><td align="right">Social Security #:</td><td><input name="socialSecurityNumber" size="12" type="text" value="123-45-6789"/></td></tr>
+         <tr><td align="right">Daytime Phone:</td><td><input name="dayPhone" size="11" type="text" value="2039299400"/></td></tr>
+         <tr><td align="right">Evening Phone:</td><td><input name="nightPhone" size="11" type="text" value="2035551212"/></td></tr>
+         <tr><th colspan="2" style="background-color:#ccf">Loan Information:</th></tr>
+         <tr><td align="right">Loan Type:</td><td>
+            <select name="loanType">
+               <option value="Automobile" selected="selected">Automobile</option>
+               <option value="Housing">Housing</option>
+               <option value="Small Business">Business</option>
+            </select>
+         </td></tr>
+         <tr><td align="right">Loan Amount$:</td><td><input name="amountRequested" size="8" type="text" value="15000"/></td></tr>
+         <tr><td align="right">Description:</td><td><textarea cols="35" rows="3" name="loanDescription">Application to finance the purchase of a Toyota Prius.</textarea></td></tr>
+         <!-- <tr><td align="right">Other (optional):</td><td><textarea cols="35" rows="3" name="otherInfo"></textarea></td></tr> -->
+         <tr><td align="right">Submit Application:</td><td><input type="submit" value="Apply For Loan"/></td></tr>
+      </table>
+   </form>
+   <p>The humantaskRestDemo REST process (humantaskdemo-restadapter.bpel) takes the form data and in turn invokes the 
+   humantaskdemp process (humantaskdemo.bpel) which contains the loan approval human task.
+   </p>
+   
+</body>
+</html>

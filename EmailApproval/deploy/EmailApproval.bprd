@@ -1,0 +1,110 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<project name="Service Archive" default='run' basedir=".">
+
+   <!-- The project root location. -->
+   <property name="project_loc" value="${basedir}/.." />
+
+   <!-- Some properties used by the script. -->
+   <property name="archive.filename" value="${project_loc}/deploy/EmailApproval.bpr" />
+
+   <!-- The deployment location.  Typically a server/container deployment directory. -->
+   <property name="archive.deploypath" value="C:\Users\arnoldus.gerrits\wsExamples\EmailApproval\deploy" />
+
+   <!-- The type of deployment. -->
+   <property name="archive.deploytype" value="file" />
+
+   <!-- The username/password used during webservice deployment -->
+   <property name="deploy.username" value="avosuser" />
+   <property name="deploy.password" value="avos@123" />
+
+   <!-- A temp directory location. -->
+   <property name="archive.temppath" value="${java.io.tmpdir}" />
+
+   <!-- Taskdefs required when running this script from the command line. -->
+   <target name="init">
+      <property name="activevos.antlib" value="" />
+      <path id="activevos.classpath">
+         <fileset dir="${activevos.antlib}">
+            <include name="*.jar" />
+         </fileset>
+      </path>
+      <condition property="avos.tasks.available">
+         <and>
+            <available classpathref="activevos.classpath" classname="com.activee.ant.bpr.tasks.AeCreateCatalogTask"/>
+            <available classpathref="activevos.classpath" classname="com.activee.ant.bpr.tasks.AeDeployBPRTask"/>
+            <available classpathref="activevos.classpath" classname="com.activee.ant.bpr.tasks.AeCreateContributionTask"/>
+         </and>
+      </condition>
+   </target>
+
+   <target name="load.tasks" depends="init" if="avos.tasks.available">
+      <taskdef name="deploybpr" onerror="ignore" classpathref="activevos.classpath" classname="com.activee.ant.bpr.tasks.AeDeployBPRTask" />
+      <taskdef name="createcatalog" onerror="ignore" classpathref="activevos.classpath" classname="com.activee.ant.bpr.tasks.AeCreateCatalogTask" />
+      <taskdef name="createcontribution" onerror="ignore" classpathref="activevos.classpath" classname="com.activee.ant.bpr.tasks.AeCreateContributionTask" />
+   </target>
+
+   <!-- Build the BPR file from the following (generated) file set. -->
+   <target name="build" depends="load.tasks">
+      <delete file="${archive.filename}" />
+      <jar destfile="${archive.filename}">
+         <!-- PDD Files. -->
+         <zipfileset file="${project_loc}/deploy/VacationApproval.pdd" fullpath="META-INF/pdd/EmailApproval/deploy/VacationApproval.pdd" />
+         <!-- BPEL Files. -->
+         <zipfileset file="${project_loc}/bpel/VacationApproval.bpel" fullpath="bpel/EmailApproval/bpel/VacationApproval.bpel" />
+         <!-- WSDL Files. -->
+         <zipfileset file="${project_loc}/wsdl/EmailApprovalExample.wsdl" fullpath="wsdl/Users/arnoldus.gerrits/wsExamples/EmailApproval/wsdl/EmailApprovalExample.wsdl" />
+         <zipfileset file="${project_loc}/wsdl/bpel/VacationApproval.private.wsdl" fullpath="wsdl/Users/arnoldus.gerrits/wsExamples/EmailApproval/wsdl/bpel/VacationApproval.private.wsdl" />
+         <zipfileset file="${project_loc}/wsdl/bpel/VacationApproval.public.wsdl" fullpath="wsdl/Users/arnoldus.gerrits/wsExamples/EmailApproval/wsdl/bpel/VacationApproval.public.wsdl" />
+         <!-- Other Files. -->
+         <zipfileset file="${project_loc}/form/request/ApproveByEmail.html" fullpath="resources/EmailApproval/form/request/ApproveByEmail.html" />
+         <zipfileset file="${project_loc}/deploy/VacationApproval.avcconfig" fullpath="resources/EmailApproval/deploy/VacationApproval.avcconfig" />
+         <!-- Process Image Files. -->
+         <zipfileset file="${project_loc}/.image/bpel/VacationApproval/*" prefix=".image/EmailApproval/bpel/VacationApproval" />
+      </jar>
+      <createcatalog file="${archive.filename}" contributionURI="project:/EmailApproval"
+       processGroup="POC"
+       contributionDescription="Email approvals">
+         <wsdlentry location="project:/EmailApproval/wsdl/EmailApprovalExample.wsdl" classpath="wsdl/Users/arnoldus.gerrits/wsExamples/EmailApproval/wsdl/EmailApprovalExample.wsdl" />
+         <wsdlentry location="project:/EmailApproval/wsdl/bpel/VacationApproval.private.wsdl" classpath="wsdl/Users/arnoldus.gerrits/wsExamples/EmailApproval/wsdl/bpel/VacationApproval.private.wsdl" />
+         <wsdlentry location="project:/EmailApproval/wsdl/bpel/VacationApproval.public.wsdl" classpath="wsdl/Users/arnoldus.gerrits/wsExamples/EmailApproval/wsdl/bpel/VacationApproval.public.wsdl" />
+         <otherentry typeURI="res:/text/html" location="project:/EmailApproval/form/request/ApproveByEmail.html" classpath="resources/EmailApproval/form/request/ApproveByEmail.html" />
+         <otherentry typeURI="http://schemas.active-endpoints.com/avc/2009/07/avoscentral-config.xsd" location="project:/EmailApproval/deploy/VacationApproval.avcconfig" classpath="resources/EmailApproval/deploy/VacationApproval.avcconfig" />
+      </createcatalog>
+      <!-- The contribution task sets up a contribution file which documents the exported and imported namespaces for this contribution -->
+      <createcontribution file="${archive.filename}">
+         <!-- Namespaces exported by this contribution for use by other contributions  -->
+         <export namespace="http://EmailApproval"/>
+         <export namespace="http://EMailApprovalExample/emailapprovalexample"/>
+         <export namespace="http://EMailApprovalExample/emailapprovalexample/public"/>
+         <!-- Namespaces from other contributions (location) that this contribution is dependent on if any -->
+         <!-- Namespaces for system services used in this contribution on if any -->
+         <import namespace="http://docs.active-endpoints/wsdl/activebpeladmin/2007/01/activebpeladmin.wsdl" location="project:/org.activebpel.rt.bpel.server.services"/>
+         <import namespace="http://www.activebpel.org/REST/2007/12/01/aeREST.wsdl" location="project:/com.activee.rt.rest.services"/>
+         <import namespace="http://docs.active-endpoints/wsdl/email/2007/04/email.wsdl" location="project:/org.activebpel.rt.email.services"/>
+         <import namespace="http://schemas.activebpel.org/REST/2007/12/01/aeREST.xsd" location="project:/com.activee.rt.rest.services"/>
+      </createcontribution>
+   </target>
+
+   <!-- Deploy the built BPR file to some kind of container/server. -->
+   <target name="deploy" depends="load.tasks">
+      <echo message="Deploying Business Process Archive." />
+
+      <!--
+         **** deploybpr task usage: ****
+         @type: Either 'file' or 'webservice'.
+         @file: The path to the BPR file created by the build target.
+         @todir: The path to deploy the BPR to when @type is 'file'.
+         @tourl: The URL of the server to deploy the BPR to when @type is 'webservice'.
+         @username: A username to use to authenticate when @type is 'webservice'.
+         @password: A password to use to authenticate when @type is 'webservice'.
+         @failonerror: Fail the build when it's set to true and @type is 'webservice'.
+      -->
+      <deploybpr type="${archive.deploytype}" file="${archive.filename}" failonerror="true" todir="${archive.deploypath}" />
+   </target>
+
+   <!-- The main entry point into this script, the run target calls various other targets in turn. -->
+   <target name="run" depends="build"/>
+
+   <target name="runDeploy" depends="run,deploy"/>
+
+</project>

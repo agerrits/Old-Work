@@ -1,0 +1,18 @@
+<xa:bizcomp_result_wrapper xmlns:xa="http://xaware.org/xas/ns1">
+  <Element>
+    <RuleName>Approve</RuleName>
+    <RuleValue1>%RuleValue1%</RuleValue1>
+    <RuleValue2>mbeck</RuleValue2>
+  </Element>
+  <Element>
+    <RuleName>Approve</RuleName>
+    <RuleValue1>%RuleValue1%</RuleValue1>
+    <RuleValue2>oromero</RuleValue2>
+  </Element>
+  <Element>
+    <RuleName>Approve</RuleName>
+    <RuleValue1>%RuleValue1%</RuleValue1>
+    <RuleValue2>agerrits</RuleValue2>
+  </Element>
+</xa:bizcomp_result_wrapper>
+

@@ -1,0 +1,76 @@
+<aem:model xmlns:aem="urn:ae:xslrendering:meta" xmlns:ns="http://PurchaseRequest" xmlns:ns1="http://domain.com/purchaserequest" xmlns:ns2="http://domain.com/CheckResponse" processName="ns:PurchaseRequest" processNameNs="http://PurchaseRequest" processNamePrefix="ns" projectName="PurchaseRequest" taskName="ReceiveItems">
+   <aem:portType xmlns:ns1="http://domain.com/purchaseFRequest/7" name="ns1:rfq" operation="purchaseRequest" portTypeNs="http://domain.com/purchaseFRequest/7" portTypePrefix="ns1">
+      <aem:inputMessage choiceStylePref="0" name="ns1:purchaseRequestRequest" repeatingElementsPref="1">
+         <aem:part name="purchaseRequestRequest" xmlns:aem="urn:ae:xslrendering:meta">
+            <aem:form>
+               <aem:container label="PurchaseRequest" name="ns:purchaseRequest" path="ns:purchaseRequest" repeatIndex="1" repeating="false">
+                  <aem:container label="Header" name="ns1:Header" path="ns:purchaseRequest/ns:Header" repeatIndex="1" repeating="false">
+                     <aem:variable label="Date" name="purchaseRequestRequest_ns_date" path="ns:purchaseRequest/ns:Header/ns:date" repeating="false" required="true" type="string"/>
+                     <aem:variable label="By" name="purchaseRequestRequest_ns_by" path="ns:purchaseRequest/ns:Header/ns:by" repeating="false" required="true" type="string"/>
+                     <aem:variable label="Vendor" name="purchaseRequestRequest_ns_vendor" path="ns:purchaseRequest/ns:Header/ns:vendor" repeating="false" required="true" type="number"/>
+                     <aem:variable label="Reason" name="purchaseRequestRequest_ns_reason" path="ns:purchaseRequest/ns:Header/ns:reason" repeating="false" required="true" type="string"/>
+                     <aem:variable label="Shipping" name="purchaseRequestRequest_ns_shipping" path="ns:purchaseRequest/ns:Header/ns:shipping" repeating="false" required="true" type="string"/>
+                     <aem:variable label="Eta" name="purchaseRequestRequest_ns_eta" path="ns:purchaseRequest/ns:Header/ns:eta" repeating="false" required="true" type="string"/>
+                     <aem:variable label="Approved" name="purchaseRequestRequest_ns_approved" path="ns:purchaseRequest/ns:Header/ns:approved" repeating="false" required="true" type="string"/>
+                     <aem:variable label="Comments" name="purchaseRequestRequest_ns_comments" path="ns:purchaseRequest/ns:Header/ns:comments" repeating="false" required="true" type="string"/>
+                  </aem:container>
+                  <aem:container label="Items" name="ns1:Items" path="ns:purchaseRequest/ns:Items" repeatIndex="1" repeating="false">
+                     <aem:container label="Item" name="ns1:item" path="ns:purchaseRequest/ns:Items/ns:item" repeatIndex="1" repeating="true">
+                        <aem:variable label="LineNum" name="purchaseRequestRequest_ns_item_attr_LineNum" path="ns:purchaseRequest/ns:Items/ns:item/@LineNum" repeating="false" required="true" type="number"/>
+                        <aem:variable label="ProductNo" name="purchaseRequestRequest_ns_productNo" path="ns:purchaseRequest/ns:Items/ns:item/ns:productNo" repeating="false" required="true" type="number"/>
+                        <aem:variable label="Description" name="purchaseRequestRequest_ns_description" path="ns:purchaseRequest/ns:Items/ns:item/ns:description" repeating="false" required="true" type="string"/>
+                        <aem:variable label="Quantity" name="purchaseRequestRequest_ns_quantity" path="ns:purchaseRequest/ns:Items/ns:item/ns:quantity" repeating="false" required="true" type="number"/>
+                        <aem:variable label="Price" name="purchaseRequestRequest_ns_price" path="ns:purchaseRequest/ns:Items/ns:item/ns:price" repeating="false" required="true" type="number"/>
+                        <aem:variable label="Total" name="purchaseRequestRequest_ns_total" path="ns:purchaseRequest/ns:Items/ns:item/ns:total" repeating="false" required="true" type="number"/>
+                     </aem:container>
+                  </aem:container>
+               </aem:container>
+            </aem:form>
+            <aem:nsprefixes>
+               <aem:nsprefix namespace="http://domain.com/purchaserequest" prefix="ns"/>
+            </aem:nsprefixes>
+            <aem:data>
+               <ns:purchaseRequest xmlns:ns="http://domain.com/purchaserequest">
+                  <ns1:Header xmlns:ns1="http://domain.com/purchaserequest">
+                     <ns1:date>purchaseRequestRequest_ns_date</ns1:date>
+                     <ns1:by>purchaseRequestRequest_ns_by</ns1:by>
+                     <ns1:vendor>purchaseRequestRequest_ns_vendor</ns1:vendor>
+                     <ns1:reason>purchaseRequestRequest_ns_reason</ns1:reason>
+                     <ns1:shipping>purchaseRequestRequest_ns_shipping</ns1:shipping>
+                     <ns1:eta>purchaseRequestRequest_ns_eta</ns1:eta>
+                     <ns1:approved>purchaseRequestRequest_ns_approved</ns1:approved>
+                     <ns1:comments>purchaseRequestRequest_ns_comments</ns1:comments>
+                  </ns1:Header>
+                  <ns1:Items xmlns:ns1="http://domain.com/purchaserequest">
+                     <ns1:item LineNum="purchaseRequestRequest_ns_item_attr_LineNum">
+                        <ns1:productNo>purchaseRequestRequest_ns_productNo</ns1:productNo>
+                        <ns1:description>purchaseRequestRequest_ns_description</ns1:description>
+                        <ns1:quantity>purchaseRequestRequest_ns_quantity</ns1:quantity>
+                        <ns1:price>purchaseRequestRequest_ns_price</ns1:price>
+                        <ns1:total>purchaseRequestRequest_ns_total</ns1:total>
+                     </ns1:item>
+                  </ns1:Items>
+               </ns:purchaseRequest>
+            </aem:data>
+         </aem:part>
+      </aem:inputMessage>
+      <aem:outputMessage choiceStylePref="0" name="ns1:purchaseRequestResponse" repeatingElementsPref="1">
+         <aem:part name="purchaseRequestResponse" xmlns:aem="urn:ae:xslrendering:meta">
+            <aem:form>
+               <aem:container label="PurchaseResponse" name="ns:purchaseResponse" path="ns:purchaseResponse" repeatIndex="1" repeating="false">
+                  <aem:variable label="Approved" name="purchaseRequestResponse_ns_approved" path="ns:purchaseResponse/ns:approved" repeating="false" required="true" type="string"/>
+               </aem:container>
+            </aem:form>
+            <aem:nsprefixes>
+               <aem:nsprefix namespace="http://domain.com/CheckResponse" prefix="ns"/>
+            </aem:nsprefixes>
+            <aem:data>
+               <ns:purchaseResponse xmlns:ns="http://domain.com/CheckResponse">
+                  <ns2:approved>purchaseRequestResponse_ns_approved</ns2:approved>
+               </ns:purchaseResponse>
+            </aem:data>
+         </aem:part>
+      </aem:outputMessage>
+      <aem:faults/>
+   </aem:portType>
+</aem:model>

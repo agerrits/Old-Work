@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rest:RESTResponse xmlns:rest="http://schemas.activebpel.org/REST/2007/12/01/aeREST.xsd"
+                   statusCode="1">
+   <rest:headers>
+      <rest:header name="string" value="string"/>
+   </rest:headers>
+   <rest:payload contentType="text/xml">
+      <Document xmlns="">
+         <Error>
+            <detail>Error: Error in executing BizComponent [BCSelectRFQDetail.xbc]: Failed to apply parameter 1 of type 4 with value: XFXH due to java.lang.NumberFormatException: For input string: "XFXH"
+at /sql (BCSelectRFQDetail.xbc)
+at /Document/Element (BDSelectRFQDetail.xbd)</detail>
+         </Error>
+      </Document>
+   </rest:payload>
+</rest:RESTResponse>

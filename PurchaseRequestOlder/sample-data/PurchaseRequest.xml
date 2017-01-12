@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<types1:purchaseRequest xmlns:types1="http://domain.com/purchaserequest">
+   <types1:Header>
+      <types1:date>data</types1:date>
+      <types1:by>ncname</types1:by>
+      <types1:vendor>1</types1:vendor>
+      <types1:reason>string</types1:reason>
+      <types1:shipping>ncname</types1:shipping>
+      <types1:eta>data</types1:eta>
+      <types1:approved>string</types1:approved>
+      <types1:comments>string</types1:comments>
+   </types1:Header>
+   <types1:Items>
+      <types1:item LineNum="1">
+         <types1:productNo>1</types1:productNo>
+         <types1:description>string</types1:description>
+         <types1:quantity>1</types1:quantity>
+         <types1:price>1</types1:price>
+         <types1:total>1</types1:total>
+      </types1:item>
+   </types1:Items>
+</types1:purchaseRequest>

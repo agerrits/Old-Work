@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<aes:samples xmlns:aes="http://schemas.active-endpoints.com/samples/2008/02/samples.xsd">
+   <aes:message location="project:/PurchaseRequest/wsdl/RFQEnvelope.wsdl"
+                name="RFQEnvelopeRequest"
+                namespace="http://www.solazyme.com/RequestIn">
+      <aes:part element="phpRFQin" elementNamespace="http://www.solazyme.com/RequestIn"
+                name="RFQEnvelopeRequest">
+         <aes:sample complex="true" default="true" value="project:/PurchaseRequest/test/TestIn.xml"/>
+      </aes:part>
+   </aes:message>
+   <aes:message location="project:/PurchaseRequest/wsdl/SolaDataPack.wsdl"
+                name="SolaRFQMainSVIS_BDSelectRFQMain_xbd_ExecuteResponse"
+                namespace="http://xaware.org/xas/ns1/wsdl/">
+      <aes:part element="BDSelectRFQMain.xbdResponse"
+                elementNamespace="http://xaware.org/xas/ns1/type"
+                name="BDSelectRFQMain.xbdResponse">
+         <aes:sample complex="true" default="true"
+                     value="project:/PurchaseRequest/test/ResultBCSelectRFQmain.xml"/>
+      </aes:part>
+   </aes:message>
+   <aes:message location="project:/PurchaseRequest/wsdl/SolaDataPack.wsdl"
+                name="SolaRFQDetailSVIS_BDSelectRFQDetail_xbd_ExecuteRequest"
+                namespace="http://xaware.org/xas/ns1/wsdl/">
+      <aes:part element="BDSelectRFQDetail.xbd"
+                elementNamespace="http://xaware.org/xas/ns1/type"
+                name="BDSelectRFQDetail.xbd">
+         <aes:sample complex="true" default="true"
+                     value="project:/PurchaseRequest/test/DetailRequestGenerate.xml"/>
+      </aes:part>
+   </aes:message>
+   <aes:message location="project:/PurchaseRequest/wsdl/SolaDataPack.wsdl"
+                name="SolaRFQDetailSVIS_BDSelectRFQDetail_xbd_ExecuteResponse"
+                namespace="http://xaware.org/xas/ns1/wsdl/">
+      <aes:part element="BDSelectRFQDetail.xbdResponse"
+                elementNamespace="http://xaware.org/xas/ns1/type"
+                name="BDSelectRFQDetail.xbdResponse">
+         <aes:sample complex="true" default="true"
+                     value="project:/PurchaseRequest/test/ResultBCSelectRFQDetail.xml"/>
+      </aes:part>
+   </aes:message>
+</aes:samples>

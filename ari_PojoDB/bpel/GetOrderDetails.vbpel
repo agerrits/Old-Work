@@ -1,0 +1,373 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<graph id="0" name="PROCESS">
+   <att name="processName" value="GetOrderDetails"/>
+   <att name="targetNamespace" value="http://GetOrderDetails"/>
+   <att name="enableInstanceCompensation" value="false"/>
+   <att name="exitStandardFault" value="false"/>
+   <att name="disableSelectionFailure" value="true"/>
+   <att name="createXPath" value="true"/>
+   <att name="modelVersion" value="3"/>
+   <att name="processNamespace"
+        value="http://docs.oasis-open.org/wsbpel/2.0/process/executable"/>
+   <att name="objectId" value="125615123685105759"/>
+   <att name="layoutNeeded" value="false"/>
+   <att name="processInitiatorSim" value=""/>
+   <att name="processInitiatorExec" value=""/>
+   <att name="writePortType" value="false"/>
+   <att name="bpelDigest" value="e056ce3b5866b41ce5db97f1f6942414"/>
+   <att name="editStyle" value="BPMN"/>
+   <att name="transitionLinks" value="true"/>
+   <att>
+      <graph id="1" name="EXTENSION_CONTAINER">
+         <att name="ExtensionCount" value="3"/>
+         <att name="BPELDocumentation" value=""/>
+         <node id="2" name="EXTENSION">
+            <att name="BPELDocumentation" value=""/>
+            <att name="extensionDetails"
+                 value="Namespace=http://www.activebpel.org/2006/09/bpel/extension/query_handling mustUnderstand=true"/>
+            <att name="objectId" value="125615123685105791"/>
+         </node>
+         <node id="3" name="EXTENSION">
+            <att name="BPELDocumentation" value=""/>
+            <att name="extensionDetails"
+                 value="Namespace=http://www.activebpel.org/2009/06/bpel/extension/links mustUnderstand=true"/>
+            <att name="objectId" value="125615123685105795"/>
+         </node>
+         <node id="4" name="EXTENSION">
+            <att name="BPELDocumentation" value=""/>
+            <att name="extensionDetails"
+                 value="Namespace=http://www.activebpel.org/2009/02/bpel/extension/ignorable mustUnderstand=false"/>
+            <att name="objectId" value="125615136086706107"/>
+         </node>
+      </graph>
+   </att>
+   <att>
+      <graph id="5" name="IMPORTS">
+         <att name="ImportCount" value="5"/>
+         <node id="6" name="IMPORT">
+            <att name="ImportLocation"
+                 value="../schema/PurchaseRequest.xsd;http://www.solazyme.com/PurchaseRequest;http://www.w3.org/2001/XMLSchema"/>
+            <att name="ImportNamespace" value="http://www.solazyme.com/PurchaseRequest"/>
+            <att name="ImportType" value="http://www.w3.org/2001/XMLSchema"/>
+            <att name="objectId" value="125615125503806071"/>
+         </node>
+         <node id="7" name="IMPORT">
+            <att name="ImportLocation"
+                 value="../schema/InSchema.xsd;http://www.example.org/InSchema;http://www.w3.org/2001/XMLSchema"/>
+            <att name="ImportNamespace" value="http://www.example.org/InSchema"/>
+            <att name="ImportType" value="http://www.w3.org/2001/XMLSchema"/>
+            <att name="objectId" value="125615127239806077"/>
+         </node>
+         <node id="8" name="IMPORT">
+            <att name="ImportLocation"
+                 value="../wsdl/GetOrderDetails.wsdl;http://www.solazyme/GetOrderDetais;http://schemas.xmlsoap.org/wsdl/"/>
+            <att name="ImportNamespace" value="http://www.solazyme/GetOrderDetais"/>
+            <att name="ImportType" value="http://schemas.xmlsoap.org/wsdl/"/>
+            <att name="objectId" value="125615135653806097"/>
+         </node>
+         <node id="9" name="IMPLICIT_IMPORT">
+            <att name="ImportLocation"
+                 value="../wsdl/bpel/GetOrderDetails.public.wsdl;http://GetOrderDetails/public;http://schemas.xmlsoap.org/wsdl/"/>
+            <att name="ImportNamespace" value="http://GetOrderDetails/public"/>
+            <att name="ImportType" value="http://schemas.xmlsoap.org/wsdl/"/>
+            <att name="objectId" value="125615136069506105"/>
+            <att name="WSBPEL_ExtensionAttributes">
+               <extensionAttributes>
+                  <extensionAttribute namespace="http://www.activebpel.org/2009/02/bpel/extension/ignorable"
+                                      qualifiedName="aei:implicit"
+                                      value="true"/>
+               </extensionAttributes>
+            </att>
+         </node>
+         <node id="10" name="IMPORT">
+            <att name="ImportLocation"
+                 value="../wsdl/IGetOrderDetails/igetorderdetails.wsdl;urn:com:activevos:pojo:hellodb:igetorderdetails;http://schemas.xmlsoap.org/wsdl/"/>
+            <att name="ImportNamespace" value="urn:com:activevos:pojo:hellodb:igetorderdetails"/>
+            <att name="ImportType" value="http://schemas.xmlsoap.org/wsdl/"/>
+            <att name="objectId" value="125615144346006779"/>
+         </node>
+      </graph>
+   </att>
+   <att>
+      <graph id="11" name="NAMESPACES">
+         <att name="NamespaceCount" value="13"/>
+         <node id="12" name="NAMESPACE">
+            <att name="Prefix" value="bpel"/>
+            <att name="Namespace"
+                 value="http://docs.oasis-open.org/wsbpel/2.0/process/executable"/>
+            <att name="objectId" value="125615123685105787"/>
+         </node>
+         <node id="13" name="NAMESPACE">
+            <att name="Prefix" value="xsd"/>
+            <att name="Namespace" value="http://www.w3.org/2001/XMLSchema"/>
+            <att name="objectId" value="125615123685105789"/>
+         </node>
+         <node id="14" name="NAMESPACE">
+            <att name="Prefix" value="ext"/>
+            <att name="Namespace"
+                 value="http://www.activebpel.org/2006/09/bpel/extension/query_handling"/>
+            <att name="objectId" value="125615123685105793"/>
+         </node>
+         <node id="15" name="NAMESPACE">
+            <att name="Prefix" value="ext1"/>
+            <att name="Namespace" value="http://www.activebpel.org/2009/06/bpel/extension/links"/>
+            <att name="objectId" value="125615123685105797"/>
+         </node>
+         <node id="16" name="NAMESPACE">
+            <att name="Prefix" value="ns1"/>
+            <att name="Namespace" value="http://www.solazyme.com/PurchaseRequest"/>
+            <att name="objectId" value="125615126860106073"/>
+         </node>
+         <node id="17" name="NAMESPACE">
+            <att name="Prefix" value="ns2"/>
+            <att name="Namespace" value="http://www.example.org/InSchema"/>
+            <att name="objectId" value="125615128646006079"/>
+         </node>
+         <node id="18" name="NAMESPACE">
+            <att name="Prefix" value="ns3"/>
+            <att name="Namespace" value="http://www.solazyme/GetOrderDetais"/>
+            <att name="objectId" value="125615135655406099"/>
+         </node>
+         <node id="19" name="NAMESPACE">
+            <att name="Prefix" value="aei"/>
+            <att name="Namespace"
+                 value="http://www.activebpel.org/2009/02/bpel/extension/ignorable"/>
+            <att name="objectId" value="125615136086706109"/>
+         </node>
+         <node id="20" name="NAMESPACE">
+            <att name="Prefix" value="types1"/>
+            <att name="Namespace" value="http://www.solazyme.com/OrderDetailsRequest"/>
+            <att name="objectId" value="125615136086706111"/>
+         </node>
+         <node id="21" name="NAMESPACE">
+            <att name="Prefix" value="ns"/>
+            <att name="Namespace" value="http://GetOrderDetails/public"/>
+            <att name="objectId" value="125615136086706113"/>
+         </node>
+         <node id="22" name="NAMESPACE">
+            <att name="Prefix" value="gtr"/>
+            <att name="Namespace" value="urn:com:activevos:pojo:hellodb:igetorderdetails"/>
+            <att name="objectId" value="125615144346006781"/>
+         </node>
+         <node id="23" name="NAMESPACE">
+            <att name="Prefix" value="abx"/>
+            <att name="Namespace" value="http://www.activebpel.org/bpel/extension"/>
+            <att name="objectId" value="125615150430506867"/>
+         </node>
+         <node id="24" name="NAMESPACE">
+            <att name="Prefix" value="ns4"/>
+            <att name="Namespace" value="urn:com:activevos:pojo:hellodb"/>
+            <att name="objectId" value="125615162623407219"/>
+         </node>
+      </graph>
+   </att>
+   <att>
+      <graph id="25" name="PARTNER_LINKS">
+         <att name="PartnerLinkCount" value="2"/>
+         <node id="26" name="PARTNER_LINK">
+            <att name="PartnerLinkName" value="Process_Consumer"/>
+            <att name="PartnerLinkType" value="ns:OrderDetailsRequestPLT"/>
+            <att name="MyRole" value="Provider"/>
+            <att name="ParticipantType" value="Consumer"/>
+            <att name="PartnerRoleState" value=""/>
+            <att name="MyRoleState" value=""/>
+            <att name="visible" value="false,false,false,false,false,"/>
+            <att name="objectId" value="125615129067906085"/>
+            <att name="InitializePartnerRole" value=""/>
+            <att name="WSBPEL_ExtensionAttributes">
+               <extensionAttributes>
+                  <extensionAttribute namespace="http://www.activebpel.org/2009/02/bpel/extension/ignorable"
+                                      qualifiedName="aei:interface"
+                                      value="ns3:OrderDetailsRequest"/>
+               </extensionAttributes>
+            </att>
+         </node>
+         <node id="27" name="PARTNER_LINK">
+            <att name="PartnerLinkName" value="IGetOrderDetailsPLT"/>
+            <att name="PartnerLinkType" value="gtr:IGetOrderDetailsPLT"/>
+            <att name="PartnerRole" value="java"/>
+            <att name="ParticipantType" value="Provider"/>
+            <att name="PartnerRoleState" value=""/>
+            <att name="MyRoleState" value=""/>
+            <att name="visible" value="false,false,false,false,false,"/>
+            <att name="objectId" value="125615144342906761"/>
+            <att name="InitializePartnerRole" value=""/>
+         </node>
+      </graph>
+   </att>
+   <att>
+      <graph id="28" name="VARIABLE_CONTAINERS">
+         <att name="VariableCount" value="2"/>
+         <node id="29" name="VARIABLE_CONTAINER">
+            <att name="VariableName" value="OrderDetailsRequest"/>
+            <att name="VariableSpecification" value="Element=types1:OrderDetailsRequest"/>
+            <att name="objectId" value="125615137880406287"/>
+         </node>
+         <node id="30" name="VARIABLE_CONTAINER">
+            <att name="VariableName" value="getOrderDetailsDBResponse"/>
+            <att name="VariableSpecification" value="Element=gtr:getOrderDetailsResponse"/>
+            <att name="objectId" value="125615144344506775"/>
+         </node>
+      </graph>
+   </att>
+   <node id="31" name="CORRELATION_CONTAINERS">
+      <att name="CorrSetCount" value="0"/>
+   </node>
+   <att>
+      <graph id="32" name="SCOPE_ACTIVITY">
+         <att name="text" value="Process Activities"/>
+         <att>
+            <graph id="33" name="SEQUENCE">
+               <att name="objectId" value="125615136924206275"/>
+               <att name="location" value="LOC {91,97}"/>
+               <att name="absoluteLocation" value="LOC {101,107}"/>
+               <att name="absoluteSize" value="DIM {145,243}"/>
+               <att name="collapedImageLocation" value="icons/bpmn/activity/CollapsedBlock.png"/>
+               <att name="horizontal" value="false"/>
+               <att>
+                  <graph id="34" name="RECEIVE">
+                     <att name="objectId" value="125615136924206271"/>
+                     <att name="location" value="LOC {91,97}"/>
+                     <att name="absoluteLocation" value="LOC {138,117}"/>
+                     <att name="absoluteSize" value="DIM {70,60}"/>
+                     <att name="name" value="GetOrderDetails"/>
+                     <att name="text" value="GetOrderDetails"/>
+                     <att name="backgroundImageLocation" value="icons/bpmn/activity/ActivityBlock.png"/>
+                     <att name="partnerLink" value="Process_Consumer"/>
+                     <att name="portType" value="{http://www.solazyme/GetOrderDetais}OrderDetailsRequest"/>
+                     <att name="operation" value="GetOrderDetails"/>
+                     <att name="createInstance" value="true"/>
+                     <att name="variable" value="OrderDetailsRequest"/>
+                     <att name="attachments" value=""/>
+                     <att name="principal" value=""/>
+                     <att name="fromParts" value="0"/>
+                     <node id="35" name="ANNOTATION_SYNC_ACTIVITY_LABEL">
+                        <att name="anchor.objectId" value="125615136924206271"/>
+                        <att name="relative.location" value="LOC {-47,43}"/>
+                        <att name="text" value="GetOrderDetails"/>
+                        <att name="objectId" value="125615136924206277"/>
+                        <att name="location" value="LOC {126,160}"/>
+                        <att name="absoluteLocation" value="LOC {126,160}"/>
+                        <att name="absoluteSize" value="DIM {77,13}"/>
+                        <att name="anchor.location" value="0"/>
+                        <att name="AevSynchronizedActivityLabelModel.isVisible" value="true"/>
+                     </node>
+                  </graph>
+               </att>
+               <att>
+                  <graph id="36" name="INVOKE">
+                     <att name="objectId" value="125615144346006777"/>
+                     <att name="location" value="LOC {110,194}"/>
+                     <att name="absoluteLocation" value="LOC {111,202}"/>
+                     <att name="absoluteSize" value="DIM {125,53}"/>
+                     <att name="name" value="getOrderDetails"/>
+                     <att name="text" value="getOrderDetails"/>
+                     <att name="backgroundImageLocation" value="icons/bpmn/activity/ActivityBlock.png"/>
+                     <att name="partnerLink" value="IGetOrderDetailsPLT"/>
+                     <att name="portType"
+                          value="{urn:com:activevos:pojo:hellodb:igetorderdetails}IGetOrderDetails"/>
+                     <att name="operation" value="getOrderDetails"/>
+                     <att name="inputVariable" value="parameters"/>
+                     <att name="outputVariable" value="getOrderDetailsDBResponse"/>
+                     <att name="fromParts" value="0"/>
+                     <att name="toParts" value="0"/>
+                     <att name="attachments" value=""/>
+                     <att name="subprocessPath" value=""/>
+                     <node id="37" name="VARIABLE_CONTAINER">
+                        <att name="VariableName" value="parameters"/>
+                        <att name="VariableSpecification" value="MessageType=gtr:getOrderDetails"/>
+                        <att name="objectId" value="125615160177307111"/>
+                     </node>
+                     <att>
+                        <graph id="38" name="ASSIGN">
+                           <att name="objectId" value="125615160177307113"/>
+                           <att name="borderColor" value="RGB {0,0,255}"/>
+                           <att name="transparent" value="true"/>
+                           <att name="backgroundColor" value="RGB {226,226,226}"/>
+                           <att name="imageLocation" value="icons/activity/large/paletteAssignLarge.png"/>
+                           <att name="absoluteLocation" value="LOC {0,0}"/>
+                           <att name="absoluteSize" value="DIM {-1,-1}"/>
+                           <att name="backgroundImageLocation" value="icons/bpmn/activity/ActivityBlock.png"/>
+                           <att name="copy" value="1"/>
+                           <att name="validateVars" value="false"/>
+                           <att name="implicitScopeIO" value="INPUT"/>
+                           <node id="39" name="ASSIGN_COPY">
+                              <att name="fromExpression" value="$OrderDetailsRequest/types1:orderid"/>
+                              <att name="fromType" value="3"/>
+                              <att name="objectId" value="125615160375807125"/>
+                              <att name="toVariable" value="parameters"/>
+                              <att name="toPart" value="getOrderDetails"/>
+                              <att name="toQuery" value="ns4:orderDetailsParam/ns4:purchaseOrderId"/>
+                              <att name="ignoreMissingFromData" value="false"/>
+                           </node>
+                        </graph>
+                     </att>
+                  </graph>
+               </att>
+               <att>
+                  <graph id="40" name="REPLY">
+                     <att name="objectId" value="125615136924206273"/>
+                     <att name="absoluteLocation" value="LOC {138,280}"/>
+                     <att name="absoluteSize" value="DIM {70,60}"/>
+                     <att name="name" value="GetOrderDetails-Reply"/>
+                     <att name="text" value="GetOrderDetails-Reply"/>
+                     <att name="backgroundImageLocation" value="icons/bpmn/activity/ActivityBlock.png"/>
+                     <att name="partnerLink" value="Process_Consumer"/>
+                     <att name="portType" value="{http://www.solazyme/GetOrderDetais}OrderDetailsRequest"/>
+                     <att name="operation" value="GetOrderDetails"/>
+                     <att name="variable" value="parameters"/>
+                     <att name="toParts" value="0"/>
+                     <node id="41" name="ANNOTATION_SYNC_ACTIVITY_LABEL">
+                        <att name="anchor.objectId" value="125615136924206273"/>
+                        <att name="relative.location" value="LOC {-67,43}"/>
+                        <att name="text" value="GetOrderDetails-Reply"/>
+                        <att name="objectId" value="125615136924206279"/>
+                        <att name="location" value="LOC {106,323}"/>
+                        <att name="absoluteLocation" value="LOC {106,323}"/>
+                        <att name="absoluteSize" value="DIM {108,13}"/>
+                        <att name="anchor.location" value="0"/>
+                        <att name="AevSynchronizedActivityLabelModel.isVisible" value="true"/>
+                     </node>
+                     <node id="42" name="VARIABLE_CONTAINER">
+                        <att name="VariableName" value="parameters"/>
+                        <att name="VariableSpecification" value="MessageType=ns3:GetOrderDetailsResponse"/>
+                        <att name="objectId" value="125615138078806289"/>
+                     </node>
+                     <att>
+                        <graph id="43" name="ASSIGN">
+                           <att name="objectId" value="125615138078806291"/>
+                           <att name="borderColor" value="RGB {0,0,255}"/>
+                           <att name="transparent" value="true"/>
+                           <att name="backgroundColor" value="RGB {226,226,226}"/>
+                           <att name="imageLocation" value="icons/activity/large/paletteAssignLarge.png"/>
+                           <att name="absoluteLocation" value="LOC {0,0}"/>
+                           <att name="absoluteSize" value="DIM {-1,-1}"/>
+                           <att name="backgroundImageLocation" value="icons/bpmn/activity/ActivityBlock.png"/>
+                           <att name="copy" value="1"/>
+                           <att name="validateVars" value="false"/>
+                           <att name="implicitScopeIO" value="INPUT"/>
+                           <node id="44" name="ASSIGN_COPY">
+                              <att name="fromExpression"
+                                   value="abx:xmlStringToElement( string($getOrderDetailsDBResponse/string))"/>
+                              <att name="fromType" value="3"/>
+                              <att name="objectId" value="125615147892906819"/>
+                              <att name="toVariable" value="parameters"/>
+                              <att name="toPart" value="GetOrderDetailsResponse"/>
+                              <att name="toQuery" value="."/>
+                              <att name="ignoreMissingFromData" value="false"/>
+                           </node>
+                        </graph>
+                     </att>
+                  </graph>
+               </att>
+            </graph>
+         </att>
+      </graph>
+   </att>
+   <node id="45" name="SCOPE_FAULTHANDLER">
+      <att name="backgroundColor" value="RGB {226,226,226}"/>
+   </node>
+   <node id="46" name="SCOPE_EVENTHANDLER">
+      <att name="backgroundColor" value="RGB {226,226,226}"/>
+   </node>
+</graph>

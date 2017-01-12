@@ -1,0 +1,1 @@
+Web service message '{http://xaware.org/xas/ns1/wsdl/}SolaRFQDetailSVIS_BDSelectRFQDetail_xbd_ExecuteResponse' generated errors during validation: The message part 'BDSelectRFQDetail.xbdResponse' produced the following error during validation: cvc-complex-type.2.4.a: Invalid content was found starting with element 'Document'. One of '{WC["#any"]}' is expected.

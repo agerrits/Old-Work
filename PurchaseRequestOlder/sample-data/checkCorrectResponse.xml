@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding ="UTF-8"?>
+<chkresp:purchaseResponse xmlns:chkresp="http://domain.com/CheckResponse">
+  <chkresp:approved>not approved</chkresp:approved>
+</chkresp:purchaseResponse>

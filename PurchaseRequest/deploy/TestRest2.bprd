@@ -1,0 +1,62 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<project name="Service Archive" default='runDeploy' basedir=".">
+
+   <!-- Taskdefs required when running this script from the command line. -->
+   <taskdef name="validatebpr" classname="com.activee.ant.bpr.tasks.AeValidateBPRTask" />
+   <taskdef name="deploybpr" classname="com.activee.ant.bpr.tasks.AeDeployBPRTask" />
+   <taskdef name="createcatalog" classname="com.activee.ant.bpr.tasks.AeCreateCatalogTask" />
+
+   <!-- Some properties used by the script. -->
+   <property name="archive.filename" value="C:\Documents and Settings\agerrits\My Documents\ActiveVos\ws01\AriSampleCF5\deploy\TestRest2.bpr" />
+
+   <!-- The deployment location.  Typically a server/container deployment directory. -->
+   <property name="archive.deploypath" value="http://localhost:8180/active-bpel/services/ActiveBpelDeployBPR" />
+
+   <!-- A temp directory location. -->
+   <property name="archive.temppath" value="C:\Documents and Settings\agerrits\Local Settings\Temp" />
+
+   <!-- Build the BPR file from the following (generated) file set. -->
+   <target name="build" depends="">
+      <delete file="${archive.filename}" />
+      <jar destfile="${archive.filename}">
+         <!-- PDD Files. -->
+         <zipfileset file="C:\Documents and Settings\agerrits\My Documents\ActiveVos\ws01\CallCF5\deploy\TestRest2.pdd" fullpath="META-INF/pdd/CallCF5/deploy/TestRest2.pdd" />
+         <!-- BPEL Files. -->
+         <zipfileset file="C:\Documents and Settings\agerrits\My Documents\ActiveVos\ws01\CallCF5\bpel\TestRest2.bpel" fullpath="bpel/CallCF5/bpel/TestRest2.bpel" />
+         <!-- WSDL Files. -->
+         <zipfileset file="C:\Documents and Settings\agerrits\My Documents\ActiveVos\ws01\CallCF5\wsdl\bpel\TestRest2.public.wsdl" fullpath="wsdl/Documents and Settings/agerrits/My Documents/ActiveVos/ws01/CallCF5/wsdl/bpel/TestRest2.public.wsdl" />
+         <zipfileset file="C:\Documents and Settings\agerrits\My Documents\ActiveVos\ws01\PurchaseRequest\wsdl\RFQEnvelope.wsdl" fullpath="wsdl/Documents and Settings/agerrits/My Documents/ActiveVos/ws01/PurchaseRequest/wsdl/RFQEnvelope.wsdl" />
+         <!-- XSD Files -->
+         <zipfileset file="C:\Documents and Settings\agerrits\My Documents\ActiveVos\ws01\CallCF5\schema\PurchaseRequest.xsd" fullpath="wsdl/Documents and Settings/agerrits/My Documents/ActiveVos/ws01/CallCF5/schema/PurchaseRequest.xsd" />
+         <zipfileset file="C:\Documents and Settings\agerrits\My Documents\ActiveVos\ws01\CallCF5\schema\RESTResponse.xsd" fullpath="wsdl/Documents and Settings/agerrits/My Documents/ActiveVos/ws01/CallCF5/schema/RESTResponse.xsd" />
+         <zipfileset file="C:\Documents and Settings\agerrits\My Documents\ActiveVos\ws01\CallCF5\schema\XAErrors.xsd" fullpath="wsdl/CallCF5/schema/XAErrors.xsd" />
+      </jar>
+      <createcatalog file="${archive.filename}" replaceExisting="true">
+         <wsdlentry location="project:/CallCF5/wsdl/bpel/TestRest2.public.wsdl" classpath="wsdl/Documents and Settings/agerrits/My Documents/ActiveVos/ws01/CallCF5/wsdl/bpel/TestRest2.public.wsdl" />
+         <wsdlentry location="project:/PurchaseRequest/wsdl/RFQEnvelope.wsdl" classpath="wsdl/Documents and Settings/agerrits/My Documents/ActiveVos/ws01/PurchaseRequest/wsdl/RFQEnvelope.wsdl" />
+         <schemaentry location="project:/CallCF5/schema/PurchaseRequest.xsd" classpath="wsdl/Documents and Settings/agerrits/My Documents/ActiveVos/ws01/CallCF5/schema/PurchaseRequest.xsd" />
+         <schemaentry location="project:/CallCF5/schema/RESTResponse.xsd" classpath="wsdl/Documents and Settings/agerrits/My Documents/ActiveVos/ws01/CallCF5/schema/RESTResponse.xsd" />
+         <schemaentry location="project:/CallCF5/schema/XAErrors.xsd" classpath="wsdl/CallCF5/schema/XAErrors.xsd" />
+      </createcatalog>
+   </target>
+
+   <!-- Validate the BPR once it is built. -->
+   <target name="validate" depends="">
+      <echo message="Validating the Business Process Archive..." />
+      <validatebpr file="${archive.filename}" />
+      <echo message="Validation completed successfully." />
+   </target>
+
+   <!-- Deploy the built BPR file to some kind of container/server. -->
+   <target name="deploy" depends="">
+      <echo message="Deploying Business Process Archive." />
+      <deploybpr type="webservice" file="${archive.filename}" tourl="${archive.deploypath}" />
+      <echo message="Business Process Archive deployed." />
+   </target>
+
+   <!-- The main entry point into this script, the run target calls various other targets in turn. -->
+   <target name="run" depends="build,validate"/>
+
+   <target name="runDeploy" depends="run,deploy"/>
+
+</project>

@@ -1,0 +1,314 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+   <!-- Created by ActiveVOS 7.1.1.1 -->
+   <head>
+      <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+      <title>ActiveVOS Process Request Form</title>
+   </head>
+   <body>
+      <div id="processRequestForm$ID" class="avc_process_request_form">
+         <div id="requestContainer$ID">
+            <div class="avc_collapser ui-widget-header">
+               <table>
+                  <tr>
+                     <td><span class="ui-icon ui-icon-triangle-1-s"></span></td>
+                     <td><span>Approve By Email Process Request</span></td>
+                  </tr>
+               </table>
+            </div>
+            <div id="ns_EmailApprovalRequest_input$ID" class="avc_message_container input ui-widget-content noborder">
+               <form id="requestInputForm$ID" name="requestInputForm$ID" action="" method="post" enctype="multipart/form-data">
+                <input type="hidden" name="_json" value="" class="_json$ID" />
+				<input type="hidden" name="responseContentType" value="text/html" />
+				<input type="hidden" name="responseWrap" value="textarea" />
+                  <table class="input">
+                     <tbody>
+                        <tr>
+                           <td colspan="2">
+                              <div id="ns_VacationRequestInput1$ID" class="avc_message_container input">
+                                 <div>
+                                    <span class="avc_heading">Vacation Request</span>
+                                 </div>
+                                 <table class="input">
+                                    <tbody>
+                                       <tr>
+                                          <th align="right">Name <span class="avc_required_field">*</span></th>
+                                          <td nowrap="nowrap" class="avc_data_cell"><input id="iName1$ID" name="Name" value="" size="50" class="avc_input_field avc_type_string avc_data_field_ns_VacationRequest_ns_Name avc_required_field" /></td>
+                                       </tr>
+                                       <tr>
+                                          <th align="right">Email <span class="avc_required_field">*</span></th>
+                                          <td nowrap="nowrap" class="avc_data_cell"><input id="iEmail1$ID" name="Email" value="" size="50" class="avc_input_field avc_type_string avc_data_field_ns_VacationRequest_ns_Email avc_required_field" /></td>
+                                       </tr>
+                                       <tr>
+                                          <th align="right">Boss's Email <span class="avc_required_field">*</span></th>
+                                          <td nowrap="nowrap" class="avc_data_cell"><input id="iBosssEmail1$ID" name="BosssEmail" value="" size="50" class="avc_input_field avc_type_string avc_data_field_ns_VacationRequest_ns_BosssEmail avc_required_field" /></td>
+                                       </tr>
+                                       <tr>
+                                          <th align="right">Start Date <span class="avc_required_field">*</span></th>
+                                          <td nowrap="nowrap" class="avc_data_cell"><input id="iStartDate1$ID" name="StartDate" value="" size="15" class="avc_input_field avc_type_date avc_data_field_ns_VacationRequest_ns_StartDate avc_required_field" /></td>
+                                       </tr>
+                                       <tr>
+                                          <th align="right">Days <span class="avc_required_field">*</span></th>
+                                          <td nowrap="nowrap" class="avc_data_cell"><input id="iDays1$ID" name="Days" value="" size="50" class="avc_input_field avc_type_number avc_data_field_ns_VacationRequest_ns_Days avc_required_field" /></td>
+                                       </tr>
+                                       <tr>
+                                          <th align="right">Upload <span class="avc_required_field">*</span></th>
+                                          <td nowrap="nowrap" class="avc_data_cell"><input id="iAttach1$ID" name="Attach" value="" size="50" type="file" class="avc_input_field avc_type_file avc_data_field_ns_VacationRequest_ns_Attach avc_required_field" /></td>
+                                       </tr>
+                                       <tr>
+                                          <td colspan="2">
+                                          </td>
+                                       </tr>
+                                    </tbody>
+                                 </table>
+                              </div>
+                           </td>
+                        </tr>
+                     </tbody>
+                  </table>
+                  <div>
+                      <input type="submit" id="sendRequest$ID" value="Submit Request" class="avc_form_instance_save" />
+                  </div>
+               </form>
+            </div>
+         </div>
+         <div id="responseContainer$ID" style="display: none;">
+            <div class="avc_collapser ui-widget-header">
+               <table>
+                  <tr>
+                     <td><span class="ui-icon ui-icon-triangle-1-s"></span></td>
+                     <td><span>Process Output</span></td>
+                  </tr>
+               </table>
+            </div>
+            <div id="ns_EmailApprovalAck_output$ID" class="avc_message_container output ui-widget-content noborder">
+               <form id="ackOutputForm$ID" name="ackOutputForm$ID" action="">
+                  <table class="output">
+                     <tbody>
+                        <tr>
+                           <th align="right">Request Num</th>
+                           <td nowrap="nowrap" class="avc_data_cell"><span id="oRequestNum1$ID" class="avc_display_field avc_data_field_ns_RequestNum"></span></td>
+                        </tr>
+                        <tr>
+                           <td colspan="2">
+                           </td>
+                        </tr>
+                     </tbody>
+                  </table>
+               </form>
+            </div>
+         </div>
+</div>
+<script type="text/javascript">
+//<![CDATA[
+   // request form to submit requests and handle response 
+   var AeRequestForm$ID = function() {
+   
+      // this
+      var mFormInstance = this;
+      
+      // the service name
+      var mServiceName = "RequestVacation";
+      
+      // the operation, represented in json. Used for easy access to metadata about the service operation. during design time.
+      var mOperation = {"Namespace":"http:\/\/EmailApproval","PortType":"EmailApprovalPortType","Operation":"ApproveByEmail","Id":""};
+
+      /**
+       * This function is used as the call back from AE_REQUESTS_UTIL.postJSON
+       * The response parameter contains response data used to load the service
+       * output fields in the page.
+       * @param aResponse The JSON response from the service invocation 
+       */
+      var _showResponseCallback = function (aResponse) {
+         $("#sendRequest$ID").attr("disabled", false);
+         $("#requestContainer$ID").find("div.avc_collapser:first").click();
+         $("#responseContainer$ID").show();
+
+                  //$("#oRequestNum1$ID").text(AE_JSON_NODE_UTIL.getText(aResponse.RequestNum));
+				if(AE_UTIL.isNullOrEmpty(aResponse.ack) === false) {
+                  $("#oRequestNum1$ID").text(AE_JSON_NODE_UTIL.getText(aResponse.RequestNum));
+                  //$("#oClaimDate1$ID").text(AE_UTIL.formatDate(AE_JSON_NODE_UTIL.getText(aResponse.claimAck.claimDate)));
+                  //$("#oClaimStatus1$ID").text(AE_JSON_NODE_UTIL.getText(aResponse.claimAck.claimStatus));
+               }
+      }
+
+      /**
+       * This function is called back by AE_REQUESTS_UTIL.postJSON when
+       * a fault has been returned by the service invocation.
+       * The fault parameter contains information about the service fault.
+       * @param aFault A JSON value that represents the service fault
+       */
+      var _showFaultCallback = function (aFault) {
+         $("#sendRequest$ID").attr("disabled", false);
+         // return false to let AVC framework handle it
+         return false;
+      }
+   
+      /**
+       * This function is called back by AE_REQUESTS_UTIL.postJSON when
+       * there has been an error or failure to communicate with the service
+       * endpoint specified in the service invocation.
+       * @param aStatusCode The http status code returned from the request invocation
+       * @param aError The error message string
+       */
+      var _communicationErrorCallback = function (aStatusCode, aError) {
+         $("#sendRequest$ID").attr("disabled", false);
+         // return false to let AVC framework handle it.
+         return false;
+      }
+
+      /**
+       * This function is called during the initialization of the page
+       * to perform the initial setup of any form field validation rules.
+       */
+      var _setupValidation = function() {
+         $("#requestInputForm$ID").validate();
+         $("#iDays1$ID").rules("add", {mininclusive: -2147483648, fractiondigits: 0, maxinclusive: 2147483647});
+      }
+
+      /**
+       * Validates the request form input data before the request is submitted
+       * @return Return true to indicate the form input is valid, otherwise false
+       */
+      var avcform_validate = function() {
+         if($("#requestInputForm$ID").validate().form() == false)
+            return false;
+         return true;
+      }
+
+      /**
+       * Submits the request data entered in the form to the service 
+       * associated with this form instance
+       */
+      var _submitRequest =  function () {
+      
+         // Validate form fields before submitting the request
+         if(avcform_validate() == false) {
+            return;
+         }
+
+         var request = mFormInstance.getInputRequest();
+         $("#sendRequest$ID").attr("disabled", true);
+         AE_JSON_NODE_UTIL.setText(request.VacationRequest.Name, $("#iName1$ID").val());
+         AE_JSON_NODE_UTIL.setText(request.VacationRequest.Email, $("#iEmail1$ID").val());
+         AE_JSON_NODE_UTIL.setText(request.VacationRequest.BosssEmail, $("#iBosssEmail1$ID").val());
+         AE_JSON_NODE_UTIL.setText(request.VacationRequest.StartDate, AE_UTIL.toXsdDate($("#iStartDate1$ID").datepicker("getDate")));
+         AE_JSON_NODE_UTIL.setText(request.VacationRequest.Days, $("#iDays1$ID").val());
+         
+         var url = AE_AJAX_SERVICE_UTIL.getActiveVOSServiceUrl("JSON/" + mServiceName);
+
+         var jsonString = JSON.stringify(request);
+           $("._json$ID").val(jsonString);                 
+         var options = {
+           dataType : 'json',
+            url: url,
+           //success: _showResponseCallback,
+           success: function(aJsonResponse) {
+           alert("Success");
+           $("#sendRequest$ID").attr("disabled", false);
+           }
+            };
+           $("#requestInputForm$ID").ajaxSubmit(options);
+      }
+      
+      /**
+       * Returns the JSON representation for the service input request.
+       * The JSON value returned can then be filled in with data and 
+       * used as input when invoking the service request
+       */
+      this.getInputRequest = function() {
+          var request = { 
+             parts : 
+               {"VacationRequest":{"xmlns":"http:\/\/EmailApprovalExample\/Vacation","Name":{"$t":""},"Email":{"$t":""},"BosssEmail":{"$t":""},"StartDate":{"$t":""},"Days":{"$t":""}}}   
+          };
+          return request.parts;
+      }
+
+      /**
+       * Called when the form has been loaded and ready to be initialized
+       */
+      this.documentReady = function()
+      {
+         // Assign handler for saving form data entered by the user
+        
+         // Handles the hiding and showing of individual display sections of the task form 
+         $("#processRequestForm $ID div.avc_collapser").live("click", function(e) {
+            $(this).find("span.ui-icon:first").toggleClass("ui-icon-triangle-1-s").toggleClass("ui-icon-triangle-1-e");
+            $(this).next().toggle("fast");
+         });
+
+         // Apply ui datepicker to fields that are bound to dateTime values
+         $("#processRequestForm$ID .avc_type_date").datepicker({ constrainInput: false, onClose: function() { this.focus(); if ( $('#' + $(this).attr('timeentryid')).val() == '') {$('#' + $(this).attr('timeentryid')).timeEntry('setTime', new Date());} }, showOn: 'button', buttonImage: AE_RESOURCE_BASE + '/images/calendar.png', buttonImageOnly: true });
+         $("#processRequestForm$ID .avc_type_time").timeEntry({ show24Hours : true, showSeconds : true, spinnerImage: AE_RESOURCE_BASE + '/images/timeentry-spinner.png', spinnerBigImage: AE_RESOURCE_BASE + '/images/timeentry-spinnerBig.png' });
+
+
+         // Handles the adding of a new repeating field         
+         $("#processRequestForm$ID").find("table.avc_repeating_field_data_table input[type='button'].avc_add_field_element").click(function() {
+            var table = $(this).parents("table:first");
+
+            // clear selection from all rows
+            var rows = $(table).find("tbody tr");
+            $(rows).removeClass("avc_data_row_selected");
+            
+            // clone the last row and add it as a new row
+            var lastRow = $(table).find("tbody tr:last");
+            var newRow = $(lastRow).clone(true);
+            $(lastRow).after(newRow);
+            
+            // Add a unique id to each input element in the new row
+            var nextRowId = $(table).data("nextRowId");
+            if(nextRowId == null) {
+               nextRowId = rows.length;
+            }
+            
+            $(table).data("nextRowId", ++nextRowId);
+            
+            // Ensure unique ids are set for the new row's child elements
+            AE_UI_UTIL.setUniqueChildElementIds(newRow, nextRowId);
+            
+            // Apply ui datepicker to new fields that are bound to dateTime values
+            $(newRow).find(".avc_type_date").removeClass("hasDatepicker").datepicker({ constrainInput: false, onClose: function() { this.focus(); if ( $('#' + $(this).attr('timeentryid')).val() == '') {$('#' + $(this).attr('timeentryid')).timeEntry('setTime', new Date());} }, showOn: 'button', buttonImage: AE_RESOURCE_BASE + '/images/calendar.png', buttonImageOnly: true });
+         });
+
+         // Handles the selection of an individual repeating field
+         $("#processRequestForm$ID").find("table.avc_repeating_field_data_table tbody tr").live("click", function() {
+            // remove the current selection and make the clicked row the new selection
+            $(this).siblings("tr").removeClass("avc_data_row_selected");
+            $(this).addClass("avc_data_row_selected");
+         });
+
+         // Handles the removing of an existing repeating field
+         $("#processRequestForm$ID").find("table.avc_repeating_field_data_table input[type='button'].avc_remove_field_element").click(function() {
+            var table = $(this).parents("table:first");
+            var rows = $(table).find("tbody tr").length;
+            
+            if(rows > 1) {
+               // if there is a row selected remove it, otherwise remove the last row
+               var row = $(table).find("tbody tr.avc_data_row_selected");
+               if($(row).length == 0)      
+                  row = $(table).find("tbody tr:last");
+               $(row).remove();
+            }
+         });
+
+         // Setup validation for request form fields
+         _setupValidation();
+         
+         // Mark all data table rows, non-empty when the user enters data
+         $("table.input.avc_data_table tbody tr, table.output.avc_data_table tbody tr").live("keypress", function() {
+             $(this).removeClass("avc_empty_row");
+         });
+      }
+   }   
+
+   // The ready event is invoked once the page is loaded and ready for processing 
+   $(document).ready(function() {
+      var requestForm = new AeRequestForm$ID();
+      requestForm.documentReady(); 
+   });   
+
+//]]>
+</script>
+   </body>
+</html>

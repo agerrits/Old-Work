@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<schema
+	targetNamespace="http://www.solazyme.com/RuntimeParameters/RuntimeParameters.xsd"
+	elementFormDefault="qualified" attributeFormDefault="unqualified" xmlns="http://www.w3.org/2001/XMLSchema" xmlns:params="http://www.solazyme.com/RuntimeParameters/RuntimeParameters.xsd" xmlns:vars="http://www.solazyme.com/RuntimeParameters/RuntimeParameters.xsd">
+
+	<element name="runtimeParameters" type="params:RuntimeParameters"></element>
+
+	<complexType name="RuntimeParameters">
+		<sequence>
+			<element name="emailFrom" type="string"></element>
+			<element name="server" type="string"></element>
+			<element name="emailAddress" type="string"></element>
+			<element name="emailSubject" type="string"></element>
+			<element name="emailText" type="string"></element>
+		</sequence>
+	</complexType>
+</schema>

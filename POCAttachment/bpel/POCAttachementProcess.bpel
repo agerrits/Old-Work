@@ -1,0 +1,141 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<bpel:process xmlns:bpel="http://docs.oasis-open.org/wsbpel/2.0/process/executable"
+              xmlns:ns="http://POCAttachementProcess/pocattachementprocess/public"
+              xmlns:ext1="http://www.activebpel.org/2009/06/bpel/extension/links"
+              xmlns:abx="http://www.activebpel.org/bpel/extension"
+              xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+              xmlns:attachment="http://avosinternal.servicenow.com/attachment"
+              xmlns:types1="http://www.example.org/POCAttachement"
+              xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI"
+              xmlns:ext="http://www.activebpel.org/2006/09/bpel/extension/query_handling"
+              xmlns:aei="http://www.activebpel.org/2009/02/bpel/extension/ignorable"
+              aei:editStyle="BPMN"
+              ext1:linksAreTransitions="yes"
+              ext:createTargetXPath="yes"
+              ext:disableSelectionFailure="yes"
+              name="POCAttachementProcess"
+              suppressJoinFailure="yes"
+              targetNamespace="http://POCAttachementProcess">
+   <bpmndi:BPMNDiagram xmlns:dc="http://www.omg.org/spec/DD/20100524/DC"
+                       xmlns:di="http://www.omg.org/spec/DD/20100524/DI"
+                       aei:bpelDigest=""
+                       aei:editStyle="BPMN"
+                       aei:layoutNeeded="false"
+                       aei:modelVersion="5"
+                       aei:objectId="147737805159200029"
+                       aei:processInitiatorSim=""
+                       isHorizontal="false">
+      <bpmndi:BPMNPlane>
+         <bpmndi:BPMNShape aei:backgroundImageLocation="icons/bpmn/activity/ActivityBlock.png"
+                           aei:objectId="147738276466100857"
+                           aei:type="PARTNER_LINK"
+                           aei:visible="false,false,false,false,false,"
+                           bpmnElement="147738276466100857"/>
+         <bpmndi:BPMNShape aei:absoluteLocation="LOC {133,113}" aei:absoluteSize="DIM {145,243}"
+                           aei:objectId="147738281860301085"
+                           aei:type="SEQUENCE"
+                           bpmnElement="147738281860301085"
+                           isHorizontal="false">
+            <dc:Bounds height="-1" width="-1" x="123" y="103"/>
+         </bpmndi:BPMNShape>
+         <bpmndi:BPMNShape aei:absoluteLocation="LOC {170,123}" aei:absoluteSize="DIM {70,60}"
+                           aei:attachments=""
+                           aei:name="attachment"
+                           aei:objectId="147738281859501081"
+                           aei:principal=""
+                           aei:text="attachment"
+                           aei:type="RECEIVE"
+                           bpmnElement="147738281859501081">
+            <dc:Bounds height="-1" width="-1" x="0" y="0"/>
+            <bpmndi:BPMNLabel aei:absoluteLocation="LOC {188,180}" aei:absoluteSize="DIM {64,16}"
+                              aei:anchor.location="1"
+                              aei:anchor.objectId="147738281859501081"
+                              aei:backgroundColor="RGB {255,255,255}"
+                              aei:objectId="147738281860601087"
+                              aei:relative.location="LOC {-27,47}"
+                              aei:text="attachment"
+                              bpmnElement="147738281859501081label">
+               <dc:Bounds height="-1" width="-1" x="0" y="0"/>
+            </bpmndi:BPMNLabel>
+         </bpmndi:BPMNShape>
+         <bpmndi:BPMNShape aei:absoluteLocation="LOC {143,208}" aei:absoluteSize="DIM {125,53}"
+                           aei:objectId="147738379428601709"
+                           aei:type="ASSIGN"
+                           bpmnElement="147738379428601709">
+            <dc:Bounds height="-1" width="-1" x="0" y="0"/>
+         </bpmndi:BPMNShape>
+         <bpmndi:BPMNShape aei:absoluteLocation="LOC {170,286}" aei:absoluteSize="DIM {70,60}"
+                           aei:name="attachment-Reply"
+                           aei:objectId="147738281860101083"
+                           aei:text="attachment-Reply"
+                           aei:type="REPLY"
+                           bpmnElement="147738281860101083">
+            <dc:Bounds height="-1" width="-1" x="0" y="0"/>
+            <bpmndi:BPMNLabel aei:absoluteLocation="LOC {172,343}" aei:absoluteSize="DIM {100,16}"
+                              aei:anchor.location="1"
+                              aei:anchor.objectId="147738281860101083"
+                              aei:backgroundColor="RGB {255,255,255}"
+                              aei:objectId="147738281860701089"
+                              aei:relative.location="LOC {-43,47}"
+                              aei:text="attachment-Reply"
+                              bpmnElement="147738281860101083label">
+               <dc:Bounds height="-1" width="-1" x="0" y="0"/>
+            </bpmndi:BPMNLabel>
+         </bpmndi:BPMNShape>
+      </bpmndi:BPMNPlane>
+   </bpmndi:BPMNDiagram>
+   <bpel:extensions>
+      <bpel:extension mustUnderstand="no"
+                      namespace="http://www.activebpel.org/2009/02/bpel/extension/ignorable"/>
+      <bpel:extension mustUnderstand="no" namespace="http://www.omg.org/spec/BPMN/20100524/DI"/>
+      <bpel:extension mustUnderstand="yes"
+                      namespace="http://www.activebpel.org/2006/09/bpel/extension/query_handling"/>
+      <bpel:extension mustUnderstand="yes"
+                      namespace="http://www.activebpel.org/2009/06/bpel/extension/links"/>
+   </bpel:extensions>
+   <bpel:import importType="http://schemas.xmlsoap.org/wsdl/"
+                location="../wsdl/attachment.wsdl"
+                namespace="http://avosinternal.servicenow.com/attachment"/>
+   <bpel:import aei:implicit="true" importType="http://schemas.xmlsoap.org/wsdl/"
+                location="../wsdl/bpel/POCAttachementProcess.public.wsdl"
+                namespace="http://POCAttachementProcess/pocattachementprocess/public"/>
+   <bpel:partnerLinks>
+      <bpel:partnerLink aei:id="147738276466100857" aei:interface="attachment:POCAttachement"
+                        myRole="Provider"
+                        name="Attachment"
+                        partnerLinkType="ns:POCAttachementPLT"/>
+   </bpel:partnerLinks>
+   <bpel:variables>
+      <bpel:variable element="types1:Request" name="Request"/>
+      <bpel:variable element="types1:Response" name="Response"/>
+      <bpel:variable name="temp" type="xsd:anyURI"/>
+   </bpel:variables>
+   <bpel:sequence aei:id="147738281860301085">
+      <bpel:receive aei:id="147738281859501081" createInstance="yes" name="attachment"
+                    operation="attachment"
+                    partnerLink="Attachment"
+                    variable="Request"/>
+      <bpel:assign aei:id="147738379428601709">
+         <bpel:copy>
+            <bpel:from>abx:getProcessId()</bpel:from>
+            <bpel:to variable="temp"/>
+         </bpel:copy>
+      </bpel:assign>
+      <bpel:scope aei:implicit="true" name="attachment-Reply">
+         <bpel:variables>
+            <bpel:variable messageType="attachment:attachmentResponse" name="parameters"/>
+         </bpel:variables>
+         <bpel:sequence>
+            <bpel:assign aei:assignType="XQUERY" aei:id="147738443096402547">
+               <bpel:copy>
+                  <bpel:from expressionLanguage="urn:active-endpoints:expression-language:xquery1.0">&lt;types1:Response xmlns:types1="http://www.example.org/POCAttachement"&gt;Done&lt;/types1:Response&gt;</bpel:from>
+                  <bpel:to part="attachmentResponse" variable="parameters"/>
+               </bpel:copy>
+            </bpel:assign>
+            <bpel:reply aei:id="147738281860101083" name="attachment-Reply" operation="attachment"
+                        partnerLink="Attachment"
+                        variable="parameters"/>
+         </bpel:sequence>
+      </bpel:scope>
+   </bpel:sequence>
+</bpel:process>

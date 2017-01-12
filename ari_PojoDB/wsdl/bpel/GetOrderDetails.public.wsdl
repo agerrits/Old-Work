@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wsdl:definitions xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/"
+                  xmlns:ns1="http://www.solazyme/GetOrderDetais"
+                  name="GetOrderDetails.public"
+                  targetNamespace="http://GetOrderDetails/public">
+   <plnk:partnerLinkType xmlns:plnk="http://docs.oasis-open.org/wsbpel/2.0/plnktype"
+                         name="OrderDetailsRequestPLT">
+      <plnk:role name="Provider" portType="ns1:OrderDetailsRequest"/>
+   </plnk:partnerLinkType>  
+   <wsdl:import location="../GetOrderDetails.wsdl"
+                namespace="http://www.solazyme/GetOrderDetais"/>
+</wsdl:definitions>

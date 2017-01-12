@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<RESTResponse xmlns="http://schemas.activebpel.org/REST/2007/12/01/aeREST.xsd"
+              statusCode="200">
+   <headers>
+      <header name="Content-Length" value="443"/>
+      <header name="Set-Cookie"
+              value="JSESSIONID=CBC177A685600C525FF03251B76FD34F;Path=/xaware"/>
+      <header name="Date" value="Wed,09 Sep 2009 21:16:11 GMT"/>
+      <header name="Content-Type" value="text/xml;charset=UTF-8"/>
+      <header name="Server" value="Apache-Coyote/1.1"/>
+   </headers>
+   <payload contentType="text/xml">
+      <Document xmlns="">
+    
+         <Element>
+            <line_item_id>1</line_item_id>
+            <purchase_req_id>1</purchase_req_id>
+            <product_num>APPL-53</product_num>
+            <quantity>1</quantity>
+            <total_cost>1546.0</total_cost>
+            <description>15&amp;quot; MacBook Pro</description>
+            <item_cost>1546.0</item_cost>
+        </Element>
+    
+      </Document>
+   </payload>
+</RESTResponse>

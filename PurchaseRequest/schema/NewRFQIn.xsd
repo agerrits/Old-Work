@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<schema xmlns="http://www.w3.org/2001/XMLSchema" targetNamespace="http://www.example.org/NewRFQIn"
+	xmlns:tns="http://www.example.org/NewRFQIn" elementFormDefault="qualified">
+
+	<element name="aeUser" type="string"></element>
+
+	<element name="PurchaseRequestID" type="int"></element>
+
+	<element name="Total" type="double"></element>
+
+	<element name="eManager" type="string"></element>
+</schema>

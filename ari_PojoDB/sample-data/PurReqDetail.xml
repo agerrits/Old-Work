@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<PurReqDetail xmlns="http://www.solazyme.com/PurchaseRequest"
+ 		xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+    <PRQLineItems>
+        <LineItemID>0</LineItemID>
+        <PurRequestID>0</PurRequestID>
+        <PurOrderID>0</PurOrderID>
+        <LineProductNum>LineProductNum0</LineProductNum>
+        <Quantity>0</Quantity>
+        <ItemCost>0</ItemCost>
+    </PRQLineItems>
+    <PRQLineItems>
+        <LineItemID>0</LineItemID>
+        <PurRequestID>0</PurRequestID>
+        <PurOrderID>0</PurOrderID>
+        <LineProductNum>LineProductNum1</LineProductNum>
+        <Quantity>0</Quantity>
+        <ItemCost>0</ItemCost>
+    </PRQLineItems>
+</PurReqDetail>

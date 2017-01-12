@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wsdl:definitions targetNamespace="http://www.solazyme.com/RequestIn/HTA" xmlns:tns="http://www.solazyme.com/RequestIn/HTA" xmlns:types3="http://www.solazyme.com/PurchaseRequest" xmlns:types1="http://domain.com/purchaserequest" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:types2="http://schemas.xmlsoap.org/soap/envelope/">
+  <wsdl:types>
+    <xs:schema elementFormDefault="qualified" targetNamespace="http://schemas.xmlsoap.org/soap/envelope/" xmlns:pur="http://domain.com/purchaserequest" xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:import namespace="http://domain.com/purchaserequest"/>
+  <xs:element name="Envelope">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element ref="soapenv:Header"/>
+        <xs:element ref="soapenv:Body"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="Header">
+    <xs:complexType/>
+  </xs:element>
+  <xs:element name="Body">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element ref="pur:purchaseRequest"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>
+    <xs:schema elementFormDefault="qualified" targetNamespace="http://domain.com/purchaserequest" xmlns:pur="http://domain.com/purchaserequest" xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:import namespace="http://schemas.xmlsoap.org/soap/envelope/"/>
+  <xs:element name="purchaseRequest">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element ref="pur:Header"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="Header">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element ref="pur:Approval"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="Approval" type="xs:string"/>
+</xs:schema>
+    <xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema">
+		<xs:import namespace="http://www.solazyme.com/PurchaseRequest" schemaLocation="../schema/PurchaseRequest.xsd"/>
+	</xs:schema>
+  </wsdl:types>
+  <wsdl:message name="PurRequestApproveResponse">
+    <wsdl:part name="PurRequestApproveResponse" element="types2:Envelope"/>
+  </wsdl:message>
+  <wsdl:message name="PurRequestApproveRequest">
+    <wsdl:part name="PurRequestApproveRequest" element="types3:PurRequestFull"/>
+  </wsdl:message>
+  <wsdl:portType name="PurchaseApprovePT">
+    <wsdl:operation name="PurRequestApprove">
+      <wsdl:input message="tns:PurRequestApproveRequest"/>
+      <wsdl:output message="tns:PurRequestApproveResponse"/>
+    </wsdl:operation>
+  </wsdl:portType>
+</wsdl:definitions>

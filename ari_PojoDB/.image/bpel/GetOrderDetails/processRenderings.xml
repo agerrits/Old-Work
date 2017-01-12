@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<processRenderings modified="1256209701815">
+   <layout-segments>
+      <segment height="366" id="process_0" tile-cols="2" tile-height="1000" tile-rows="1"
+               tile-width="1000"
+               tiled="true"
+               width="1013">
+         <image col="1" height="366" name="process_0_R1C1.jpg" row="1" width="1000"/>
+         <image col="2" height="366" name="process_0_R1C2.jpg" row="1" width="13"/>
+      </segment>
+   </layout-segments>
+   <process>
+      <bpel locationId="1" name="GetOrderDetails" path="/process" segment="process_0"
+            sheight="366"
+            swidth="13"
+            sx="1000"
+            sy="0"
+            type="process">
+         <bpel locationId="11" path="/process/partnerLinks" type="partnerLinks">
+            <bpel locationId="12" name="Process_Consumer"
+                  path="/process/partnerLinks/partnerLink[@name='Process_Consumer']"
+                  type="partnerLink"/>
+            <bpel locationId="13" name="IGetOrderDetailsPLT"
+                  path="/process/partnerLinks/partnerLink[@name='IGetOrderDetailsPLT']"
+                  type="partnerLink"/>
+         </bpel>
+         <bpel locationId="15" path="/process/variables" type="variables">
+            <bpel locationId="16" name="OrderDetailsRequest"
+                  path="/process/variables/variable[@name='OrderDetailsRequest']"
+                  type="variable"/>
+            <bpel locationId="17" name="getOrderDetailsDBResponse"
+                  path="/process/variables/variable[@name='getOrderDetailsDBResponse']"
+                  type="variable"/>
+         </bpel>
+         <bpel height="10" locationId="18" name="" path="/process/sequence" type="sequence"
+               width="1"
+               x="173"
+               y="107">
+            <bpel height="60" locationId="19" name="GetOrderDetails"
+                  path="/process/sequence/receive[@name='GetOrderDetails']"
+                  type="receive"
+                  width="70"
+                  x="138"
+                  y="117"/>
+            <bpel height="53" locationId="20" name="getOrderDetails"
+                  path="/process/sequence/scope[@name='getOrderDetails']"
+                  type="scope"
+                  width="125"
+                  x="111"
+                  y="202">
+               <bpel locationId="21"
+                     path="/process/sequence/scope[@name='getOrderDetails']/variables"
+                     type="variables">
+                  <bpel locationId="22" name="parameters"
+                        path="/process/sequence/scope[@name='getOrderDetails']/variables/variable[@name='parameters']"
+                        type="variable"/>
+               </bpel>
+               <bpel locationId="23" name=""
+                     path="/process/sequence/scope[@name='getOrderDetails']/sequence"
+                     type="sequence">
+                  <bpel locationId="24" name=""
+                        path="/process/sequence/scope[@name='getOrderDetails']/sequence/assign"
+                        type="assign"/>
+                  <bpel locationId="29" name="getOrderDetails"
+                        path="/process/sequence/scope[@name='getOrderDetails']/sequence/invoke[@name='getOrderDetails']"
+                        type="invoke"/>
+               </bpel>
+            </bpel>
+            <bpel locationId="30" name="GetOrderDetails-Reply"
+                  path="/process/sequence/scope[@name='GetOrderDetails-Reply']"
+                  type="scope">
+               <bpel locationId="31"
+                     path="/process/sequence/scope[@name='GetOrderDetails-Reply']/variables"
+                     type="variables">
+                  <bpel locationId="32" name="parameters"
+                        path="/process/sequence/scope[@name='GetOrderDetails-Reply']/variables/variable[@name='parameters']"
+                        type="variable"/>
+               </bpel>
+               <bpel locationId="33" name=""
+                     path="/process/sequence/scope[@name='GetOrderDetails-Reply']/sequence"
+                     type="sequence">
+                  <bpel locationId="34" name=""
+                        path="/process/sequence/scope[@name='GetOrderDetails-Reply']/sequence/assign"
+                        type="assign"/>
+                  <bpel height="60" locationId="39" name="GetOrderDetails-Reply"
+                        path="/process/sequence/scope[@name='GetOrderDetails-Reply']/sequence/reply[@name='GetOrderDetails-Reply']"
+                        type="reply"
+                        width="70"
+                        x="138"
+                        y="280"/>
+               </bpel>
+            </bpel>
+         </bpel>
+      </bpel>
+   </process>
+</processRenderings>

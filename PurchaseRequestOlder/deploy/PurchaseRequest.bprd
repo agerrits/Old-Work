@@ -1,0 +1,102 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<project name="Service Archive" default='runDeploy' basedir=".">
+
+   <!-- Taskdefs required when running this script from the command line. -->
+   <taskdef name="validatebpr" classname="com.activee.ant.bpr.tasks.AeValidateBPRTask" />
+   <taskdef name="deploybpr" classname="com.activee.ant.bpr.tasks.AeDeployBPRTask" />
+   <taskdef name="createcatalog" classname="com.activee.ant.bpr.tasks.AeCreateCatalogTask" />
+
+   <!-- Some properties used by the script. -->
+   <property name="archive.filename" value="C:\Program Files\ActiveVOS\Designer\designer\workspace\PurchaseRequest\deploy\PurchaseRequest.bpr" />
+
+   <!-- The deployment location.  Typically a server/container deployment directory. -->
+   <property name="archive.deploypath" value="http://localhost:8088/active-bpel/services/ActiveBpelDeployBPR" />
+
+   <!-- A temp directory location. -->
+   <property name="archive.temppath" value="C:\Documents and Settings\agerrits\Local Settings\Temp" />
+
+   <!-- Build the BPR file from the following (generated) file set. -->
+   <target name="build" depends="">
+      <delete file="${archive.filename}" />
+      <jar destfile="${archive.filename}">
+         <!-- PDD Files. -->
+         <zipfileset file="C:\Program Files\ActiveVOS\Designer\designer\workspace\PurchaseRequest\deploy\PurchaseRequest.pdd" fullpath="META-INF/pdd/PurchaseRequest/deploy/PurchaseRequest.pdd" />
+         <!-- BPEL Files. -->
+         <zipfileset file="C:\Program Files\ActiveVOS\Designer\designer\workspace\PurchaseRequest\bpel\PurchaseRequest.bpel" fullpath="bpel/PurchaseRequest/bpel/PurchaseRequest.bpel" />
+         <!-- WSDL Files. -->
+         <zipfileset file="C:\Program Files\ActiveVOS\Designer\designer\workspace\PurchaseRequest\wsdl\CheckCorrect.wsdl" fullpath="wsdl/Program Files/ActiveVOS/Designer/designer/workspace/PurchaseRequest/wsdl/CheckCorrect.wsdl" />
+         <zipfileset file="C:\Program Files\ActiveVOS\Designer\designer\workspace\PurchaseRequest\wsdl\PurchaseRequest.public.wsdl" fullpath="wsdl/Program Files/ActiveVOS/Designer/designer/workspace/PurchaseRequest/wsdl/PurchaseRequest.public.wsdl" />
+         <zipfileset file="C:\Program Files\ActiveVOS\Designer\designer\workspace\PurchaseRequest\wsdl\RFQApprove.wsdl" fullpath="wsdl/Program Files/ActiveVOS/Designer/designer/workspace/PurchaseRequest/wsdl/RFQApprove.wsdl" />
+         <zipfileset file="C:\Program Files\ActiveVOS\Designer\designer\workspace\PurchaseRequest\wsdl\RFQApproved.wsdl" fullpath="wsdl/Program Files/ActiveVOS/Designer/designer/workspace/PurchaseRequest/wsdl/RFQApproved.wsdl" />
+         <zipfileset file="C:\Program Files\ActiveVOS\Designer\designer\workspace\PurchaseRequest\wsdl\RFQCheckCorrect.wsdl" fullpath="wsdl/Program Files/ActiveVOS/Designer/designer/workspace/PurchaseRequest/wsdl/RFQCheckCorrect.wsdl" />
+         <zipfileset file="C:\Program Files\ActiveVOS\Designer\designer\workspace\PurchaseRequest\wsdl\RFQConfirmed.wsdl" fullpath="wsdl/Program Files/ActiveVOS/Designer/designer/workspace/PurchaseRequest/wsdl/RFQConfirmed.wsdl" />
+         <zipfileset file="C:\Program Files\ActiveVOS\Designer\designer\workspace\PurchaseRequest\wsdl\RFQGetBestPrice.wsdl" fullpath="wsdl/Program Files/ActiveVOS/Designer/designer/workspace/PurchaseRequest/wsdl/RFQGetBestPrice.wsdl" />
+         <zipfileset file="C:\Program Files\ActiveVOS\Designer\designer\workspace\PurchaseRequest\wsdl\RFQNotify.wsdl" fullpath="wsdl/Program Files/ActiveVOS/Designer/designer/workspace/PurchaseRequest/wsdl/RFQNotify.wsdl" />
+         <zipfileset file="C:\Program Files\ActiveVOS\Designer\designer\workspace\PurchaseRequest\wsdl\RFQOrder.wsdl" fullpath="wsdl/Program Files/ActiveVOS/Designer/designer/workspace/PurchaseRequest/wsdl/RFQOrder.wsdl" />
+         <zipfileset file="C:\Program Files\ActiveVOS\Designer\designer\workspace\PurchaseRequest\wsdl\RFQReceived.wsdl" fullpath="wsdl/Program Files/ActiveVOS/Designer/designer/workspace/PurchaseRequest/wsdl/RFQReceived.wsdl" />
+         <zipfileset file="C:\Program Files\ActiveVOS\Designer\designer\workspace\PurchaseRequest\wsdl\purchaseRequest.wsdl" fullpath="wsdl/Program Files/ActiveVOS/Designer/designer/workspace/PurchaseRequest/wsdl/purchaseRequest.wsdl" />
+         <zipfileset file="C:\Program Files\ActiveVOS\Designer\designer\workspace\PurchaseRequest\wsdl\purchaseRequestIn.wsdl" fullpath="wsdl/Program Files/ActiveVOS/Designer/designer/workspace/PurchaseRequest/wsdl/purchaseRequestIn.wsdl" />
+         <zipfileset file="C:\Program Files\ActiveVOS\Designer\designer\workspace\PurchaseRequest\wsdl\purchaseRequestRefine.wsdl" fullpath="wsdl/Program Files/ActiveVOS/Designer/designer/workspace/PurchaseRequest/wsdl/purchaseRequestRefine.wsdl" />
+         <!-- Other Files. -->
+         <zipfileset file="C:\Program Files\ActiveVOS\Designer\designer\workspace\PurchaseRequest\xsl\inbox\PurchaseRequest\Approve_Command.xsl" fullpath="wsdl/Program Files/ActiveVOS/Designer/designer/workspace/PurchaseRequest/xsl/inbox/PurchaseRequest/Approve_Command.xsl" />
+         <zipfileset file="C:\Program Files\ActiveVOS\Designer\designer\workspace\PurchaseRequest\xsl\inbox\PurchaseRequest\Approve_Presentation.xsl" fullpath="wsdl/Program Files/ActiveVOS/Designer/designer/workspace/PurchaseRequest/xsl/inbox/PurchaseRequest/Approve_Presentation.xsl" />
+         <zipfileset file="C:\Program Files\ActiveVOS\Designer\designer\workspace\PurchaseRequest\xsl\inbox\PurchaseRequest\CheckCorrect_Command.xsl" fullpath="wsdl/Program Files/ActiveVOS/Designer/designer/workspace/PurchaseRequest/xsl/inbox/PurchaseRequest/CheckCorrect_Command.xsl" />
+         <zipfileset file="C:\Program Files\ActiveVOS\Designer\designer\workspace\PurchaseRequest\xsl\inbox\PurchaseRequest\CheckCorrect_Presentation.xsl" fullpath="wsdl/Program Files/ActiveVOS/Designer/designer/workspace/PurchaseRequest/xsl/inbox/PurchaseRequest/CheckCorrect_Presentation.xsl" />
+         <zipfileset file="C:\Program Files\ActiveVOS\Designer\designer\workspace\PurchaseRequest\xsl\inbox\PurchaseRequest\GetBestPrice_Command.xsl" fullpath="wsdl/Program Files/ActiveVOS/Designer/designer/workspace/PurchaseRequest/xsl/inbox/PurchaseRequest/GetBestPrice_Command.xsl" />
+         <zipfileset file="C:\Program Files\ActiveVOS\Designer\designer\workspace\PurchaseRequest\xsl\inbox\PurchaseRequest\GetBestPrice_Presentation.xsl" fullpath="wsdl/Program Files/ActiveVOS/Designer/designer/workspace/PurchaseRequest/xsl/inbox/PurchaseRequest/GetBestPrice_Presentation.xsl" />
+         <zipfileset file="C:\Program Files\ActiveVOS\Designer\designer\workspace\PurchaseRequest\xsl\inbox\PurchaseRequest\Order_Command.xsl" fullpath="wsdl/Program Files/ActiveVOS/Designer/designer/workspace/PurchaseRequest/xsl/inbox/PurchaseRequest/Order_Command.xsl" />
+         <zipfileset file="C:\Program Files\ActiveVOS\Designer\designer\workspace\PurchaseRequest\xsl\inbox\PurchaseRequest\Order_Presentation.xsl" fullpath="wsdl/Program Files/ActiveVOS/Designer/designer/workspace/PurchaseRequest/xsl/inbox/PurchaseRequest/Order_Presentation.xsl" />
+         <zipfileset file="C:\Program Files\ActiveVOS\Designer\designer\workspace\PurchaseRequest\xsl\inbox\PurchaseRequest\ReceiveItems_Command.xsl" fullpath="wsdl/Program Files/ActiveVOS/Designer/designer/workspace/PurchaseRequest/xsl/inbox/PurchaseRequest/ReceiveItems_Command.xsl" />
+         <zipfileset file="C:\Program Files\ActiveVOS\Designer\designer\workspace\PurchaseRequest\xsl\inbox\PurchaseRequest\ReceiveItems_Presentation.xsl" fullpath="wsdl/Program Files/ActiveVOS/Designer/designer/workspace/PurchaseRequest/xsl/inbox/PurchaseRequest/ReceiveItems_Presentation.xsl" />
+         <zipfileset file="C:\Program Files\ActiveVOS\Designer\designer\workspace\PurchaseRequest\xsl\inbox\PurchaseRequest\Request_Command.xsl" fullpath="wsdl/Program Files/ActiveVOS/Designer/designer/workspace/PurchaseRequest/xsl/inbox/PurchaseRequest/Request_Command.xsl" />
+         <zipfileset file="C:\Program Files\ActiveVOS\Designer\designer\workspace\PurchaseRequest\xsl\inbox\PurchaseRequest\Request_Presentation.xsl" fullpath="wsdl/Program Files/ActiveVOS/Designer/designer/workspace/PurchaseRequest/xsl/inbox/PurchaseRequest/Request_Presentation.xsl" />
+      </jar>
+      <createcatalog file="${archive.filename}">
+         <wsdlentry location="project:/PurchaseRequest/wsdl/CheckCorrect.wsdl" classpath="wsdl/Program Files/ActiveVOS/Designer/designer/workspace/PurchaseRequest/wsdl/CheckCorrect.wsdl" />
+         <wsdlentry location="project:/PurchaseRequest/wsdl/PurchaseRequest.public.wsdl" classpath="wsdl/Program Files/ActiveVOS/Designer/designer/workspace/PurchaseRequest/wsdl/PurchaseRequest.public.wsdl" />
+         <wsdlentry location="project:/PurchaseRequest/wsdl/RFQApprove.wsdl" classpath="wsdl/Program Files/ActiveVOS/Designer/designer/workspace/PurchaseRequest/wsdl/RFQApprove.wsdl" />
+         <wsdlentry location="project:/PurchaseRequest/wsdl/RFQApproved.wsdl" classpath="wsdl/Program Files/ActiveVOS/Designer/designer/workspace/PurchaseRequest/wsdl/RFQApproved.wsdl" />
+         <wsdlentry location="project:/PurchaseRequest/wsdl/RFQCheckCorrect.wsdl" classpath="wsdl/Program Files/ActiveVOS/Designer/designer/workspace/PurchaseRequest/wsdl/RFQCheckCorrect.wsdl" />
+         <wsdlentry location="project:/PurchaseRequest/wsdl/RFQConfirmed.wsdl" classpath="wsdl/Program Files/ActiveVOS/Designer/designer/workspace/PurchaseRequest/wsdl/RFQConfirmed.wsdl" />
+         <wsdlentry location="project:/PurchaseRequest/wsdl/RFQGetBestPrice.wsdl" classpath="wsdl/Program Files/ActiveVOS/Designer/designer/workspace/PurchaseRequest/wsdl/RFQGetBestPrice.wsdl" />
+         <wsdlentry location="project:/PurchaseRequest/wsdl/RFQNotify.wsdl" classpath="wsdl/Program Files/ActiveVOS/Designer/designer/workspace/PurchaseRequest/wsdl/RFQNotify.wsdl" />
+         <wsdlentry location="project:/PurchaseRequest/wsdl/RFQOrder.wsdl" classpath="wsdl/Program Files/ActiveVOS/Designer/designer/workspace/PurchaseRequest/wsdl/RFQOrder.wsdl" />
+         <wsdlentry location="project:/PurchaseRequest/wsdl/RFQReceived.wsdl" classpath="wsdl/Program Files/ActiveVOS/Designer/designer/workspace/PurchaseRequest/wsdl/RFQReceived.wsdl" />
+         <wsdlentry location="project:/PurchaseRequest/wsdl/purchaseRequest.wsdl" classpath="wsdl/Program Files/ActiveVOS/Designer/designer/workspace/PurchaseRequest/wsdl/purchaseRequest.wsdl" />
+         <wsdlentry location="project:/PurchaseRequest/wsdl/purchaseRequestIn.wsdl" classpath="wsdl/Program Files/ActiveVOS/Designer/designer/workspace/PurchaseRequest/wsdl/purchaseRequestIn.wsdl" />
+         <wsdlentry location="project:/PurchaseRequest/wsdl/purchaseRequestRefine.wsdl" classpath="wsdl/Program Files/ActiveVOS/Designer/designer/workspace/PurchaseRequest/wsdl/purchaseRequestRefine.wsdl" />
+         <otherentry typeURI="http://www.w3.org/1999/XSL/Transform" location="project:/PurchaseRequest/xsl/inbox/PurchaseRequest/Approve_Command.xsl" classpath="wsdl/Program Files/ActiveVOS/Designer/designer/workspace/PurchaseRequest/xsl/inbox/PurchaseRequest/Approve_Command.xsl" />
+         <otherentry typeURI="http://www.w3.org/1999/XSL/Transform" location="project:/PurchaseRequest/xsl/inbox/PurchaseRequest/Approve_Presentation.xsl" classpath="wsdl/Program Files/ActiveVOS/Designer/designer/workspace/PurchaseRequest/xsl/inbox/PurchaseRequest/Approve_Presentation.xsl" />
+         <otherentry typeURI="http://www.w3.org/1999/XSL/Transform" location="project:/PurchaseRequest/xsl/inbox/PurchaseRequest/CheckCorrect_Command.xsl" classpath="wsdl/Program Files/ActiveVOS/Designer/designer/workspace/PurchaseRequest/xsl/inbox/PurchaseRequest/CheckCorrect_Command.xsl" />
+         <otherentry typeURI="http://www.w3.org/1999/XSL/Transform" location="project:/PurchaseRequest/xsl/inbox/PurchaseRequest/CheckCorrect_Presentation.xsl" classpath="wsdl/Program Files/ActiveVOS/Designer/designer/workspace/PurchaseRequest/xsl/inbox/PurchaseRequest/CheckCorrect_Presentation.xsl" />
+         <otherentry typeURI="http://www.w3.org/1999/XSL/Transform" location="project:/PurchaseRequest/xsl/inbox/PurchaseRequest/GetBestPrice_Command.xsl" classpath="wsdl/Program Files/ActiveVOS/Designer/designer/workspace/PurchaseRequest/xsl/inbox/PurchaseRequest/GetBestPrice_Command.xsl" />
+         <otherentry typeURI="http://www.w3.org/1999/XSL/Transform" location="project:/PurchaseRequest/xsl/inbox/PurchaseRequest/GetBestPrice_Presentation.xsl" classpath="wsdl/Program Files/ActiveVOS/Designer/designer/workspace/PurchaseRequest/xsl/inbox/PurchaseRequest/GetBestPrice_Presentation.xsl" />
+         <otherentry typeURI="http://www.w3.org/1999/XSL/Transform" location="project:/PurchaseRequest/xsl/inbox/PurchaseRequest/Order_Command.xsl" classpath="wsdl/Program Files/ActiveVOS/Designer/designer/workspace/PurchaseRequest/xsl/inbox/PurchaseRequest/Order_Command.xsl" />
+         <otherentry typeURI="http://www.w3.org/1999/XSL/Transform" location="project:/PurchaseRequest/xsl/inbox/PurchaseRequest/Order_Presentation.xsl" classpath="wsdl/Program Files/ActiveVOS/Designer/designer/workspace/PurchaseRequest/xsl/inbox/PurchaseRequest/Order_Presentation.xsl" />
+         <otherentry typeURI="http://www.w3.org/1999/XSL/Transform" location="project:/PurchaseRequest/xsl/inbox/PurchaseRequest/ReceiveItems_Command.xsl" classpath="wsdl/Program Files/ActiveVOS/Designer/designer/workspace/PurchaseRequest/xsl/inbox/PurchaseRequest/ReceiveItems_Command.xsl" />
+         <otherentry typeURI="http://www.w3.org/1999/XSL/Transform" location="project:/PurchaseRequest/xsl/inbox/PurchaseRequest/ReceiveItems_Presentation.xsl" classpath="wsdl/Program Files/ActiveVOS/Designer/designer/workspace/PurchaseRequest/xsl/inbox/PurchaseRequest/ReceiveItems_Presentation.xsl" />
+         <otherentry typeURI="http://www.w3.org/1999/XSL/Transform" location="project:/PurchaseRequest/xsl/inbox/PurchaseRequest/Request_Command.xsl" classpath="wsdl/Program Files/ActiveVOS/Designer/designer/workspace/PurchaseRequest/xsl/inbox/PurchaseRequest/Request_Command.xsl" />
+         <otherentry typeURI="http://www.w3.org/1999/XSL/Transform" location="project:/PurchaseRequest/xsl/inbox/PurchaseRequest/Request_Presentation.xsl" classpath="wsdl/Program Files/ActiveVOS/Designer/designer/workspace/PurchaseRequest/xsl/inbox/PurchaseRequest/Request_Presentation.xsl" />
+      </createcatalog>
+   </target>
+
+   <!-- Validate the BPR once it is built. -->
+   <target name="validate" depends="">
+      <echo message="Validating the Business Process Archive..." />
+      <validatebpr file="${archive.filename}" />
+      <echo message="Validation completed successfully." />
+   </target>
+
+   <!-- Deploy the built BPR file to some kind of container/server. -->
+   <target name="deploy" depends="">
+      <echo message="Deploying Business Process Archive." />
+      <deploybpr type="webservice" file="${archive.filename}" tourl="${archive.deploypath}" />
+      <echo message="Business Process Archive deployed." />
+   </target>
+
+   <!-- The main entry point into this script, the run target calls various other targets in turn. -->
+   <target name="run" depends="build,validate"/>
+
+   <target name="runDeploy" depends="run,deploy"/>
+
+</project>

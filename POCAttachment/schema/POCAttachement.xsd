@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<schema xmlns="http://www.w3.org/2001/XMLSchema" targetNamespace="http://www.example.org/POCAttachement" xmlns:tns="http://www.example.org/POCAttachement" elementFormDefault="qualified">
+
+    <element name="Request" type="tns:RequestType"></element>
+
+    <element name="Response" type="string"></element>
+
+    <complexType name="RequestType">
+    	<sequence>
+    		<element name="name" type="string"></element>
+    		<element name="Email" type="string"></element>
+    		<element name="BossEmail" type="string"></element>
+    		<element name="StartDate" type="date"></element>
+    		<element name="Days" type="string"></element>
+    	</sequence>
+    </complexType>
+</schema>

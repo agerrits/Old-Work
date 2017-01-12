@@ -1,0 +1,73 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<project name="Service Archive" default='runDeploy' basedir=".">
+
+   <!-- Taskdefs required when running this script from the command line. -->
+   <taskdef name="validatebpr" classname="com.activee.ant.bpr.tasks.AeValidateBPRTask" />
+   <taskdef name="deploybpr" classname="com.activee.ant.bpr.tasks.AeDeployBPRTask" />
+   <taskdef name="createcatalog" classname="com.activee.ant.bpr.tasks.AeCreateCatalogTask" />
+
+   <!-- Some properties used by the script. -->
+   <property name="archive.filename" value="C:\ActiveVOS\Designer70\Designer\workspace\ari_PojoDB\deploy\GetOrderDetails.bpr" />
+
+   <!-- The deployment location.  Typically a server/container deployment directory. -->
+   <property name="archive.deploypath" value="http://localhost:8080/active-bpel/services/ActiveBpelDeployBPR" />
+
+   <!-- A temp directory location. -->
+   <property name="archive.temppath" value="C:\Users\uashok\AppData\Local\Temp" />
+
+   <!-- Build the BPR file from the following (generated) file set. -->
+   <target name="build" depends="">
+      <delete file="${archive.filename}" />
+      <jar destfile="${archive.temppath}/__ae__tmp_jar0.jar">
+         <zipfileset dir="C:\ActiveVOS\Designer70\Designer\workspace\ari_PojoDB\bin" />
+      </jar>
+      <jar destfile="${archive.filename}">
+         <!-- PDD Files. -->
+         <zipfileset file="C:\ActiveVOS\Designer70\Designer\workspace\ari_PojoDB\deploy\GetOrderDetails.pdd" fullpath="META-INF/pdd/ari_PojoDB/deploy/GetOrderDetails.pdd" />
+         <!-- BPEL Files. -->
+         <zipfileset file="C:\ActiveVOS\Designer70\Designer\workspace\ari_PojoDB\bpel\GetOrderDetails.bpel" fullpath="bpel/ari_PojoDB/bpel/GetOrderDetails.bpel" />
+         <!-- WSDL Files. -->
+         <zipfileset file="C:\ActiveVOS\Designer70\Designer\workspace\ari_PojoDB\wsdl\GetOrderDetails.wsdl" fullpath="wsdl/ActiveVOS/Designer70/Designer/workspace/ari_PojoDB/wsdl/GetOrderDetails.wsdl" />
+         <zipfileset file="C:\ActiveVOS\Designer70\Designer\workspace\ari_PojoDB\wsdl\IGetOrderDetails\igetorderdetails.wsdl" fullpath="wsdl/ActiveVOS/Designer70/Designer/workspace/ari_PojoDB/wsdl/IGetOrderDetails/igetorderdetails.wsdl" />
+         <zipfileset file="C:\ActiveVOS\Designer70\Designer\workspace\ari_PojoDB\wsdl\bpel\GetOrderDetails.public.wsdl" fullpath="wsdl/ActiveVOS/Designer70/Designer/workspace/ari_PojoDB/wsdl/bpel/GetOrderDetails.public.wsdl" />
+         <!-- XSD Files -->
+         <zipfileset file="C:\ActiveVOS\Designer70\Designer\workspace\ari_PojoDB\schema\InSchema.xsd" fullpath="wsdl/ActiveVOS/Designer70/Designer/workspace/ari_PojoDB/schema/InSchema.xsd" />
+         <zipfileset file="C:\ActiveVOS\Designer70\Designer\workspace\ari_PojoDB\schema\PurchaseRequest.xsd" fullpath="wsdl/ActiveVOS/Designer70/Designer/workspace/ari_PojoDB/schema/PurchaseRequest.xsd" />
+         <zipfileset file="C:\ActiveVOS\Designer70\Designer\workspace\ari_PojoDB\wsdl\IGetOrderDetails\hellodb.xsd" fullpath="wsdl/ActiveVOS/Designer70/Designer/workspace/ari_PojoDB/wsdl/IGetOrderDetails/hellodb.xsd" />
+         <!-- Other Files. -->
+         <!-- Process Image Files. -->
+         <zipfileset file="C:\ActiveVOS\Designer70\Designer\workspace\ari_PojoDB\.image\bpel\GetOrderDetails\*" prefix=".image/ari_PojoDB/bpel/GetOrderDetails" />
+         <zipfileset file="${archive.temppath}/__ae__tmp_jar0.jar" fullpath="lib/_ari_PojoDB_bin.jar" />
+      </jar>
+      <createcatalog file="${archive.filename}" replaceExisting="true">
+         <wsdlentry location="project:/ari_PojoDB/wsdl/GetOrderDetails.wsdl" classpath="wsdl/ActiveVOS/Designer70/Designer/workspace/ari_PojoDB/wsdl/GetOrderDetails.wsdl" />
+         <wsdlentry location="project:/ari_PojoDB/wsdl/IGetOrderDetails/igetorderdetails.wsdl" classpath="wsdl/ActiveVOS/Designer70/Designer/workspace/ari_PojoDB/wsdl/IGetOrderDetails/igetorderdetails.wsdl" />
+         <wsdlentry location="project:/ari_PojoDB/wsdl/bpel/GetOrderDetails.public.wsdl" classpath="wsdl/ActiveVOS/Designer70/Designer/workspace/ari_PojoDB/wsdl/bpel/GetOrderDetails.public.wsdl" />
+         <schemaentry location="project:/ari_PojoDB/schema/InSchema.xsd" classpath="wsdl/ActiveVOS/Designer70/Designer/workspace/ari_PojoDB/schema/InSchema.xsd" />
+         <schemaentry location="project:/ari_PojoDB/schema/PurchaseRequest.xsd" classpath="wsdl/ActiveVOS/Designer70/Designer/workspace/ari_PojoDB/schema/PurchaseRequest.xsd" />
+         <schemaentry location="project:/ari_PojoDB/wsdl/IGetOrderDetails/hellodb.xsd" classpath="wsdl/ActiveVOS/Designer70/Designer/workspace/ari_PojoDB/wsdl/IGetOrderDetails/hellodb.xsd" />
+         <otherentry typeURI="http://schemas.xmlsoap.org/wsdl/java/" location="project:/ari_PojoDB/bin" classpath="lib/_ari_PojoDB_bin.jar" />
+      </createcatalog>
+      <delete file="${archive.temppath}/__ae__tmp_jar0.jar" />
+   </target>
+
+   <!-- Validate the BPR once it is built. -->
+   <target name="validate" depends="">
+      <echo message="Validating the Business Process Archive..." />
+      <validatebpr file="${archive.filename}" />
+      <echo message="Validation completed successfully." />
+   </target>
+
+   <!-- Deploy the built BPR file to some kind of container/server. -->
+   <target name="deploy" depends="">
+      <echo message="Deploying Business Process Archive." />
+      <deploybpr type="webservice" file="${archive.filename}" tourl="${archive.deploypath}" />
+      <echo message="Business Process Archive deployed." />
+   </target>
+
+   <!-- The main entry point into this script, the run target calls various other targets in turn. -->
+   <target name="run" depends="build,validate"/>
+
+   <target name="runDeploy" depends="run,deploy"/>
+
+</project>

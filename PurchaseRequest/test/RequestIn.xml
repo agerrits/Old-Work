@@ -1,0 +1,12 @@
+<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:pur="http://domain.com/purchaserequest">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <pur:purchaseRequest>
+         <pur:Header>
+            <pur:aeUser>?</pur:aeUser>
+            <pur:PurchaseRequestID>?</pur:PurchaseRequestID>
+            <pur:Total>?</pur:Total>
+            <pur:eManager>?</pur:eManager></pur:Header>
+      </pur:purchaseRequest>
+   </soapenv:Body>
+</soapenv:Envelope>

@@ -1,0 +1,62 @@
+<xs:schema elementFormDefault="qualified"
+	targetNamespace="http://schemas.activebpel.org/REST/2007/12/01/aeREST.xsd"
+	xmlns:aerest.xsd="http://schemas.activebpel.org/REST/2007/12/01/aeREST.xsd"
+	xmlns:xs="http://www.w3.org/2001/XMLSchema">
+	
+	<xs:element name="RESTResponse">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="aerest.xsd:headers" />
+				<xs:element ref="aerest.xsd:payload" />
+			</xs:sequence>
+			<xs:attribute name="statusCode" type="xs:integer" use="required" />
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="headers">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element maxOccurs="unbounded" ref="aerest.xsd:header" />
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="header">
+		<xs:complexType>
+			<xs:attribute name="name" type="xs:NCName" use="required" />
+			<xs:attribute name="value" use="required" />
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="payload">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element form="unqualified" name="Document">
+					<xs:complexType>
+						<xs:sequence>
+							<xs:element form="unqualified"
+								name="Element">
+								<xs:complexType>
+									<xs:sequence>
+										<xs:element form="unqualified"
+											name="line_item_id" type="xs:integer" />
+										<xs:element form="unqualified"
+											name="purchase_req_id" type="xs:integer" />
+										<xs:element form="unqualified"
+											name="product_num" type="xs:NCName" />
+										<xs:element form="unqualified"
+											name="quantity" type="xs:integer" />
+										<xs:element form="unqualified"
+											name="total_cost" type="xs:decimal" />
+										<xs:element form="unqualified"
+											name="description" type="xs:string" />
+										<xs:element form="unqualified"
+											name="item_cost" type="xs:decimal" />
+									</xs:sequence>
+								</xs:complexType>
+							</xs:element>
+						</xs:sequence>
+					</xs:complexType>
+				</xs:element>
+			</xs:sequence>
+			<xs:attribute name="contentType" use="required" />
+		</xs:complexType>
+	</xs:element>
+</xs:schema>

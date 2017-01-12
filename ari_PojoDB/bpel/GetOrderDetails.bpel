@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<bpel:process xmlns:bpel="http://docs.oasis-open.org/wsbpel/2.0/process/executable"
+              xmlns:ns4="urn:com:activevos:pojo:hellodb"
+              xmlns:ext1="http://www.activebpel.org/2009/06/bpel/extension/links"
+              xmlns:aei="http://www.activebpel.org/2009/02/bpel/extension/ignorable"
+              xmlns:ext="http://www.activebpel.org/2006/09/bpel/extension/query_handling"
+              xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+              xmlns:gtr="urn:com:activevos:pojo:hellodb:igetorderdetails"
+              xmlns:types1="http://www.solazyme.com/OrderDetailsRequest"
+              xmlns:abx="http://www.activebpel.org/bpel/extension"
+              xmlns:ns1="http://www.solazyme.com/PurchaseRequest"
+              xmlns:ns="http://GetOrderDetails/public"
+              xmlns:ns3="http://www.solazyme/GetOrderDetais"
+              xmlns:ns2="http://www.example.org/InSchema"
+              ext1:linksAreTransitions="yes"
+              ext:createTargetXPath="yes"
+              ext:disableSelectionFailure="yes"
+              name="GetOrderDetails"
+              suppressJoinFailure="yes"
+              targetNamespace="http://GetOrderDetails">
+   <bpel:extensions>
+      <bpel:extension mustUnderstand="yes"
+                      namespace="http://www.activebpel.org/2006/09/bpel/extension/query_handling"/>
+      <bpel:extension mustUnderstand="yes"
+                      namespace="http://www.activebpel.org/2009/06/bpel/extension/links"/>
+      <bpel:extension mustUnderstand="no"
+                      namespace="http://www.activebpel.org/2009/02/bpel/extension/ignorable"/>
+   </bpel:extensions>
+   <bpel:import importType="http://www.w3.org/2001/XMLSchema"
+                location="../schema/PurchaseRequest.xsd"
+                namespace="http://www.solazyme.com/PurchaseRequest"/>
+   <bpel:import importType="http://www.w3.org/2001/XMLSchema" location="../schema/InSchema.xsd"
+                namespace="http://www.example.org/InSchema"/>
+   <bpel:import importType="http://schemas.xmlsoap.org/wsdl/"
+                location="../wsdl/GetOrderDetails.wsdl"
+                namespace="http://www.solazyme/GetOrderDetais"/>
+   <bpel:import aei:implicit="true" importType="http://schemas.xmlsoap.org/wsdl/"
+                location="../wsdl/bpel/GetOrderDetails.public.wsdl"
+                namespace="http://GetOrderDetails/public"/>
+   <bpel:import importType="http://schemas.xmlsoap.org/wsdl/"
+                location="../wsdl/IGetOrderDetails/igetorderdetails.wsdl"
+                namespace="urn:com:activevos:pojo:hellodb:igetorderdetails"/>
+   <bpel:partnerLinks>
+      <bpel:partnerLink aei:interface="ns3:OrderDetailsRequest" myRole="Provider"
+                        name="Process_Consumer"
+                        partnerLinkType="ns:OrderDetailsRequestPLT"/>
+      <bpel:partnerLink name="IGetOrderDetailsPLT" partnerLinkType="gtr:IGetOrderDetailsPLT"
+                        partnerRole="java"/>
+   </bpel:partnerLinks>
+   <bpel:variables>
+      <bpel:variable element="types1:OrderDetailsRequest" name="OrderDetailsRequest"/>
+      <bpel:variable element="gtr:getOrderDetailsResponse" name="getOrderDetailsDBResponse"/>
+   </bpel:variables>
+   <bpel:sequence>
+      <bpel:receive createInstance="yes" name="GetOrderDetails" operation="GetOrderDetails"
+                    partnerLink="Process_Consumer"
+                    variable="OrderDetailsRequest"/>
+      <bpel:scope aei:implicit="true" name="getOrderDetails">
+         <bpel:variables>
+            <bpel:variable messageType="gtr:getOrderDetails" name="parameters"/>
+         </bpel:variables>
+         <bpel:sequence>
+            <bpel:assign>
+               <bpel:copy>
+                  <bpel:from>$OrderDetailsRequest/types1:orderid</bpel:from>
+                  <bpel:to part="getOrderDetails" variable="parameters">
+                     <bpel:query>ns4:orderDetailsParam/ns4:purchaseOrderId</bpel:query>
+                  </bpel:to>
+               </bpel:copy>
+            </bpel:assign>
+            <bpel:invoke inputVariable="parameters" name="getOrderDetails" operation="getOrderDetails"
+                         outputVariable="getOrderDetailsDBResponse"
+                         partnerLink="IGetOrderDetailsPLT"/>
+         </bpel:sequence>
+      </bpel:scope>
+      <bpel:scope aei:implicit="true" name="GetOrderDetails-Reply">
+         <bpel:variables>
+            <bpel:variable messageType="ns3:GetOrderDetailsResponse" name="parameters"/>
+         </bpel:variables>
+         <bpel:sequence>
+            <bpel:assign>
+               <bpel:copy>
+                  <bpel:from>abx:xmlStringToElement( string($getOrderDetailsDBResponse/string))</bpel:from>
+                  <bpel:to part="GetOrderDetailsResponse" variable="parameters">
+                     <bpel:query>.</bpel:query>
+                  </bpel:to>
+               </bpel:copy>
+            </bpel:assign>
+            <bpel:reply name="GetOrderDetails-Reply" operation="GetOrderDetails"
+                        partnerLink="Process_Consumer"
+                        variable="parameters"/>
+         </bpel:sequence>
+      </bpel:scope>
+   </bpel:sequence>
+</bpel:process>

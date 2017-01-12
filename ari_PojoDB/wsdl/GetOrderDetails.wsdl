@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wsdl:definitions targetNamespace="http://www.solazyme/GetOrderDetais" xmlns:tns="http://www.solazyme/GetOrderDetais" xmlns:types1="http://www.solazyme.com/OrderDetailsRequest" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:types2="http://www.solazyme.com/PurchaseRequest">
+  <wsdl:types>
+    <xs:schema elementFormDefault="qualified" targetNamespace="http://www.solazyme.com/OrderDetailsRequest" xmlns:o="http://www.solazyme.com/OrderDetailsRequest" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:element name="OrderDetailsRequest">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element ref="o:orderid"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="orderid" type="xs:integer"/>
+</xs:schema>
+    <xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema">
+		<xs:import namespace="http://www.solazyme.com/PurchaseRequest" schemaLocation="../schema/PurchaseRequest.xsd"/>
+	</xs:schema>
+  </wsdl:types>
+  <wsdl:message name="GetOrderDetailsResponse">
+    <wsdl:part name="GetOrderDetailsResponse" element="types2:PurReqDetail"/>
+  </wsdl:message>
+  <wsdl:message name="GetOrderDetailsRequest">
+    <wsdl:part name="GetOrderDetailsRequest" element="types1:OrderDetailsRequest"/>
+  </wsdl:message>
+  <wsdl:portType name="OrderDetailsRequest">
+    <wsdl:operation name="GetOrderDetails">
+      <wsdl:input message="tns:GetOrderDetailsRequest"/>
+      <wsdl:output message="tns:GetOrderDetailsResponse"/>
+    </wsdl:operation>
+  </wsdl:portType>
+</wsdl:definitions>

@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wsdl:definitions name="SolaDataPack.wsdl" targetNamespace="http://xaware.org/xas/ns1/wsdl/" xmlns:typens="http://xaware.org/xas/ns1/type" xmlns:xa="http://xaware.org/xas/ns1" xmlns:wsdlns="http://xaware.org/xas/ns1/wsdl/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <xsd:schema elementFormDefault="qualified" targetNamespace="http://xaware.org/xas/ns1/type" xmlns:SOAP-ENC="http://schemas.xmlsoap.org/soap/encoding/" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+			<xsd:element name="BDSelectRFQDetail.xbd">
+				<xsd:complexType>
+					<xsd:sequence>
+						<xsd:element name="PurchaseRequestID" type="xsd:int"/>
+					</xsd:sequence>
+				</xsd:complexType>
+			</xsd:element>
+			<xsd:element name="BDSelectRFQDetail.xbdResponse">
+				<xsd:complexType>
+					<xsd:sequence>
+						<xsd:any maxOccurs="unbounded" minOccurs="0" namespace="#any" processContents="skip"/>
+					</xsd:sequence>
+				</xsd:complexType>
+			</xsd:element>
+			<xsd:complexType name="XMLAnyType">
+				<xsd:sequence>
+					<xsd:any maxOccurs="unbounded" minOccurs="0" namespace="#any" processContents="skip"/>
+				</xsd:sequence>
+			</xsd:complexType>
+		<xsd:element name="BDSelectRFQMain.xbd"><xsd:complexType><xsd:sequence><xsd:element name="PurchaseRequestID" type="xsd:int"/></xsd:sequence></xsd:complexType></xsd:element><xsd:element name="BDSelectRFQMain.xbdResponse"><xsd:complexType><xsd:sequence><xsd:any maxOccurs="unbounded" minOccurs="0" namespace="#any" processContents="skip"/></xsd:sequence></xsd:complexType></xsd:element><xsd:element name="BDSelectRuleValue.xbd"><xsd:complexType><xsd:sequence><xsd:element name="RuleName" type="xsd:string"/><xsd:element name="Value" type="xsd:int"/></xsd:sequence></xsd:complexType></xsd:element><xsd:element name="BDSelectRuleValue.xbdResponse"><xsd:complexType><xsd:sequence><xsd:any maxOccurs="unbounded" minOccurs="0" namespace="#any" processContents="skip"/></xsd:sequence></xsd:complexType></xsd:element></xsd:schema>
+  </wsdl:types>
+  <wsdl:message name="SolaRFQMainSVIS_BDSelectRFQMain_xbd_ExecuteResponse">
+    <wsdl:part name="BDSelectRFQMain.xbdResponse" element="typens:BDSelectRFQMain.xbdResponse"/>
+  </wsdl:message>
+  <wsdl:message name="SolaRFQDetailSVIS_BDSelectRFQDetail_xbd_ExecuteRequest">
+    <wsdl:part name="BDSelectRFQDetail.xbd" element="typens:BDSelectRFQDetail.xbd"/>
+  </wsdl:message>
+  <wsdl:message name="SolaRFQDetailSVIS_BDSelectRFQDetail_xbd_ExecuteResponse">
+    <wsdl:part name="BDSelectRFQDetail.xbdResponse" element="typens:BDSelectRFQDetail.xbdResponse"/>
+  </wsdl:message>
+  <wsdl:message name="SolaRFQMainSVIS_BDSelectRFQMain_xbd_ExecuteRequest">
+    <wsdl:part name="BDSelectRFQMain.xbd" element="typens:BDSelectRFQMain.xbd"/>
+  </wsdl:message>
+  <wsdl:message name="SolaSelectRuleSVIS_BDSelectRuleValue_xbd_ExecuteResponse">
+    <wsdl:part name="BDSelectRuleValue.xbdResponse" element="typens:BDSelectRuleValue.xbdResponse"/>
+  </wsdl:message>
+  <wsdl:message name="SolaSelectRuleSVIS_BDSelectRuleValue_xbd_ExecuteRequest">
+    <wsdl:part name="BDSelectRuleValue.xbd" element="typens:BDSelectRuleValue.xbd"/>
+  </wsdl:message>
+  <wsdl:portType name="SolaSelectRuleSVISSoapPortType">
+    <wsdl:operation name="BDSelectRuleValue.xbd">
+      <wsdl:input message="wsdlns:SolaSelectRuleSVIS_BDSelectRuleValue_xbd_ExecuteRequest"/>
+      <wsdl:output message="wsdlns:SolaSelectRuleSVIS_BDSelectRuleValue_xbd_ExecuteResponse"/>
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:portType name="SolaRFQMainSVISSoapPortType">
+    <wsdl:operation name="BDSelectRFQMain.xbd">
+      <wsdl:input message="wsdlns:SolaRFQMainSVIS_BDSelectRFQMain_xbd_ExecuteRequest"/>
+      <wsdl:output message="wsdlns:SolaRFQMainSVIS_BDSelectRFQMain_xbd_ExecuteResponse"/>
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:portType name="SolaRFQDetailSVISSoapPortType">
+    <wsdl:operation name="BDSelectRFQDetail.xbd">
+      <wsdl:input message="wsdlns:SolaRFQDetailSVIS_BDSelectRFQDetail_xbd_ExecuteRequest"/>
+      <wsdl:output message="wsdlns:SolaRFQDetailSVIS_BDSelectRFQDetail_xbd_ExecuteResponse"/>
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="SolaRFQDetailSVISSoapBinding" type="wsdlns:SolaRFQDetailSVISSoapPortType">
+    <soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+    <wsdl:operation name="BDSelectRFQDetail.xbd">
+      <soap:operation soapAction="http://xaware.com/BizService"/>
+      <wsdl:input>
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="SolaRFQMainSVISSoapBinding" type="wsdlns:SolaRFQMainSVISSoapPortType">
+    <soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+    <wsdl:operation name="BDSelectRFQMain.xbd">
+      <soap:operation soapAction="http://xaware.com/BizService"/>
+      <wsdl:input>
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="SolaSelectRuleSVISSoapBinding" type="wsdlns:SolaSelectRuleSVISSoapPortType">
+    <soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+    <wsdl:operation name="BDSelectRuleValue.xbd">
+      <soap:operation soapAction="http://xaware.com/BizService"/>
+      <wsdl:input>
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="SolaRFQMainSVIS">
+    <wsdl:port name="SolaRFQMainSVISSoapPort" binding="wsdlns:SolaRFQMainSVISSoapBinding">
+      <soap:address location="http://localhost:8090/xaware/XADocSoapServlet"/>
+    </wsdl:port>
+  </wsdl:service>
+  <wsdl:service name="SolaRFQDetailSVIS">
+    <wsdl:port name="SolaRFQDetailSVISSoapPort" binding="wsdlns:SolaRFQDetailSVISSoapBinding">
+      <soap:address location="http://localhost:8090/xaware/XADocSoapServlet"/>
+    </wsdl:port>
+  </wsdl:service>
+  <wsdl:service name="SolaSelectRuleSVIS">
+    <wsdl:port name="SolaSelectRuleSVISSoapPort" binding="wsdlns:SolaSelectRuleSVISSoapBinding">
+      <soap:address location="http://localhost:8090/xaware/XADocSoapServlet"/>
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

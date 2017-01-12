@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<pdd:process xmlns:bpelns="http://GetOrderDetails" xmlns:pdd="http://schemas.active-endpoints.com/pdd/2006/08/pdd.xsd" location="bpel/ari_PojoDB/bpel/GetOrderDetails.bpel" name="bpelns:GetOrderDetails" platform="enterprise">
+  <pdd:partnerLinks>
+    <pdd:partnerLink name="IGetOrderDetailsPLT">
+      <pdd:partnerRole endpointReference="dynamic" invokeHandler="pojo:com.activevos.pojo.hellodb.GetOrderDetails?inherit=true&amp;classpath=project:/ari_PojoDB/bin"/>
+    </pdd:partnerLink>
+    <pdd:partnerLink name="Process_Consumer">
+      <pdd:myRole allowedRoles="" binding="MSG" service="OrderDetailsRequest"/>
+    </pdd:partnerLink>
+  </pdd:partnerLinks>
+  <pdd:references>
+    <pdd:schema location="project:/ari_PojoDB/schema/PurchaseRequest.xsd" namespace="http://www.solazyme.com/PurchaseRequest"/>
+    <pdd:schema location="project:/ari_PojoDB/schema/InSchema.xsd" namespace="http://www.example.org/InSchema"/>
+    <pdd:wsdl location="project:/ari_PojoDB/wsdl/GetOrderDetails.wsdl" namespace="http://www.solazyme/GetOrderDetais"/>
+    <pdd:wsdl location="project:/ari_PojoDB/wsdl/bpel/GetOrderDetails.public.wsdl" namespace="http://GetOrderDetails/public"/>
+    <pdd:wsdl location="project:/ari_PojoDB/wsdl/IGetOrderDetails/igetorderdetails.wsdl" namespace="urn:com:activevos:pojo:hellodb:igetorderdetails"/>
+  </pdd:references>
+</pdd:process>

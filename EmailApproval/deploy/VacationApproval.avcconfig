@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<tns:avosCentralConfiguration 
+	xmlns:avccom="http://schemas.active-endpoints.com/avc/2009/07/avoscentral-common.xsd" 
+	xmlns:tns="http://schemas.active-endpoints.com/avc/2009/07/avoscentral-config.xsd" 
+   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+
+  <!--  Task Role Filters  
+  <tns:taskRoleFilterDefs>
+    <tns:taskRoleFilterDef id="FILL_IN_ROLE_NAME" name="FILL_IN_ROLE_NAME">
+      <tns:taskFilterCategoryDef id="FILL_IN_FILTER_CATEGORY_ID" name="FILL_IN_FILTER_CATEGORY_NAME">
+          <avccom:allowedRoles>
+             <avccom:role>FILL_IN_ROLE_1</avccom:role>
+             <avccom:role>FILL_IN_ROLE_2</avccom:role>
+          </avccom:allowedRoles>
+          <avccom:taskFilterDef id="FILL_IN_TASK_FILTER_ID" name="FILL_IN_TASK_FILTER_NAME">
+              <avccom:filter>
+                  <tsst:getTasks xmlns:tsst="http://schemas.active-endpoints.com/b4p/wshumantask/2007/10/aeb4p-task-state-wsdl.xsd">
+                     <htdt:getMyTasks xmlns:htdt="http://www.example.org/WS-HT/api/xsd">
+                        <htdt:taskType>TASKS</htdt:taskType>
+                        <htdt:genericHumanRole>POTENTIAL_OWNERS</htdt:genericHumanRole>      
+                        <htdt:status>READY</htdt:status>
+                        <htdt:maxTasks>20</htdt:maxTasks>
+                     </htdt:getMyTasks>
+                     <tsst:taskIndexOffset>0</tsst:taskIndexOffset>
+                  </tsst:getTasks>
+              </avccom:filter>
+              <avccom:feedQueryString>filter=unclaimed&amp;role=user&amp;format=rss</avccom:feedQueryString>            
+         </avccom:taskFilterDef>
+      </tns:taskFilterCategoryDef>
+    </tns:taskRoleFilterDef>
+  </tns:taskRoleFilterDefs>
+  -->
+
+  <!--  Reports 
+  <tns:reportCategoryDefs>
+    <tns:reportCategoryDef id="FILL_IN_CATEGORY_ID" name="FILL_IN_CATEGORY_NAME">
+      <avccom:reportDef id="FILL_IN_REPORT_ID" name="FILL_IN_REPORT_NAME">
+         <avccom:allowedRoles>
+            <avccom:role>FILL_IN_ROLE_1</avccom:role>
+            <avccom:role>FILL_IN_ROLE_2</avccom:role>
+         </avccom:allowedRoles>
+         <avccom:description>PROVIDE A REPORT DESCRIPTION HERE.</avccom:description>
+         <avccom:location>project:/PATH/TO/REPORT.RPTDESIGN</avccom:location>
+         <avccom:preview>project:/PATH/TO/REPORT_PREVIEW.HTML</avccom:preview>
+      </avccom:reportDef>
+    </tns:reportCategoryDef>
+  </tns:reportCategoryDefs>
+  -->
+
+  <tns:requestCategoryDefs>
+    <tns:requestCategoryDef id="vacation" name="Request Vacation">
+      <avccom:requestDef id="VacationRequest" name="Vacation Approval">
+         <avccom:allowedRoles/>
+         <avccom:description>Request vacation approval.</avccom:description>
+         <avccom:formLocation>project:/EmailApproval/form/request/ApproveByEmail.html</avccom:formLocation>
+      </avccom:requestDef>
+    </tns:requestCategoryDef>
+  </tns:requestCategoryDefs>
+  
+  <!-- Localization element contains the location of a default properties file for any name attribute 
+       and description elements that have a ${key} syntax. 
+  <tns:i18n location="../messages.properties" />
+  -->
+	
+  <!-- Contribution to ActiveVOS Central, currently supported XHTML elements are link, style, meta and script.
+  <tns:centralIncludes>
+	<link xmlns="http://www.w3.org/1999/xhtml" href="../example.css" rel="stylesheet" type="text/css"> 
+  </tns:centralIncludes>
+  -->
+  
+</tns:avosCentralConfiguration>

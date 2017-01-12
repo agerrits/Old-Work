@@ -1,0 +1,10 @@
+<wsdl:definitions xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:ns2="http://EmailApproval"
+                  name="EMailApprovalExample.public"
+                  targetNamespace="http://EMailApprovalExample/emailapprovalexample/public">
+   <plnk:partnerLinkType xmlns:plnk="http://docs.oasis-open.org/wsbpel/2.0/plnktype"
+                         name="EmailApprovalPortTypePLT">
+      <plnk:role name="Provider" portType="ns2:EmailApprovalPortType"/>
+   </plnk:partnerLinkType>  
+   <wsdl:import location="../EmailApprovalExample.wsdl" namespace="http://EmailApproval">
+    </wsdl:import>
+</wsdl:definitions>

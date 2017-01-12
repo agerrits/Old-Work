@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<bpel:process xmlns:bpel="http://docs.oasis-open.org/wsbpel/2.0/process/executable"
+              xmlns:typens="http://xaware.org/xas/ns1/type"
+              xmlns:wsdlns="http://xaware.org/xas/ns1/wsdl/"
+              xmlns:ns1="http://www.activebpel.org/REST/2007/12/01/aeREST.wsdl"
+              xmlns:aei="http://www.activebpel.org/2009/02/bpel/extension/ignorable"
+              xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+              xmlns:ext="http://www.activebpel.org/2006/09/bpel/extension/query_handling"
+              xmlns:ns3="http://www.ari.org/samples/customer/wsdl/custinfo/1.0"
+              xmlns:ns="rest2/public"
+              xmlns:ns2="http://www.solazyme.com/RequestIn"
+              ext:createTargetXPath="yes"
+              ext:disableSelectionFailure="yes"
+              name="rest2"
+              suppressJoinFailure="yes"
+              targetNamespace="rest2">
+   <bpel:extensions>
+      <bpel:extension mustUnderstand="yes"
+                      namespace="http://www.activebpel.org/2006/09/bpel/extension/query_handling"/>
+      <bpel:extension mustUnderstand="no"
+                      namespace="http://www.activebpel.org/2009/02/bpel/extension/ignorable"/>
+   </bpel:extensions>
+   <bpel:import aei:implicit="true" importType="http://schemas.xmlsoap.org/wsdl/"
+                location="../wsdl/bpel/rest2.public.wsdl"
+                namespace="rest2/public"/>
+   <bpel:import importType="http://schemas.xmlsoap.org/wsdl/"
+                location="../wsdl/SolaDataPack.wsdl"
+                namespace="http://xaware.org/xas/ns1/wsdl/"/>
+   <bpel:import importType="http://schemas.xmlsoap.org/wsdl/"
+                location="../wsdl/RFQEnvelope.wsdl"
+                namespace="http://www.solazyme.com/RequestIn"/>
+   <bpel:import importType="http://schemas.xmlsoap.org/wsdl/"
+                namespace="http://www.activebpel.org/REST/2007/12/01/aeREST.wsdl"/>
+   <bpel:import importType="http://schemas.xmlsoap.org/wsdl/"
+                location="../sample-data/SampleGood.wsdl"
+                namespace="http://www.ari.org/samples/customer/wsdl/custinfo/1.0"/>
+   <bpel:partnerLinks>
+      <bpel:partnerLink myRole="Provider" name="Process_Consumer" partnerLinkType="ns:RequestInPLT"/>
+      <bpel:partnerLink name="RESTPT" partnerLinkType="ns1:RESTPLT" partnerRole="process"/>
+   </bpel:partnerLinks>
+   <bpel:variables>
+      <bpel:variable element="ns2:phpRFQin" name="phpRFQin"/>
+   </bpel:variables>
+   <bpel:sequence>
+      <bpel:receive createInstance="yes" name="RFQEnvelope" operation="RFQEnvelope"
+                    partnerLink="Process_Consumer"
+                    variable="phpRFQin"/>
+      <bpel:invoke name="requestResponse" operation="requestResponse" partnerLink="RESTPT"/>
+   </bpel:sequence>
+</bpel:process>

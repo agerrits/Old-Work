@@ -1,0 +1,69 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<project name="Service Archive" default='runDeploy' basedir=".">
+
+   <!-- Taskdefs required when running this script from the command line. -->
+   <taskdef name="validatebpr" classname="com.activee.ant.bpr.tasks.AeValidateBPRTask" />
+   <taskdef name="deploybpr" classname="com.activee.ant.bpr.tasks.AeDeployBPRTask" />
+   <taskdef name="createcatalog" classname="com.activee.ant.bpr.tasks.AeCreateCatalogTask" />
+
+   <!-- Some properties used by the script. -->
+   <property name="archive.filename" value="C:\Program Files\ActiveVOS\Designer\designer\dropins\PurchaseRequest.bpr" />
+
+   <!-- The deployment location.  Typically a server/container deployment directory. -->
+   <property name="archive.deploypath" value="http://localhost:8080/active-bpel/services/ActiveBpelDeployBPR" />
+
+   <!-- A temp directory location. -->
+   <property name="archive.temppath" value="C:\Documents and Settings\agerrits\Local Settings\Temp" />
+
+   <!-- Build the BPR file from the following (generated) file set. -->
+   <target name="build" depends="">
+      <delete file="${archive.filename}" />
+      <jar destfile="${archive.filename}">
+         <!-- PDD Files. -->
+         <zipfileset file="C:\Program Files\ActiveVOS\Designer\designer\wsSolazyme\PurchaseRequest\deploy\PurchaseBPEL.pdd" fullpath="META-INF/pdd/PurchaseRequest/deploy/PurchaseBPEL.pdd" />
+         <!-- BPEL Files. -->
+         <zipfileset file="C:\Program Files\ActiveVOS\Designer\designer\wsSolazyme\PurchaseRequest\bpel\PurchaseBPEL.bpel" fullpath="bpel/PurchaseRequest/bpel/PurchaseBPEL.bpel" />
+         <!-- WSDL Files. -->
+         <zipfileset file="C:\Program Files\ActiveVOS\Designer\designer\wsSolazyme\PurchaseRequest\wsdl\PurRequestApprove.wsdl" fullpath="wsdl/Program Files/ActiveVOS/Designer/designer/wsSolazyme/PurchaseRequest/wsdl/PurRequestApprove.wsdl" />
+         <zipfileset file="C:\Program Files\ActiveVOS\Designer\designer\wsSolazyme\PurchaseRequest\wsdl\RFQEnvelope.wsdl" fullpath="wsdl/Program Files/ActiveVOS/Designer/designer/wsSolazyme/PurchaseRequest/wsdl/RFQEnvelope.wsdl" />
+         <zipfileset file="C:\Program Files\ActiveVOS\Designer\designer\wsSolazyme\PurchaseRequest\wsdl\SolaDataPack.wsdl" fullpath="wsdl/Program Files/ActiveVOS/Designer/designer/wsSolazyme/PurchaseRequest/wsdl/SolaDataPack.wsdl" />
+         <zipfileset file="C:\Program Files\ActiveVOS\Designer\designer\wsSolazyme\PurchaseRequest\wsdl\bpel\PurchaseBPELorg.private.wsdl" fullpath="wsdl/Program Files/ActiveVOS/Designer/designer/wsSolazyme/PurchaseRequest/wsdl/bpel/PurchaseBPELorg.private.wsdl" />
+         <zipfileset file="C:\Program Files\ActiveVOS\Designer\designer\wsSolazyme\PurchaseRequest\wsdl\bpel\PurchaseBPELorg.public.wsdl" fullpath="wsdl/Program Files/ActiveVOS/Designer/designer/wsSolazyme/PurchaseRequest/wsdl/bpel/PurchaseBPELorg.public.wsdl" />
+         <!-- XSD Files -->
+         <zipfileset file="C:\Program Files\ActiveVOS\Designer\designer\wsSolazyme\PurchaseRequest\schema\PurchaseRequest.xsd" fullpath="wsdl/Program Files/ActiveVOS/Designer/designer/wsSolazyme/PurchaseRequest/schema/PurchaseRequest.xsd" />
+         <!-- Other Files. -->
+         <zipfileset file="C:\Program Files\ActiveVOS\Designer\designer\wsSolazyme\PurchaseRequest\xsl\inbox\PurchaseBPEL\ApproveTask_Command.xsl" fullpath="wsdl/Program Files/ActiveVOS/Designer/designer/wsSolazyme/PurchaseRequest/xsl/inbox/PurchaseBPEL/ApproveTask_Command.xsl" />
+         <zipfileset file="C:\Program Files\ActiveVOS\Designer\designer\wsSolazyme\PurchaseRequest\xsl\inbox\PurchaseBPEL\ApproveTask_Presentation.xsl" fullpath="wsdl/Program Files/ActiveVOS/Designer/designer/wsSolazyme/PurchaseRequest/xsl/inbox/PurchaseBPEL/ApproveTask_Presentation.xsl" />
+      </jar>
+      <createcatalog file="${archive.filename}" replaceExisting="true">
+         <wsdlentry location="project:/PurchaseRequest/wsdl/PurRequestApprove.wsdl" classpath="wsdl/Program Files/ActiveVOS/Designer/designer/wsSolazyme/PurchaseRequest/wsdl/PurRequestApprove.wsdl" />
+         <wsdlentry location="project:/PurchaseRequest/wsdl/RFQEnvelope.wsdl" classpath="wsdl/Program Files/ActiveVOS/Designer/designer/wsSolazyme/PurchaseRequest/wsdl/RFQEnvelope.wsdl" />
+         <wsdlentry location="project:/PurchaseRequest/wsdl/SolaDataPack.wsdl" classpath="wsdl/Program Files/ActiveVOS/Designer/designer/wsSolazyme/PurchaseRequest/wsdl/SolaDataPack.wsdl" />
+         <wsdlentry location="project:/PurchaseRequest/wsdl/bpel/PurchaseBPELorg.private.wsdl" classpath="wsdl/Program Files/ActiveVOS/Designer/designer/wsSolazyme/PurchaseRequest/wsdl/bpel/PurchaseBPELorg.private.wsdl" />
+         <wsdlentry location="project:/PurchaseRequest/wsdl/bpel/PurchaseBPELorg.public.wsdl" classpath="wsdl/Program Files/ActiveVOS/Designer/designer/wsSolazyme/PurchaseRequest/wsdl/bpel/PurchaseBPELorg.public.wsdl" />
+         <schemaentry location="project:/PurchaseRequest/schema/PurchaseRequest.xsd" classpath="wsdl/Program Files/ActiveVOS/Designer/designer/wsSolazyme/PurchaseRequest/schema/PurchaseRequest.xsd" />
+         <otherentry typeURI="http://www.w3.org/1999/XSL/Transform" location="project:/PurchaseRequest/xsl/inbox/PurchaseBPEL/ApproveTask_Command.xsl" classpath="wsdl/Program Files/ActiveVOS/Designer/designer/wsSolazyme/PurchaseRequest/xsl/inbox/PurchaseBPEL/ApproveTask_Command.xsl" />
+         <otherentry typeURI="http://www.w3.org/1999/XSL/Transform" location="project:/PurchaseRequest/xsl/inbox/PurchaseBPEL/ApproveTask_Presentation.xsl" classpath="wsdl/Program Files/ActiveVOS/Designer/designer/wsSolazyme/PurchaseRequest/xsl/inbox/PurchaseBPEL/ApproveTask_Presentation.xsl" />
+      </createcatalog>
+   </target>
+
+   <!-- Validate the BPR once it is built. -->
+   <target name="validate" depends="">
+      <echo message="Validating the Business Process Archive..." />
+      <validatebpr file="${archive.filename}" />
+      <echo message="Validation completed successfully." />
+   </target>
+
+   <!-- Deploy the built BPR file to some kind of container/server. -->
+   <target name="deploy" depends="">
+      <echo message="Deploying Business Process Archive." />
+      <deploybpr type="webservice" file="${archive.filename}" tourl="${archive.deploypath}" />
+      <echo message="Business Process Archive deployed." />
+   </target>
+
+   <!-- The main entry point into this script, the run target calls various other targets in turn. -->
+   <target name="run" depends="build,validate"/>
+
+   <target name="runDeploy" depends="run,deploy"/>
+
+</project>

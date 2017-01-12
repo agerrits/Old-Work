@@ -1,0 +1,704 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<bpel:process xmlns:bpel="http://docs.oasis-open.org/wsbpel/2.0/process/executable"
+              xmlns:ns7="http://domain.com/purchaseFRequest/3"
+              xmlns:aei="http://www.activebpel.org/2009/02/bpel/extension/ignorable"
+              xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+              xmlns:ext="http://www.activebpel.org/2006/09/bpel/extension/query_handling"
+              xmlns:ns5="http://domain.com/purchaseFRequest/1"
+              xmlns:ns12="http://domain.com/purchaseFRequest/8"
+              xmlns:crp="http://domain.com/CheckResponse"
+              xmlns:ns6="http://domain.com/purchaseFRequest/2"
+              xmlns:b4p="http://www.example.org/BPEL4People"
+              xmlns:prfq="http://domain.com/purchaseFRequest"
+              xmlns:ns11="http://domain.com/purchaseFRequest/7"
+              xmlns:ns9="http://domain.com/purchaseFRequest/5"
+              xmlns:crq="http://domain.com/CheckRequest"
+              xmlns:htd="http://www.example.org/WS-HT"
+              xmlns:ns1="http://domain.com/purchaseFRequest/RFQCheckCorrect"
+              xmlns:RFQIn="http://domain.com/purchaseFRequest/RFQin"
+              xmlns:DPO="http://domain.com/demoPurchaseOrder"
+              xmlns:PRQ="http://domain.com/purchaserequest"
+              xmlns:ns="http://PurchaseRequest/public"
+              xmlns:ns2="http://domain.com/purchaseFRequest/RFQApprove"
+              xmlns:ns8="http://domain.com/purchaseFRequest/4"
+              xmlns:ns10="http://domain.com/purchaseFRequest/6"
+              ext:createTargetXPath="yes"
+              ext:disableSelectionFailure="yes"
+              name="PurchaseRequest"
+              suppressJoinFailure="yes"
+              targetNamespace="http://PurchaseRequest">
+   <b4p:humanInteractions>
+      <htd:logicalPeopleGroups>
+         <htd:logicalPeopleGroup name="Purchasers"/>
+         <htd:logicalPeopleGroup name="Managers"/>
+         <htd:logicalPeopleGroup name="Receivers"/>
+         <htd:logicalPeopleGroup name="Requesters"/>
+      </htd:logicalPeopleGroups>
+      <htd:tasks>
+         <htd:task name="Request">
+            <htd:interface xmlns:ns="http://domain.com/purchaseFRequest/1" operation="purchaseRequest"
+                           portType="ns:rfq"/>
+            <htd:priority>9</htd:priority>
+            <htd:peopleAssignments>
+               <htd:potentialOwners>
+                  <htd:from logicalPeopleGroup="Requesters"/>
+               </htd:potentialOwners>
+               <htd:taskInitiator>
+                  <htd:from logicalPeopleGroup="Requesters"/>
+               </htd:taskInitiator>
+               <htd:businessAdministrators>
+                  <htd:from logicalPeopleGroup="Requesters"/>
+               </htd:businessAdministrators>
+            </htd:peopleAssignments>
+            <htd:presentationElements>
+               <htd:name>Request</htd:name>
+               <htd:subject>Request is submitted</htd:subject>
+               <htd:description/>
+            </htd:presentationElements>
+            <htd:renderings>
+               <htd:rendering xmlns:ns="http://schemas.active-endpoints.com/b4p/wshumantask/2007/10/aeb4p-task-rt.xsd"
+                              type="ns:xsl">
+                  <aeb4p:xsl xmlns:aeb4p="http://schemas.active-endpoints.com/b4p/wshumantask/2007/10/aeb4p-task-rt.xsd"
+                             xmlns:xsl="http://schemas.active-endpoints.com/b4p/wshumantask/2007/10/aeb4p-task-rt.xsd"
+                             developmentMode="false">
+                           <aeb4p:presentation-xsl>project:/PurchaseRequest/xsl/inbox/PurchaseRequest/Request_Presentation.xsl</aeb4p:presentation-xsl>
+                           <aeb4p:command-xsl>project:/PurchaseRequest/xsl/inbox/PurchaseRequest/Request_Command.xsl</aeb4p:command-xsl>
+                        </aeb4p:xsl>
+               </htd:rendering>
+            </htd:renderings>
+         </htd:task>
+         <htd:task name="Approve">
+            <htd:interface xmlns:ns1="http://domain.com/purchaseFRequest/8"
+                           xmlns:ns="http://domain.com/purchaseFRequest/1"
+                           operation="purchaseRequest"
+                           portType="ns1:rfq"/>
+            <htd:priority>2</htd:priority>
+            <htd:peopleAssignments>
+               <htd:potentialOwners>
+                  <htd:from logicalPeopleGroup="Managers"/>
+               </htd:potentialOwners>
+               <htd:taskStakeholders>
+                  <htd:from logicalPeopleGroup="Managers"/>
+               </htd:taskStakeholders>
+               <htd:businessAdministrators>
+                  <htd:from logicalPeopleGroup="Managers"/>
+               </htd:businessAdministrators>
+            </htd:peopleAssignments>
+            <htd:presentationElements>
+               <htd:name>Approval</htd:name>
+               <htd:subject>Approval Requested</htd:subject>
+            </htd:presentationElements>
+            <htd:renderings>
+               <htd:rendering xmlns:ns="http://schemas.active-endpoints.com/b4p/wshumantask/2007/10/aeb4p-task-rt.xsd"
+                              type="ns:xsl">
+                  <aeb4p:xsl xmlns:aeb4p="http://schemas.active-endpoints.com/b4p/wshumantask/2007/10/aeb4p-task-rt.xsd"
+                             xmlns:xsl="http://schemas.active-endpoints.com/b4p/wshumantask/2007/10/aeb4p-task-rt.xsd"
+                             developmentMode="false">
+                           <aeb4p:presentation-xsl>project:/PurchaseRequest/xsl/inbox/PurchaseRequest/Approve_Presentation.xsl</aeb4p:presentation-xsl>
+                           <aeb4p:command-xsl>project:/PurchaseRequest/xsl/inbox/PurchaseRequest/Approve_Command.xsl</aeb4p:command-xsl>
+                        </aeb4p:xsl>
+               </htd:rendering>
+            </htd:renderings>
+         </htd:task>
+         <htd:task name="CheckCorrect">
+            <htd:interface xmlns:ns="http://domain.com/purchaseFRequest" operation="purchaseRequest"
+                           portType="ns:checkCorrectRequest"/>
+            <htd:peopleAssignments>
+               <htd:potentialOwners>
+                  <htd:from logicalPeopleGroup="Purchasers"/>
+               </htd:potentialOwners>
+               <htd:businessAdministrators>
+                  <htd:from logicalPeopleGroup="Managers"/>
+               </htd:businessAdministrators>
+            </htd:peopleAssignments>
+            <htd:presentationElements>
+               <htd:name>RFQ Correct</htd:name>
+               <htd:subject>RFQ needs checking if Correct</htd:subject>
+            </htd:presentationElements>
+            <htd:renderings>
+               <htd:rendering xmlns:ns="http://schemas.active-endpoints.com/b4p/wshumantask/2007/10/aeb4p-task-rt.xsd"
+                              type="ns:xsl">
+                  <aeb4p:xsl xmlns:aeb4p="http://schemas.active-endpoints.com/b4p/wshumantask/2007/10/aeb4p-task-rt.xsd"
+                             xmlns:xsl="http://schemas.active-endpoints.com/b4p/wshumantask/2007/10/aeb4p-task-rt.xsd"
+                             developmentMode="false">
+                           <aeb4p:presentation-xsl>project:/PurchaseRequest/xsl/inbox/PurchaseRequest/CheckCorrect_Presentation.xsl</aeb4p:presentation-xsl>
+                           <aeb4p:command-xsl>project:/PurchaseRequest/xsl/inbox/PurchaseRequest/CheckCorrect_Command.xsl</aeb4p:command-xsl>
+                        </aeb4p:xsl>
+               </htd:rendering>
+            </htd:renderings>
+         </htd:task>
+         <htd:task name="GetBestPrice">
+            <htd:interface xmlns:ns="http://domain.com/purchaseFRequest/3" operation="purchaseRequest"
+                           portType="ns:rfq"/>
+            <htd:peopleAssignments>
+               <htd:potentialOwners>
+                  <htd:from logicalPeopleGroup="Purchasers"/>
+               </htd:potentialOwners>
+               <htd:businessAdministrators>
+                  <htd:from logicalPeopleGroup="Purchasers"/>
+               </htd:businessAdministrators>
+            </htd:peopleAssignments>
+            <htd:presentationElements>
+               <htd:name>GetBestPrice</htd:name>
+               <htd:subject>Find the best pricing		</htd:subject>
+            </htd:presentationElements>
+            <htd:renderings>
+               <htd:rendering xmlns:ns="http://schemas.active-endpoints.com/b4p/wshumantask/2007/10/aeb4p-task-rt.xsd"
+                              type="ns:xsl">
+                  <aeb4p:xsl xmlns:aeb4p="http://schemas.active-endpoints.com/b4p/wshumantask/2007/10/aeb4p-task-rt.xsd"
+                             xmlns:xsl="http://schemas.active-endpoints.com/b4p/wshumantask/2007/10/aeb4p-task-rt.xsd"
+                             developmentMode="false">
+                           <aeb4p:presentation-xsl>project:/PurchaseRequest/xsl/inbox/PurchaseRequest/GetBestPrice_Presentation.xsl</aeb4p:presentation-xsl>
+                           <aeb4p:command-xsl>project:/PurchaseRequest/xsl/inbox/PurchaseRequest/GetBestPrice_Command.xsl</aeb4p:command-xsl>
+                        </aeb4p:xsl>
+               </htd:rendering>
+            </htd:renderings>
+         </htd:task>
+         <htd:task name="Order">
+            <htd:interface xmlns:ns="http://domain.com/purchaseFRequest/6" operation="purchaseRequest"
+                           portType="ns:rfq"/>
+            <htd:peopleAssignments>
+               <htd:potentialOwners>
+                  <htd:from logicalPeopleGroup="Purchasers"/>
+               </htd:potentialOwners>
+               <htd:businessAdministrators>
+                  <htd:from logicalPeopleGroup="Managers"/>
+               </htd:businessAdministrators>
+            </htd:peopleAssignments>
+            <htd:presentationElements>
+               <htd:name>Ordering</htd:name>
+               <htd:subject>Order the Items</htd:subject>
+            </htd:presentationElements>
+            <htd:renderings>
+               <htd:rendering xmlns:ns="http://schemas.active-endpoints.com/b4p/wshumantask/2007/10/aeb4p-task-rt.xsd"
+                              type="ns:xsl">
+                  <aeb4p:xsl xmlns:aeb4p="http://schemas.active-endpoints.com/b4p/wshumantask/2007/10/aeb4p-task-rt.xsd"
+                             xmlns:xsl="http://schemas.active-endpoints.com/b4p/wshumantask/2007/10/aeb4p-task-rt.xsd"
+                             developmentMode="false">
+                           <aeb4p:presentation-xsl>project:/PurchaseRequest/xsl/inbox/PurchaseRequest/Order_Presentation.xsl</aeb4p:presentation-xsl>
+                           <aeb4p:command-xsl>project:/PurchaseRequest/xsl/inbox/PurchaseRequest/Order_Command.xsl</aeb4p:command-xsl>
+                        </aeb4p:xsl>
+               </htd:rendering>
+            </htd:renderings>
+         </htd:task>
+         <htd:task name="ReceiveItems">
+            <htd:interface xmlns:ns="http://domain.com/purchaseFRequest/7" operation="purchaseRequest"
+                           portType="ns:rfq"/>
+            <htd:peopleAssignments>
+               <htd:potentialOwners>
+                  <htd:from logicalPeopleGroup="Receivers"/>
+               </htd:potentialOwners>
+               <htd:businessAdministrators>
+                  <htd:from logicalPeopleGroup="Managers"/>
+               </htd:businessAdministrators>
+            </htd:peopleAssignments>
+            <htd:presentationElements>
+               <htd:name>Receiving</htd:name>
+               <htd:subject>Items are received</htd:subject>
+            </htd:presentationElements>
+            <htd:renderings>
+               <htd:rendering xmlns:ns="http://schemas.active-endpoints.com/b4p/wshumantask/2007/10/aeb4p-task-rt.xsd"
+                              type="ns:xsl">
+                  <aeb4p:xsl xmlns:aeb4p="http://schemas.active-endpoints.com/b4p/wshumantask/2007/10/aeb4p-task-rt.xsd"
+                             xmlns:xsl="http://schemas.active-endpoints.com/b4p/wshumantask/2007/10/aeb4p-task-rt.xsd"
+                             developmentMode="false">
+                           <aeb4p:presentation-xsl>project:/PurchaseRequest/xsl/inbox/PurchaseRequest/ReceiveItems_Presentation.xsl</aeb4p:presentation-xsl>
+                           <aeb4p:command-xsl>project:/PurchaseRequest/xsl/inbox/PurchaseRequest/ReceiveItems_Command.xsl</aeb4p:command-xsl>
+                        </aeb4p:xsl>
+               </htd:rendering>
+            </htd:renderings>
+         </htd:task>
+         <htd:task name="Confirm">
+            <htd:interface xmlns:ns="http://domain.com/purchaseFRequest/8" operation="purchaseRequest"
+                           portType="ns:rfq"/>
+            <htd:peopleAssignments>
+               <htd:potentialOwners>
+                  <htd:from logicalPeopleGroup="Receivers"/>
+               </htd:potentialOwners>
+               <htd:businessAdministrators>
+                  <htd:from logicalPeopleGroup="Managers"/>
+               </htd:businessAdministrators>
+            </htd:peopleAssignments>
+            <htd:presentationElements>
+               <htd:name>Confirmation</htd:name>
+               <htd:subject>Confirmation</htd:subject>
+            </htd:presentationElements>
+         </htd:task>
+      </htd:tasks>
+      <htd:notifications/>
+   </b4p:humanInteractions>
+   <bpel:extensions>
+      <bpel:extension mustUnderstand="yes"
+                      namespace="http://www.activebpel.org/2006/09/bpel/extension/query_handling"/>
+      <bpel:extension mustUnderstand="yes" namespace="http://www.example.org/BPEL4People"/>
+      <bpel:extension mustUnderstand="yes" namespace="http://www.example.org/WS-HT"/>
+      <bpel:extension mustUnderstand="no"
+                      namespace="http://www.activebpel.org/2009/02/bpel/extension/ignorable"/>
+   </bpel:extensions>
+   <bpel:import importType="http://schemas.xmlsoap.org/wsdl/"
+                location="../wsdl/purchaseRequest.wsdl"
+                namespace="http://domain.com/demoPurchaseOrder"/>
+   <bpel:import aei:implicit="true" importType="http://schemas.xmlsoap.org/wsdl/"
+                location="../wsdl/PurchaseRequest.public.wsdl"
+                namespace="http://PurchaseRequest/public"/>
+   <bpel:import importType="http://schemas.xmlsoap.org/wsdl/"
+                location="../wsdl/CheckCorrect.wsdl"
+                namespace="http://domain.com/purchaseFRequest"/>
+   <bpel:import importType="http://schemas.xmlsoap.org/wsdl/"
+                location="../wsdl/purchaseRequestRefine.wsdl"
+                namespace="http://domain.com/purchaseFRequest/1"/>
+   <bpel:import importType="http://schemas.xmlsoap.org/wsdl/"
+                location="../wsdl/RFQApprove.wsdl"
+                namespace="http://domain.com/purchaseFRequest/2"/>
+   <bpel:import importType="http://schemas.xmlsoap.org/wsdl/"
+                location="../wsdl/RFQGetBestPrice.wsdl"
+                namespace="http://domain.com/purchaseFRequest/3"/>
+   <bpel:import importType="http://schemas.xmlsoap.org/wsdl/"
+                location="../wsdl/RFQApproved.wsdl"
+                namespace="http://domain.com/purchaseFRequest/4"/>
+   <bpel:import importType="http://schemas.xmlsoap.org/wsdl/" location="../wsdl/RFQOrder.wsdl"
+                namespace="http://domain.com/purchaseFRequest/5"/>
+   <bpel:import importType="http://schemas.xmlsoap.org/wsdl/" location="../wsdl/RFQNotify.wsdl"
+                namespace="http://domain.com/purchaseFRequest/5"/>
+   <bpel:import importType="http://schemas.xmlsoap.org/wsdl/"
+                location="../wsdl/RFQReceived.wsdl"
+                namespace="http://domain.com/purchaseFRequest/7"/>
+   <bpel:import importType="http://schemas.xmlsoap.org/wsdl/"
+                location="../wsdl/RFQConfirmed.wsdl"
+                namespace="http://domain.com/purchaseFRequest/8"/>
+   <bpel:import importType="http://www.w3.org/1999/XSL/Transform"
+                location="../xsl/inbox/PurchaseRequest/CheckCorrect_Presentation.xsl"
+                namespace="http://www.w3.org/1999/XSL/Transform"/>
+   <bpel:import importType="http://www.w3.org/1999/XSL/Transform"
+                location="../xsl/inbox/PurchaseRequest/CheckCorrect_Command.xsl"
+                namespace="http://www.w3.org/1999/XSL/Transform"/>
+   <bpel:import importType="http://www.w3.org/1999/XSL/Transform"
+                location="../xsl/inbox/PurchaseRequest/GetBestPrice_Presentation.xsl"
+                namespace="http://www.w3.org/1999/XSL/Transform"/>
+   <bpel:import importType="http://www.w3.org/1999/XSL/Transform"
+                location="../xsl/inbox/PurchaseRequest/GetBestPrice_Command.xsl"
+                namespace="http://www.w3.org/1999/XSL/Transform"/>
+   <bpel:import importType="http://www.w3.org/1999/XSL/Transform"
+                location="../xsl/inbox/PurchaseRequest/Request_Presentation.xsl"
+                namespace="http://www.w3.org/1999/XSL/Transform"/>
+   <bpel:import importType="http://www.w3.org/1999/XSL/Transform"
+                location="../xsl/inbox/PurchaseRequest/Request_Command.xsl"
+                namespace="http://www.w3.org/1999/XSL/Transform"/>
+   <bpel:import importType="http://www.w3.org/1999/XSL/Transform"
+                location="../xsl/inbox/PurchaseRequest/Approve_Presentation.xsl"
+                namespace="http://www.w3.org/1999/XSL/Transform"/>
+   <bpel:import importType="http://www.w3.org/1999/XSL/Transform"
+                location="../xsl/inbox/PurchaseRequest/Approve_Command.xsl"
+                namespace="http://www.w3.org/1999/XSL/Transform"/>
+   <bpel:import importType="http://www.w3.org/1999/XSL/Transform"
+                location="../xsl/inbox/PurchaseRequest/Order_Presentation.xsl"
+                namespace="http://www.w3.org/1999/XSL/Transform"/>
+   <bpel:import importType="http://www.w3.org/1999/XSL/Transform"
+                location="../xsl/inbox/PurchaseRequest/Order_Command.xsl"
+                namespace="http://www.w3.org/1999/XSL/Transform"/>
+   <bpel:import importType="http://www.w3.org/1999/XSL/Transform"
+                location="../xsl/inbox/PurchaseRequest/ReceiveItems_Presentation.xsl"
+                namespace="http://www.w3.org/1999/XSL/Transform"/>
+   <bpel:import importType="http://www.w3.org/1999/XSL/Transform"
+                location="../xsl/inbox/PurchaseRequest/ReceiveItems_Command.xsl"
+                namespace="http://www.w3.org/1999/XSL/Transform"/>
+   <bpel:import importType="http://schemas.xmlsoap.org/wsdl/"
+                location="../wsdl/purchaseRequestIn.wsdl"
+                namespace="http://domain.com/purchaseFRequest/RFQin"/>
+   <bpel:import importType="http://schemas.xmlsoap.org/wsdl/"
+                location="../wsdl/RFQCheckCorrect.wsdl"
+                namespace="http://domain.com/purchaseFRequest/RFQCheckCorrect"/>
+   <bpel:partnerLinks>
+      <bpel:partnerLink myRole="Provider" name="Process_Consumer"
+                        partnerLinkType="ns:purchaseRequestPTPLT"/>
+   </bpel:partnerLinks>
+   <bpel:variables>
+      <bpel:variable element="PRQ:purchaseRequest" name="purchaseRequestIn"/>
+      <bpel:variable element="crq:purchaseRequest" name="purchaseRequest"/>
+      <bpel:variable element="crp:purchaseResponse" name="purchaseResponse"/>
+      <bpel:variable element="PRQ:purchaseRequest" name="RFQRefineRequest"/>
+      <bpel:variable element="PRQ:purchaseRequest" name="RFQRefineResponse"/>
+      <bpel:variable element="PRQ:purchaseRequest" name="RFQApproveRequest"/>
+      <bpel:variable element="PRQ:purchaseRequest" name="RFQApproveResponse"/>
+      <bpel:variable element="PRQ:purchaseRequest" name="RFQGetBestPriceDone"/>
+      <bpel:variable element="PRQ:purchaseRequest" name="RFQBestPriceRequest"/>
+      <bpel:variable element="PRQ:purchaseRequest" name="RFQOrderRequest"/>
+      <bpel:variable element="crp:purchaseResponse" name="RFQOrderResponse"/>
+      <bpel:variable element="PRQ:purchaseRequest" name="ReceivingRequest"/>
+      <bpel:variable element="crp:purchaseResponse" name="ReceivingResponse"/>
+      <bpel:variable element="PRQ:purchaseRequest" name="ConfirmRequest"/>
+      <bpel:variable element="crp:purchaseResponse" name="ConfirmResponse"/>
+      <bpel:variable name="aIndex" type="xsd:int"/>
+      <bpel:variable element="PRQ:purchaseRequest" name="purchaseRequestLoad"/>
+      <bpel:variable messageType="ns11:purchaseRequestRequest" name="glRequest"/>
+      <bpel:variable element="PRQ:purchaseRequest" name="RFQApproved"/>
+      <bpel:variable element="crp:purchaseResponse" name="RFQApproveReturn"/>
+   </bpel:variables>
+   <bpel:flow>
+      <bpel:links>
+         <bpel:link name="L6"/>
+         <bpel:link name="L1"/>
+         <bpel:link name="L9"/>
+         <bpel:link name="L2"/>
+         <bpel:link name="L4"/>
+         <bpel:link name="L15"/>
+      </bpel:links>
+      <bpel:forEach counterName="counter" name="EachLineItem" parallel="no">
+         <bpel:targets>
+            <bpel:target linkName="L4"/>
+         </bpel:targets>
+         <bpel:sources>
+            <bpel:source linkName="L6"/>
+         </bpel:sources>
+         <bpel:startCounterValue>1</bpel:startCounterValue>
+         <bpel:finalCounterValue>$aIndex</bpel:finalCounterValue>
+         <bpel:scope>
+            <bpel:flow>
+               <bpel:links>
+                  <bpel:link name="L7"/>
+                  <bpel:link name="L8"/>
+                  <bpel:link name="L13"/>
+               </bpel:links>
+               <bpel:scope aei:implicit="true" name="GetBestPrice">
+                  <bpel:sources>
+                     <bpel:source linkName="L7"/>
+                  </bpel:sources>
+                  <bpel:variables>
+                     <bpel:variable messageType="ns7:purchaseRequestRequest" name="parameters"/>
+                  </bpel:variables>
+                  <bpel:sequence>
+                     <bpel:assign>
+                        <bpel:copy>
+                           <bpel:from>$RFQBestPriceRequest</bpel:from>
+                           <bpel:to part="purchaseRequestRequest" variable="parameters"/>
+                        </bpel:copy>
+                     </bpel:assign>
+                     <bpel:extensionActivity name="GetBestPrice">
+                        <b4p:peopleActivity inputVariable="parameters" outputVariable="RFQGetBestPriceDone">
+                           <b4p:localTask reference="GetBestPrice">
+                              <htd:peopleAssignments/>
+                           </b4p:localTask>
+                        </b4p:peopleActivity>
+                     </bpel:extensionActivity>
+                  </bpel:sequence>
+               </bpel:scope>
+               <bpel:assign name="AssignDataForOrder">
+                  <bpel:targets>
+                     <bpel:target linkName="L7"/>
+                  </bpel:targets>
+                  <bpel:sources>
+                     <bpel:source linkName="L8"/>
+                  </bpel:sources>
+                  <bpel:copy>
+                     <bpel:from variable="purchaseRequest">
+                        <bpel:query>$RFQGetBestPriceDone</bpel:query>
+                     </bpel:from>
+                     <bpel:to variable="purchaseRequest">
+                        <bpel:query>crq:Header/crq:approved</bpel:query>
+                     </bpel:to>
+                  </bpel:copy>
+               </bpel:assign>
+               <bpel:scope aei:implicit="true" name="Order">
+                  <bpel:targets>
+                     <bpel:target linkName="L8"/>
+                  </bpel:targets>
+                  <bpel:sources>
+                     <bpel:source linkName="L13"/>
+                  </bpel:sources>
+                  <bpel:variables>
+                     <bpel:variable messageType="ns10:purchaseRequestRequest" name="parameters"/>
+                  </bpel:variables>
+                  <bpel:sequence>
+                     <bpel:assign>
+                        <bpel:copy>
+                           <bpel:from>$RFQOrderRequest</bpel:from>
+                           <bpel:to part="purchaseRequestRequest" variable="parameters"/>
+                        </bpel:copy>
+                     </bpel:assign>
+                     <bpel:extensionActivity name="Order">
+                        <b4p:peopleActivity inputVariable="parameters" outputVariable="RFQOrderResponse">
+                           <b4p:localTask reference="Order">
+                              <htd:peopleAssignments/>
+                           </b4p:localTask>
+                        </b4p:peopleActivity>
+                     </bpel:extensionActivity>
+                  </bpel:sequence>
+               </bpel:scope>
+               <bpel:assign name="AssignDataForReceiving">
+                  <bpel:targets>
+                     <bpel:target linkName="L13"/>
+                  </bpel:targets>
+                  <bpel:copy>
+                     <bpel:from variable="RFQOrderResponse">
+                        <bpel:query>crp:approved</bpel:query>
+                     </bpel:from>
+                     <bpel:to variable="ReceivingRequest">
+                        <bpel:query>PRQ:Header/PRQ:approved</bpel:query>
+                     </bpel:to>
+                  </bpel:copy>
+               </bpel:assign>
+            </bpel:flow>
+         </bpel:scope>
+      </bpel:forEach>
+      <bpel:receive createInstance="yes" name="ReceiveRequest" operation="purchaseRequest"
+                    partnerLink="Process_Consumer"
+                    variable="purchaseRequestIn">
+         <bpel:sources>
+            <bpel:source linkName="L1"/>
+         </bpel:sources>
+      </bpel:receive>
+      <bpel:if name="Correctness">
+         <bpel:targets>
+            <bpel:joinCondition>true()</bpel:joinCondition>
+            <bpel:target linkName="L2"/>
+         </bpel:targets>
+         <bpel:sources>
+            <bpel:source linkName="L9"/>
+         </bpel:sources>
+         <bpel:condition>$purchaseResponse = 'Correct'</bpel:condition>
+         <bpel:flow>
+            <bpel:links>
+               <bpel:link name="L3"/>
+               <bpel:link name="L14"/>
+            </bpel:links>
+            <bpel:assign name="AssignDataForApproval">
+               <bpel:targets>
+                  <bpel:target linkName="L3"/>
+               </bpel:targets>
+               <bpel:copy>
+                  <bpel:from variable="RFQApproveRequest"/>
+                  <bpel:to variable="purchaseRequest">
+                     <bpel:query>$purchaseRequest/crq:Header/crq:approved</bpel:query>
+                  </bpel:to>
+               </bpel:copy>
+            </bpel:assign>
+            <bpel:scope aei:implicit="true" name="Approve">
+               <bpel:targets>
+                  <bpel:target linkName="L14"/>
+               </bpel:targets>
+               <bpel:sources>
+                  <bpel:source linkName="L3"/>
+               </bpel:sources>
+               <bpel:variables>
+                  <bpel:variable messageType="ns12:purchaseRequestRequest" name="parameters"/>
+               </bpel:variables>
+               <bpel:sequence>
+                  <bpel:assign>
+                     <bpel:copy>
+                        <bpel:from>$RFQApproveRequest</bpel:from>
+                        <bpel:to part="purchaseRequestRequest" variable="parameters"/>
+                     </bpel:copy>
+                  </bpel:assign>
+                  <bpel:extensionActivity name="Approve">
+                     <b4p:peopleActivity inputVariable="parameters" outputVariable="RFQApproveReturn">
+                        <b4p:localTask reference="Approve">
+                           <htd:peopleAssignments/>
+                        </b4p:localTask>
+                     </b4p:peopleActivity>
+                  </bpel:extensionActivity>
+               </bpel:sequence>
+            </bpel:scope>
+            <bpel:assign name="AssignDataForApprove">
+               <bpel:sources>
+                  <bpel:source linkName="L14"/>
+               </bpel:sources>
+               <bpel:copy>
+                  <bpel:from variable="purchaseRequestIn"/>
+                  <bpel:to variable="RFQApproveRequest"/>
+               </bpel:copy>
+            </bpel:assign>
+         </bpel:flow>
+         <bpel:else>
+            <bpel:flow>
+               <bpel:links>
+                  <bpel:link name="L5"/>
+               </bpel:links>
+               <bpel:scope aei:implicit="true" name="RefineRequest">
+                  <bpel:sources>
+                     <bpel:source linkName="L5"/>
+                  </bpel:sources>
+                  <bpel:variables>
+                     <bpel:variable messageType="ns5:purchaseRequestRequest" name="parameters"/>
+                  </bpel:variables>
+                  <bpel:sequence>
+                     <bpel:assign>
+                        <bpel:copy>
+                           <bpel:from>$purchaseRequestIn</bpel:from>
+                           <bpel:to part="purchaseRequestRequest" variable="parameters"/>
+                        </bpel:copy>
+                     </bpel:assign>
+                     <bpel:extensionActivity name="RefineRequest">
+                        <b4p:peopleActivity inputVariable="parameters" outputVariable="RFQRefineResponse">
+                           <b4p:localTask reference="Request">
+                              <htd:peopleAssignments/>
+                           </b4p:localTask>
+                        </b4p:peopleActivity>
+                     </bpel:extensionActivity>
+                  </bpel:sequence>
+               </bpel:scope>
+               <bpel:assign name="AssignDataForUpdate">
+                  <bpel:targets>
+                     <bpel:target linkName="L5"/>
+                  </bpel:targets>
+                  <bpel:copy>
+                     <bpel:from variable="purchaseRequest">
+                        <bpel:query>crq:Header/crq:approved</bpel:query>
+                     </bpel:from>
+                     <bpel:to variable="RFQRefineResponse">
+                        <bpel:query>$RFQRefineResponse</bpel:query>
+                     </bpel:to>
+                  </bpel:copy>
+               </bpel:assign>
+            </bpel:flow>
+         </bpel:else>
+      </bpel:if>
+      <bpel:scope aei:implicit="true" name="CheckCorrect">
+         <bpel:targets>
+            <bpel:target linkName="L15"/>
+         </bpel:targets>
+         <bpel:sources>
+            <bpel:source linkName="L2"/>
+         </bpel:sources>
+         <bpel:variables>
+            <bpel:variable messageType="prfq:purchaseRequestRequest" name="parameters"/>
+         </bpel:variables>
+         <bpel:sequence>
+            <bpel:assign>
+               <bpel:copy>
+                  <bpel:from>$purchaseRequestIn</bpel:from>
+                  <bpel:to part="purchaseRequestRequest" variable="parameters"/>
+               </bpel:copy>
+            </bpel:assign>
+            <bpel:extensionActivity name="CheckCorrect">
+               <b4p:peopleActivity inputVariable="parameters" outputVariable="purchaseResponse">
+                  <b4p:localTask reference="CheckCorrect">
+                     <htd:peopleAssignments/>
+                  </b4p:localTask>
+               </b4p:peopleActivity>
+            </bpel:extensionActivity>
+         </bpel:sequence>
+      </bpel:scope>
+      <bpel:assign name="AssignForRepeat">
+         <bpel:targets>
+            <bpel:target linkName="L9"/>
+         </bpel:targets>
+         <bpel:sources>
+            <bpel:source linkName="L4"/>
+         </bpel:sources>
+         <bpel:copy>
+            <bpel:from>count( $purchaseRequestIn/PRQ:Items/PRQ:item/@LineNum )</bpel:from>
+            <bpel:to variable="aIndex"/>
+         </bpel:copy>
+      </bpel:assign>
+      <bpel:forEach counterName="counter" parallel="no">
+         <bpel:targets>
+            <bpel:target linkName="L6"/>
+         </bpel:targets>
+         <bpel:startCounterValue>1</bpel:startCounterValue>
+         <bpel:finalCounterValue>$aIndex</bpel:finalCounterValue>
+         <bpel:scope>
+            <bpel:flow>
+               <bpel:links>
+                  <bpel:link name="L10"/>
+                  <bpel:link name="L11"/>
+                  <bpel:link name="L12"/>
+               </bpel:links>
+               <bpel:scope aei:implicit="true" name="Receiving">
+                  <bpel:sources>
+                     <bpel:source linkName="L10"/>
+                  </bpel:sources>
+                  <bpel:variables>
+                     <bpel:variable messageType="ns11:purchaseRequestRequest" name="parameters"/>
+                  </bpel:variables>
+                  <bpel:sequence>
+                     <bpel:assign>
+                        <bpel:copy>
+                           <bpel:from>$ReceivingRequest</bpel:from>
+                           <bpel:to part="purchaseRequestRequest" variable="parameters"/>
+                        </bpel:copy>
+                     </bpel:assign>
+                     <bpel:extensionActivity name="Receiving">
+                        <b4p:peopleActivity inputVariable="parameters" outputVariable="ReceivingResponse">
+                           <b4p:localTask reference="ReceiveItems">
+                              <htd:peopleAssignments/>
+                           </b4p:localTask>
+                        </b4p:peopleActivity>
+                     </bpel:extensionActivity>
+                  </bpel:sequence>
+               </bpel:scope>
+               <bpel:assign name="AssignDataForReceiving">
+                  <bpel:targets>
+                     <bpel:target linkName="L10"/>
+                  </bpel:targets>
+                  <bpel:sources>
+                     <bpel:source linkName="L11"/>
+                  </bpel:sources>
+                  <bpel:copy>
+                     <bpel:from variable="ReceivingResponse">
+                        <bpel:query>crp:approved</bpel:query>
+                     </bpel:from>
+                     <bpel:to variable="ReceivingRequest">
+                        <bpel:query>PRQ:Header/PRQ:approved</bpel:query>
+                     </bpel:to>
+                  </bpel:copy>
+               </bpel:assign>
+               <bpel:scope aei:implicit="true" name="ConfirmAll">
+                  <bpel:targets>
+                     <bpel:target linkName="L11"/>
+                  </bpel:targets>
+                  <bpel:sources>
+                     <bpel:source linkName="L12"/>
+                  </bpel:sources>
+                  <bpel:variables>
+                     <bpel:variable messageType="ns12:purchaseRequestRequest" name="parameters"/>
+                  </bpel:variables>
+                  <bpel:sequence>
+                     <bpel:assign>
+                        <bpel:copy>
+                           <bpel:from>$ConfirmRequest</bpel:from>
+                           <bpel:to part="purchaseRequestRequest" variable="parameters"/>
+                        </bpel:copy>
+                     </bpel:assign>
+                     <bpel:extensionActivity name="ConfirmAll">
+                        <b4p:peopleActivity inputVariable="parameters" outputVariable="ConfirmResponse">
+                           <b4p:localTask reference="Confirm">
+                              <htd:peopleAssignments/>
+                           </b4p:localTask>
+                        </b4p:peopleActivity>
+                     </bpel:extensionActivity>
+                  </bpel:sequence>
+               </bpel:scope>
+               <bpel:assign name="AssignDataForConfirmation">
+                  <bpel:targets>
+                     <bpel:target linkName="L12"/>
+                  </bpel:targets>
+                  <bpel:copy>
+                     <bpel:from variable="ConfirmResponse">
+                        <bpel:query>crp:approved</bpel:query>
+                     </bpel:from>
+                     <bpel:to variable="ConfirmRequest">
+                        <bpel:query>PRQ:Header/PRQ:approved</bpel:query>
+                     </bpel:to>
+                  </bpel:copy>
+               </bpel:assign>
+            </bpel:flow>
+         </bpel:scope>
+      </bpel:forEach>
+      <bpel:assign name="AssignForCheck">
+         <bpel:targets>
+            <bpel:target linkName="L1"/>
+         </bpel:targets>
+         <bpel:sources>
+            <bpel:source linkName="L15"/>
+         </bpel:sources>
+         <bpel:copy>
+            <bpel:from variable="purchaseRequestIn"/>
+            <bpel:to part="purchaseRequestRequest" variable="glRequest"/>
+         </bpel:copy>
+         <bpel:copy>
+            <bpel:from variable="purchaseRequestIn"/>
+            <bpel:to variable="purchaseRequest"/>
+         </bpel:copy>
+      </bpel:assign>
+   </bpel:flow>
+</bpel:process>

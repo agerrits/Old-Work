@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding ="UTF-8"?>
+<chkreq:purchaseRequest xmlns:chkreq="http://domain.com/CheckRequest">
+<chkreq:Header>
+  <chkreq:date>1999-12-04</chkreq:date>
+  <chkreq:by>A.Name</chkreq:by>
+  <chkreq:vendor>126</chkreq:vendor>
+  <chkreq:reason>New Hire</chkreq:reason>
+  <chkreq:shipping>Standard</chkreq:shipping>
+  <chkreq:eta>1999-12-05</chkreq:eta>
+  <chkreq:approved>not approved</chkreq:approved>
+  <chkreq:comments>This is for standard settings</chkreq:comments>
+</chkreq:Header>  
+<chkreq:Items>
+  <chkreq:item LineNum="1">
+    <chkreq:productNo>12312</chkreq:productNo>
+    <chkreq:description>Laptop Lenovo T400</chkreq:description>
+    <chkreq:quantity>2</chkreq:quantity>
+    <chkreq:price>999.99</chkreq:price>
+    <chkreq:total>1999.98</chkreq:total>
+  </chkreq:item>
+  <chkreq:item LineNum="2">
+    <chkreq:productNo>12345</chkreq:productNo>
+    <chkreq:description>Docking Station</chkreq:description>
+    <chkreq:quantity>2</chkreq:quantity>
+    <chkreq:price>100</chkreq:price>
+    <chkreq:total>200</chkreq:total>
+  </chkreq:item>
+</chkreq:Items>
+</chkreq:purchaseRequest>

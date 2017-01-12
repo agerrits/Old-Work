@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<pdd:process xmlns:aeb4p="http://www.activebpel.org/b4p/2007/10/wshumantask/deployments" xmlns:bpelns="http://PurchaseRequest" xmlns:htd="http://www.example.org/WS-HT" xmlns:pdd="http://schemas.active-endpoints.com/pdd/2006/08/pdd.xsd" location="bpel/PurchaseRequest/bpel/PurchaseRequest.bpel" name="bpelns:PurchaseRequest" platform="enterprise">
+  <pdd:version/>
+  <pdd:partnerLinks>
+    <pdd:partnerLink name="Process_Consumer">
+      <pdd:myRole allowedRoles="" binding="MSG" service="purchaseRequestPT"/>
+    </pdd:partnerLink>
+  </pdd:partnerLinks>
+  <pdd:references>
+    <pdd:wsdl location="project:/PurchaseRequest/wsdl/purchaseRequest.wsdl" namespace="http://domain.com/demoPurchaseOrder"/>
+    <pdd:wsdl location="project:/PurchaseRequest/wsdl/PurchaseRequest.public.wsdl" namespace="http://PurchaseRequest/public"/>
+    <pdd:wsdl location="project:/PurchaseRequest/wsdl/CheckCorrect.wsdl" namespace="http://domain.com/purchaseFRequest"/>
+    <pdd:wsdl location="project:/PurchaseRequest/wsdl/purchaseRequestRefine.wsdl" namespace="http://domain.com/purchaseFRequest/1"/>
+    <pdd:wsdl location="project:/PurchaseRequest/wsdl/RFQApprove.wsdl" namespace="http://domain.com/purchaseFRequest/2"/>
+    <pdd:wsdl location="project:/PurchaseRequest/wsdl/RFQGetBestPrice.wsdl" namespace="http://domain.com/purchaseFRequest/3"/>
+    <pdd:wsdl location="project:/PurchaseRequest/wsdl/RFQApproved.wsdl" namespace="http://domain.com/purchaseFRequest/4"/>
+    <pdd:wsdl location="project:/PurchaseRequest/wsdl/RFQOrder.wsdl" namespace="http://domain.com/purchaseFRequest/5"/>
+    <pdd:wsdl location="project:/PurchaseRequest/wsdl/RFQNotify.wsdl" namespace="http://domain.com/purchaseFRequest/5"/>
+    <pdd:wsdl location="project:/PurchaseRequest/wsdl/RFQReceived.wsdl" namespace="http://domain.com/purchaseFRequest/7"/>
+    <pdd:wsdl location="project:/PurchaseRequest/wsdl/RFQConfirmed.wsdl" namespace="http://domain.com/purchaseFRequest/8"/>
+    <pdd:other location="project:/PurchaseRequest/xsl/inbox/PurchaseRequest/CheckCorrect_Presentation.xsl" namespace="http://www.w3.org/1999/XSL/Transform" typeURI="http://www.w3.org/1999/XSL/Transform"/>
+    <pdd:other location="project:/PurchaseRequest/xsl/inbox/PurchaseRequest/CheckCorrect_Command.xsl" namespace="http://www.w3.org/1999/XSL/Transform" typeURI="http://www.w3.org/1999/XSL/Transform"/>
+    <pdd:other location="project:/PurchaseRequest/xsl/inbox/PurchaseRequest/GetBestPrice_Presentation.xsl" namespace="http://www.w3.org/1999/XSL/Transform" typeURI="http://www.w3.org/1999/XSL/Transform"/>
+    <pdd:other location="project:/PurchaseRequest/xsl/inbox/PurchaseRequest/GetBestPrice_Command.xsl" namespace="http://www.w3.org/1999/XSL/Transform" typeURI="http://www.w3.org/1999/XSL/Transform"/>
+    <pdd:other location="project:/PurchaseRequest/xsl/inbox/PurchaseRequest/Request_Presentation.xsl" namespace="http://www.w3.org/1999/XSL/Transform" typeURI="http://www.w3.org/1999/XSL/Transform"/>
+    <pdd:other location="project:/PurchaseRequest/xsl/inbox/PurchaseRequest/Request_Command.xsl" namespace="http://www.w3.org/1999/XSL/Transform" typeURI="http://www.w3.org/1999/XSL/Transform"/>
+    <pdd:other location="project:/PurchaseRequest/xsl/inbox/PurchaseRequest/Approve_Presentation.xsl" namespace="http://www.w3.org/1999/XSL/Transform" typeURI="http://www.w3.org/1999/XSL/Transform"/>
+    <pdd:other location="project:/PurchaseRequest/xsl/inbox/PurchaseRequest/Approve_Command.xsl" namespace="http://www.w3.org/1999/XSL/Transform" typeURI="http://www.w3.org/1999/XSL/Transform"/>
+    <pdd:other location="project:/PurchaseRequest/xsl/inbox/PurchaseRequest/Order_Presentation.xsl" namespace="http://www.w3.org/1999/XSL/Transform" typeURI="http://www.w3.org/1999/XSL/Transform"/>
+    <pdd:other location="project:/PurchaseRequest/xsl/inbox/PurchaseRequest/Order_Command.xsl" namespace="http://www.w3.org/1999/XSL/Transform" typeURI="http://www.w3.org/1999/XSL/Transform"/>
+    <pdd:other location="project:/PurchaseRequest/xsl/inbox/PurchaseRequest/ReceiveItems_Presentation.xsl" namespace="http://www.w3.org/1999/XSL/Transform" typeURI="http://www.w3.org/1999/XSL/Transform"/>
+    <pdd:other location="project:/PurchaseRequest/xsl/inbox/PurchaseRequest/ReceiveItems_Command.xsl" namespace="http://www.w3.org/1999/XSL/Transform" typeURI="http://www.w3.org/1999/XSL/Transform"/>
+    <pdd:wsdl location="project:/PurchaseRequest/wsdl/purchaseRequestIn.wsdl" namespace="http://domain.com/purchaseFRequest/RFQin"/>
+    <pdd:wsdl location="project:/PurchaseRequest/wsdl/RFQCheckCorrect.wsdl" namespace="http://domain.com/purchaseFRequest/RFQCheckCorrect"/>
+  </pdd:references>
+  <pdd:extensions>
+    <aeb4p:logicalPeopleGroups>
+      <aeb4p:logicalPeopleGroup location="/process/humanInteractions/logicalPeopleGroups" name="Purchasers" type="STATIC">
+        <htd:organizationalEntity>
+          <htd:users>
+            <htd:user>loanrep1</htd:user>
+          </htd:users>
+        </htd:organizationalEntity>
+      </aeb4p:logicalPeopleGroup>
+      <aeb4p:logicalPeopleGroup location="/process/humanInteractions/logicalPeopleGroups" name="Managers" type="STATIC">
+        <htd:organizationalEntity>
+          <htd:users>
+            <htd:user>manager</htd:user>
+          </htd:users>
+        </htd:organizationalEntity>
+      </aeb4p:logicalPeopleGroup>
+      <aeb4p:logicalPeopleGroup location="/process/humanInteractions/logicalPeopleGroups" name="Receivers" type="STATIC">
+        <htd:organizationalEntity>
+          <htd:users>
+            <htd:user>loanrep2</htd:user>
+          </htd:users>
+        </htd:organizationalEntity>
+      </aeb4p:logicalPeopleGroup>
+      <aeb4p:logicalPeopleGroup location="/process/humanInteractions/logicalPeopleGroups" name="Requesters" type="STATIC">
+        <htd:organizationalEntity>
+          <htd:users>
+            <htd:user>loanrep3</htd:user>
+          </htd:users>
+        </htd:organizationalEntity>
+      </aeb4p:logicalPeopleGroup>
+    </aeb4p:logicalPeopleGroups>
+  </pdd:extensions>
+</pdd:process>

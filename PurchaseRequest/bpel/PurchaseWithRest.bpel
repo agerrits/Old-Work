@@ -1,0 +1,144 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<bpel:process xmlns:bpel="http://docs.oasis-open.org/wsbpel/2.0/process/executable"
+              xmlns:ns11="http://www.solazyme.com/RequestIn"
+              xmlns:types="http://schemas.activebpel.org/REST/2007/12/01/aeREST.xsd"
+              xmlns:ns1="http://www.activebpel.org/REST/2007/12/01/aeREST.wsdl"
+              xmlns:aei="http://www.activebpel.org/2009/02/bpel/extension/ignorable"
+              xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+              xmlns:soapin="http://www.example.org/NewRFQIn"
+              xmlns:ext="http://www.activebpel.org/2006/09/bpel/extension/query_handling"
+              xmlns:ns="PurchaseWithRest/public"
+              xmlns:ns2="http://www.solazyme.com/PurchaseRequest"
+              expressionLanguage="urn:active-endpoints:expression-language:xquery1.0"
+              ext:createTargetXPath="yes"
+              ext:disableSelectionFailure="yes"
+              name="PurchaseWithRest"
+              suppressJoinFailure="yes"
+              targetNamespace="PurchaseWithRest">
+   <bpel:extensions>
+      <bpel:extension mustUnderstand="yes"
+                      namespace="http://www.activebpel.org/2006/09/bpel/extension/query_handling"/>
+      <bpel:extension mustUnderstand="no"
+                      namespace="http://www.activebpel.org/2009/02/bpel/extension/ignorable"/>
+   </bpel:extensions>
+   <bpel:import importType="http://www.w3.org/2001/XMLSchema"
+                namespace="http://schemas.activebpel.org/REST/2007/12/01/aeREST.xsd"/>
+   <bpel:import importType="http://schemas.xmlsoap.org/wsdl/"
+                namespace="http://www.activebpel.org/REST/2007/12/01/aeREST.wsdl"/>
+   <bpel:import aei:implicit="true" importType="http://schemas.xmlsoap.org/wsdl/"
+                location="../wsdl/bpel/PurchaseWithRest.public.wsdl"
+                namespace="PurchaseWithRest/public"/>
+   <bpel:import importType="http://schemas.xmlsoap.org/wsdl/"
+                location="../wsdl/RFQEnvelope.wsdl"
+                namespace="http://www.solazyme.com/RequestIn"/>
+   <bpel:import importType="http://www.w3.org/2001/XMLSchema" location="../schema/NewRFQIn.xsd"
+                namespace="http://www.example.org/NewRFQIn"/>
+   <bpel:import importType="http://www.w3.org/2001/XMLSchema"
+                location="../../AriSampleCF5/schema/PurchaseRequest.xsd"
+                namespace="http://www.solazyme.com/PurchaseRequest"/>
+   <bpel:partnerLinks>
+      <bpel:partnerLink myRole="Provider" name="RFQProcess" partnerLinkType="ns:RequestInPLT"/>
+      <bpel:partnerLink name="RESTService" partnerLinkType="ns1:RESTPLT" partnerRole="process"/>
+   </bpel:partnerLinks>
+   <bpel:variables>
+      <bpel:variable element="types:RESTRequest" name="RESTRequest"/>
+      <bpel:variable element="types:RESTResponse" name="RESTResponse"/>
+      <bpel:variable element="ns11:phpRFQin" name="phpRFQin"/>
+      <bpel:variable element="soapin:aeUser" name="aeUser"/>
+      <bpel:variable element="soapin:PurchaseRequestID" name="PurchaseRequestID"/>
+      <bpel:variable element="soapin:Total" name="fTotal"/>
+      <bpel:variable element="soapin:eManager" name="eManager"/>
+      <bpel:variable element="types:RESTResponse" name="RFQDetailResponse"/>
+      <bpel:variable element="ns2:PurReqDetail" name="Detail"/>
+   </bpel:variables>
+   <bpel:sequence>
+      <bpel:receive createInstance="yes" name="RFQEnvelope" operation="RFQEnvelope"
+                    partnerLink="RFQProcess"
+                    variable="phpRFQin"/>
+      <bpel:assign name="asRequestData">
+         <bpel:copy>
+            <bpel:from variable="phpRFQin">
+               <bpel:query>aeUser</bpel:query>
+            </bpel:from>
+            <bpel:to variable="aeUser"/>
+         </bpel:copy>
+         <bpel:copy>
+            <bpel:from variable="phpRFQin">
+               <bpel:query>PurchaseRequestId</bpel:query>
+            </bpel:from>
+            <bpel:to variable="PurchaseRequestID"/>
+         </bpel:copy>
+         <bpel:copy>
+            <bpel:from variable="phpRFQin">
+               <bpel:query>Total</bpel:query>
+            </bpel:from>
+            <bpel:to variable="fTotal"/>
+         </bpel:copy>
+         <bpel:copy>
+            <bpel:from variable="phpRFQin">
+               <bpel:query>eManager</bpel:query>
+            </bpel:from>
+            <bpel:to variable="eManager"/>
+         </bpel:copy>
+      </bpel:assign>
+      <bpel:scope aei:implicit="true" name="RFQDetail">
+         <bpel:variables>
+            <bpel:variable messageType="ns1:RESTRequest" name="parameters"/>
+         </bpel:variables>
+         <bpel:sequence>
+            <bpel:assign>
+               <bpel:copy>
+                  <bpel:from>&lt;types:RESTRequest xmlns:types="http://schemas.activebpel.org/REST/2007/12/01/aeREST.xsd"&gt;&#xD;
+   &lt;types:method&gt;GET&lt;/types:method&gt;&#xD;
+   &lt;types:params&gt;&#xD;
+&lt;types:param name="PurchaseRequestID" value="{ $phpRFQin/PurchaseRequestId }"/&gt;&#xD;
+&lt;/types:params&gt;&#xD;
+   &lt;types:headers&gt;&#xD;
+&lt;/types:headers&gt;&#xD;
+   &lt;types:payload contentType="text/xml"&gt;&lt;/types:payload&gt;&#xD;
+&lt;types:requestURI&gt;http://localhost:8090/xaware/bizview/BDSelectRFQDetail.xbd&lt;/types:requestURI&gt;&#xD;
+&lt;/types:RESTRequest&gt;</bpel:from>
+                  <bpel:to part="RESTRequest" variable="parameters"/>
+               </bpel:copy>
+            </bpel:assign>
+            <bpel:invoke inputVariable="parameters" name="RFQDetail" operation="requestResponse"
+                         outputVariable="RFQDetailResponse"
+                         partnerLink="RESTService"/>
+         </bpel:sequence>
+      </bpel:scope>
+      <bpel:if>
+         <bpel:condition>exists($RFQDetailResponse//*[local-name()="Error"])</bpel:condition>
+         <bpel:empty name="ErrorPath"/>
+      </bpel:if>
+      <bpel:assign>
+         <bpel:copy>
+            <bpel:from>
+               <bpel:literal>
+                  <ns2:PurReqDetail>
+                     <ns2:PRQLineItem>
+                        <ns2:LineItemID>0</ns2:LineItemID>
+                        <ns2:PurRequestID>0</ns2:PurRequestID>
+                        <ns2:PurOrderID>0</ns2:PurOrderID>
+                        <ns2:LineProductNum>string</ns2:LineProductNum>
+                        <ns2:Quantity>0</ns2:Quantity>
+                        <ns2:ItemCost>1.0</ns2:ItemCost>
+                        <ns2:TotalCost>1.0</ns2:TotalCost>
+                        <ns2:Description>string</ns2:Description>
+                        <ns2:Received>true</ns2:Received>
+                     </ns2:PRQLineItem>
+                  </ns2:PurReqDetail>
+               </bpel:literal>
+            </bpel:from>
+            <bpel:to variable="Detail"/>
+         </bpel:copy>
+         <bpel:copy>
+            <bpel:from variable="RFQDetailResponse">
+               <bpel:query>types:payload//*[local-name()="LineItemId"]</bpel:query>
+            </bpel:from>
+            <bpel:to variable="Detail">
+               <bpel:query>ns2:PRQLineItem/ns2:LineItemID</bpel:query>
+            </bpel:to>
+         </bpel:copy>
+      </bpel:assign>
+   </bpel:sequence>
+</bpel:process>

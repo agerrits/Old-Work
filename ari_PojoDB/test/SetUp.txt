@@ -1,0 +1,24 @@
+Instructions for deployment:
+----------------------------
+
+1. Configure MySQL to have a schema named 'solazyme' and ensure it has the permissions for the 'line_items' table as that is the one we have referred to in our sample. 
+
+2.Put in the following script in active-bpel.xml that is located in <Designer7.0_Installation_Folder> designer\dropins\activevos\eclipse\plugins\org.activebpel.enginep_7.0\server\conf\Catalina\localhost folder:
+
+
+
+<Resource name="jdbc/ariDB" 
+             auth="Container" 
+             type="javax.sql.DataSource" 
+             username="root" 
+             password="root" 
+             driverClassName="com.mysql.jdbc.Driver" 
+             url="jdbc:mysql://localhost/solazyme"/>
+
+This should be mentioned after the existing resource element and before the </Context> tag.
+
+3. Start the embedded server in the designer and deploy the process through the pdd or by deploying the bpr under the deploy directory.
+
+4. Retreive the 'OrderDetailsRequest' service wsdl from Catalog/Service definitions and send in a request to the service from a client such as Soap Ui or web service explorer (in designer)
+
+5. Request could be given as one of the values you have stored in the 'purchase_order_id' column in the line_items table.

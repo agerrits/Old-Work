@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<pdd:process xmlns:bpelns="http://www.solazyme.com/RFQ/PurchaseBPEL" xmlns:pdd="http://schemas.active-endpoints.com/pdd/2006/08/pdd.xsd" location="bpel/PurchaseRequest/bpel/PurchaseBPEL.bpel" name="bpelns:PurchaseBPEL" platform="enterprise">
+  <pdd:partnerLinks>
+    <pdd:partnerLink name="EmailProvider">
+      <pdd:partnerRole endpointReference="dynamic" invokeHandler="email"/>
+    </pdd:partnerLink>
+    <pdd:partnerLink name="Process_Consumer">
+      <pdd:myRole allowedRoles="" binding="MSG" service="RequestIn"/>
+    </pdd:partnerLink>
+    <pdd:partnerLink name="SolaDBRFQDetailPT">
+      <pdd:partnerRole endpointReference="static" invokeHandler="default:Address">
+        <wsa:EndpointReference xmlns:wsa="http://www.w3.org/2005/08/addressing" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:ns5="http://xaware.org/xas/ns1/wsdl/" xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/">
+               <wsa:Address>http://localhost:8090/xaware/XADocSoapServlet</wsa:Address>
+               <wsa:Metadata>
+                  <wsa:ServiceName PortName="SolaRFQDetailSVISSoapPort">ns5:SolaRFQDetailSVIS</wsa:ServiceName>
+               </wsa:Metadata>
+            </wsa:EndpointReference>
+      </pdd:partnerRole>
+    </pdd:partnerLink>
+    <pdd:partnerLink name="SolaDBRFQMainPT">
+      <pdd:partnerRole endpointReference="static" invokeHandler="default:Address">
+        <wsa:EndpointReference xmlns:wsa="http://www.w3.org/2005/08/addressing" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:ns5="http://xaware.org/xas/ns1/wsdl/" xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/">
+               <wsa:Address>http://localhost:8090/xaware/XADocSoapServlet</wsa:Address>
+               <wsa:Metadata>
+                  <wsa:ServiceName PortName="SolaRFQMainSVISSoapPort">ns5:SolaRFQMainSVIS</wsa:ServiceName>
+               </wsa:Metadata>
+            </wsa:EndpointReference>
+      </pdd:partnerRole>
+    </pdd:partnerLink>
+    <pdd:partnerLink name="SolaDBSelRulePT">
+      <pdd:partnerRole endpointReference="static" invokeHandler="default:Address">
+        <wsa:EndpointReference xmlns:wsa="http://www.w3.org/2005/08/addressing" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:ns5="http://xaware.org/xas/ns1/wsdl/" xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/">
+               <wsa:Address>http://localhost:8090/xaware/XADocSoapServlet</wsa:Address>
+               <wsa:Metadata>
+                  <wsa:ServiceName PortName="SolaSelectRuleSVISSoapPort">ns5:SolaSelectRuleSVIS</wsa:ServiceName>
+               </wsa:Metadata>
+            </wsa:EndpointReference>
+      </pdd:partnerRole>
+    </pdd:partnerLink>
+  </pdd:partnerLinks>
+  <pdd:references>
+    <pdd:wsdl location="project:/PurchaseRequest/wsdl/RFQEnvelope.wsdl" namespace="http://www.solazyme.com/RequestIn"/>
+    <pdd:wsdl location="project:/PurchaseRequest/wsdl/bpel/PurchaseBPELorg.public.wsdl" namespace="PurchaseBPEL/public"/>
+    <pdd:wsdl location="project:/PurchaseRequest/wsdl/bpel/PurchaseBPELorg.private.wsdl" namespace="PurchaseBPEL"/>
+    <pdd:wsdl location="project:/PurchaseRequest/wsdl/SolaDataPack.wsdl" namespace="http://xaware.org/xas/ns1/wsdl/"/>
+    <pdd:wsdl location="project:/org.activebpel.rt.email.services/wsdl/email.wsdl" namespace="http://docs.active-endpoints/wsdl/email/2007/04/email.wsdl"/>
+    <pdd:schema location="project:/PurchaseRequest/schema/PurchaseRequest.xsd" namespace="http://www.solazyme.com/PurchaseRequest"/>
+    <pdd:other location="project:/PurchaseRequest/xsl/inbox/PurchaseBPEL/ApproveTask_Presentation.xsl" namespace="http://www.w3.org/1999/XSL/Transform" typeURI="http://www.w3.org/1999/XSL/Transform"/>
+    <pdd:other location="project:/PurchaseRequest/xsl/inbox/PurchaseBPEL/ApproveTask_Command.xsl" namespace="http://www.w3.org/1999/XSL/Transform" typeURI="http://www.w3.org/1999/XSL/Transform"/>
+    <pdd:wsdl location="project:/PurchaseRequest/wsdl/PurRequestApprove.wsdl" namespace="http://www.solazyme.com/RequestIn/HTA"/>
+    <pdd:schema location="project:/PurchaseRequest/schema/NewRFQIn.xsd" namespace="http://www.example.org/NewRFQIn"/>
+    <pdd:schema location="project:/PurchaseRequest/schema/RuntimeParameters.xsd" namespace="http://www.solazyme.com/RuntimeParameters/RuntimeParameters.xsd"/>
+  </pdd:references>
+</pdd:process>

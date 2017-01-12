@@ -1,0 +1,482 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<graph id="0" name="PROCESS">
+   <att name="processName" value="PurchaseWithRest"/>
+   <att name="targetNamespace" value="PurchaseWithRest"/>
+   <att name="BPELDocumentation" value=""/>
+   <att name="expressionLanguage"
+        value="urn:active-endpoints:expression-language:xquery1.0"/>
+   <att name="enableInstanceCompensation" value="false"/>
+   <att name="exitStandardFault" value="false"/>
+   <att name="disableSelectionFailure" value="true"/>
+   <att name="createXPath" value="true"/>
+   <att name="modelVersion" value="3"/>
+   <att name="processNamespace"
+        value="http://docs.oasis-open.org/wsbpel/2.0/process/executable"/>
+   <att name="objectId" value="125088027420300603"/>
+   <att name="layoutNeeded" value="false"/>
+   <att name="processInitiatorSim" value=""/>
+   <att name="processInitiatorExec" value="anonymous"/>
+   <att name="writePortType" value="false"/>
+   <att name="bpelDigest" value="a3003f85c72f834efa6e2e3dcbb3ebbc"/>
+   <att name="processDetailLevel" value="0"/>
+   <att>
+      <graph id="1" name="EXTENSION_CONTAINER">
+         <att name="ExtensionCount" value="2"/>
+         <att name="BPELDocumentation" value=""/>
+         <node id="2" name="EXTENSION">
+            <att name="BPELDocumentation" value=""/>
+            <att name="extensionDetails"
+                 value="Namespace=http://www.activebpel.org/2006/09/bpel/extension/query_handling mustUnderstand=true"/>
+            <att name="objectId" value="125088027421800643"/>
+         </node>
+         <node id="3" name="EXTENSION">
+            <att name="BPELDocumentation" value=""/>
+            <att name="extensionDetails"
+                 value="Namespace=http://www.activebpel.org/2009/02/bpel/extension/ignorable mustUnderstand=false"/>
+            <att name="objectId" value="125088042807800953"/>
+         </node>
+      </graph>
+   </att>
+   <att>
+      <graph id="4" name="IMPORTS">
+         <att name="ImportCount" value="6"/>
+         <node id="5" name="IMPORT">
+            <att name="ImportLocation"
+                 value=";http://schemas.activebpel.org/REST/2007/12/01/aeREST.xsd;http://www.w3.org/2001/XMLSchema"/>
+            <att name="ImportNamespace"
+                 value="http://schemas.activebpel.org/REST/2007/12/01/aeREST.xsd"/>
+            <att name="ImportType" value="http://www.w3.org/2001/XMLSchema"/>
+            <att name="objectId" value="125088027421800629"/>
+         </node>
+         <node id="6" name="IMPORT">
+            <att name="ImportLocation"
+                 value=";http://www.activebpel.org/REST/2007/12/01/aeREST.wsdl;http://schemas.xmlsoap.org/wsdl/"/>
+            <att name="ImportNamespace"
+                 value="http://www.activebpel.org/REST/2007/12/01/aeREST.wsdl"/>
+            <att name="ImportType" value="http://schemas.xmlsoap.org/wsdl/"/>
+            <att name="objectId" value="125088027421800631"/>
+         </node>
+         <node id="7" name="IMPLICIT_IMPORT">
+            <att name="ImportLocation"
+                 value="../wsdl/bpel/PurchaseWithRest.public.wsdl;PurchaseWithRest/public;http://schemas.xmlsoap.org/wsdl/"/>
+            <att name="ImportNamespace" value="PurchaseWithRest/public"/>
+            <att name="ImportType" value="http://schemas.xmlsoap.org/wsdl/"/>
+            <att name="objectId" value="125088042782800951"/>
+            <att name="WSBPEL_ExtensionAttributes">
+               <extensionAttributes>
+                  <extensionAttribute namespace="http://www.activebpel.org/2009/02/bpel/extension/ignorable"
+                                      qualifiedName="aei:implicit"
+                                      value="true"/>
+               </extensionAttributes>
+            </att>
+         </node>
+         <node id="8" name="IMPORT">
+            <att name="ImportLocation"
+                 value="../wsdl/RFQEnvelope.wsdl;http://www.solazyme.com/RequestIn;http://schemas.xmlsoap.org/wsdl/"/>
+            <att name="ImportNamespace" value="http://www.solazyme.com/RequestIn"/>
+            <att name="ImportType" value="http://schemas.xmlsoap.org/wsdl/"/>
+            <att name="objectId" value="125088042814000957"/>
+         </node>
+         <node id="9" name="IMPORT">
+            <att name="ImportLocation"
+                 value="../schema/NewRFQIn.xsd;http://www.example.org/NewRFQIn;http://www.w3.org/2001/XMLSchema"/>
+            <att name="ImportNamespace" value="http://www.example.org/NewRFQIn"/>
+            <att name="ImportType" value="http://www.w3.org/2001/XMLSchema"/>
+            <att name="objectId" value="125088051217101538"/>
+         </node>
+         <node id="10" name="IMPORT">
+            <att name="ImportLocation"
+                 value="../../AriSampleCF5/schema/PurchaseRequest.xsd;http://www.solazyme.com/PurchaseRequest;http://www.w3.org/2001/XMLSchema"/>
+            <att name="ImportNamespace" value="http://www.solazyme.com/PurchaseRequest"/>
+            <att name="ImportType" value="http://www.w3.org/2001/XMLSchema"/>
+            <att name="objectId" value="125174837501511801"/>
+         </node>
+      </graph>
+   </att>
+   <att>
+      <graph id="11" name="NAMESPACES">
+         <att name="NamespaceCount" value="10"/>
+         <node id="12" name="NAMESPACE">
+            <att name="Prefix" value="types"/>
+            <att name="Namespace"
+                 value="http://schemas.activebpel.org/REST/2007/12/01/aeREST.xsd"/>
+            <att name="objectId" value="125088027421800633"/>
+         </node>
+         <node id="13" name="NAMESPACE">
+            <att name="Prefix" value="ns1"/>
+            <att name="Namespace" value="http://www.activebpel.org/REST/2007/12/01/aeREST.wsdl"/>
+            <att name="objectId" value="125088027421800635"/>
+         </node>
+         <node id="14" name="NAMESPACE">
+            <att name="Prefix" value="ext"/>
+            <att name="Namespace"
+                 value="http://www.activebpel.org/2006/09/bpel/extension/query_handling"/>
+            <att name="objectId" value="125088027421800637"/>
+         </node>
+         <node id="15" name="NAMESPACE">
+            <att name="Prefix" value="xsd"/>
+            <att name="Namespace" value="http://www.w3.org/2001/XMLSchema"/>
+            <att name="objectId" value="125088027421800639"/>
+         </node>
+         <node id="16" name="NAMESPACE">
+            <att name="Prefix" value="bpel"/>
+            <att name="Namespace"
+                 value="http://docs.oasis-open.org/wsbpel/2.0/process/executable"/>
+            <att name="objectId" value="125088027421800641"/>
+         </node>
+         <node id="17" name="NAMESPACE">
+            <att name="Prefix" value="aei"/>
+            <att name="Namespace"
+                 value="http://www.activebpel.org/2009/02/bpel/extension/ignorable"/>
+            <att name="objectId" value="125088042807800955"/>
+         </node>
+         <node id="18" name="NAMESPACE">
+            <att name="Prefix" value="ns11"/>
+            <att name="Namespace" value="http://www.solazyme.com/RequestIn"/>
+            <att name="objectId" value="125088042817100959"/>
+         </node>
+         <node id="19" name="NAMESPACE">
+            <att name="Prefix" value="ns"/>
+            <att name="Namespace" value="PurchaseWithRest/public"/>
+            <att name="objectId" value="125088042817100961"/>
+         </node>
+         <node id="20" name="NAMESPACE">
+            <att name="Prefix" value="soapin"/>
+            <att name="Namespace" value="http://www.example.org/NewRFQIn"/>
+            <att name="objectId" value="125088051204601533"/>
+         </node>
+         <node id="21" name="NAMESPACE">
+            <att name="Prefix" value="ns2"/>
+            <att name="Namespace" value="http://www.solazyme.com/PurchaseRequest"/>
+            <att name="objectId" value="125174838821811803"/>
+         </node>
+      </graph>
+   </att>
+   <att>
+      <graph id="22" name="PARTNER_LINKS">
+         <att name="PartnerLinkCount" value="2"/>
+         <node id="23" name="PARTNER_LINK">
+            <att name="PartnerLinkName" value="RFQProcess"/>
+            <att name="PartnerLinkType" value="ns:RequestInPLT"/>
+            <att name="MyRole" value="Provider"/>
+            <att name="ParticipantType" value="Consumer"/>
+            <att name="PartnerRoleState" value=""/>
+            <att name="MyRoleState" value=""/>
+            <att name="visible" value="false,false,false,false,false,"/>
+            <att name="objectId" value="125088041054600939"/>
+            <att name="InitializePartnerRole" value=""/>
+         </node>
+         <node id="24" name="PARTNER_LINK">
+            <att name="PartnerLinkName" value="RESTService"/>
+            <att name="PartnerLinkType" value="ns1:RESTPLT"/>
+            <att name="PartnerRole" value="process"/>
+            <att name="ParticipantType" value="Provider"/>
+            <att name="PartnerRoleState" value=""/>
+            <att name="MyRoleState" value=""/>
+            <att name="visible" value="false,false,false,false,false,"/>
+            <att name="objectId" value="125092313200001065"/>
+            <att name="InitializePartnerRole" value=""/>
+         </node>
+      </graph>
+   </att>
+   <att>
+      <graph id="25" name="VARIABLE_CONTAINERS">
+         <att name="VariableCount" value="9"/>
+         <node id="26" name="VARIABLE_CONTAINER">
+            <att name="VariableName" value="RESTRequest"/>
+            <att name="VariableSpecification" value="Element=types:RESTRequest"/>
+            <att name="objectId" value="125088027421800657"/>
+         </node>
+         <node id="27" name="VARIABLE_CONTAINER">
+            <att name="VariableName" value="RESTResponse"/>
+            <att name="VariableSpecification" value="Element=types:RESTResponse"/>
+            <att name="objectId" value="125088027421800659"/>
+         </node>
+         <node id="28" name="VARIABLE_CONTAINER">
+            <att name="VariableName" value="phpRFQin"/>
+            <att name="VariableSpecification" value="Element=ns11:phpRFQin"/>
+            <att name="objectId" value="125088051217101535"/>
+         </node>
+         <node id="29" name="VARIABLE_CONTAINER">
+            <att name="VariableName" value="aeUser"/>
+            <att name="VariableSpecification" value="Element=soapin:aeUser"/>
+            <att name="objectId" value="125088051217101537"/>
+         </node>
+         <node id="30" name="VARIABLE_CONTAINER">
+            <att name="VariableName" value="PurchaseRequestID"/>
+            <att name="VariableSpecification" value="Element=soapin:PurchaseRequestID"/>
+            <att name="objectId" value="125088051217101539"/>
+         </node>
+         <node id="31" name="VARIABLE_CONTAINER">
+            <att name="VariableName" value="fTotal"/>
+            <att name="VariableSpecification" value="Element=soapin:Total"/>
+            <att name="objectId" value="125088051217101540"/>
+         </node>
+         <node id="32" name="VARIABLE_CONTAINER">
+            <att name="VariableName" value="eManager"/>
+            <att name="VariableSpecification" value="Element=soapin:eManager"/>
+            <att name="objectId" value="125088051217101541"/>
+         </node>
+         <node id="33" name="VARIABLE_CONTAINER">
+            <att name="VariableName" value="RFQDetailResponse"/>
+            <att name="VariableSpecification" value="Element=types:RESTResponse"/>
+            <att name="objectId" value="125094698937502573"/>
+         </node>
+         <node id="34" name="VARIABLE_CONTAINER">
+            <att name="VariableName" value="Detail"/>
+            <att name="VariableSpecification" value="Element=ns2:PurReqDetail"/>
+            <att name="objectId" value="125253174640608059"/>
+         </node>
+      </graph>
+   </att>
+   <node id="35" name="CORRELATION_CONTAINERS">
+      <att name="CorrSetCount" value="0"/>
+   </node>
+   <att>
+      <graph id="36" name="SCOPE_ACTIVITY">
+         <att>
+            <graph id="37" name="SEQUENCE">
+               <att name="objectId" value="125088027421800661"/>
+               <att name="drawBorder" value="true"/>
+               <att name="borderColor" value="RGB {128,128,128}"/>
+               <att name="transparent" value="false"/>
+               <att name="font" value="FONT {Tahoma,8,0}"/>
+               <att name="fontColor" value="RGB {0,0,0}"/>
+               <att name="scaleImage" value="false"/>
+               <att name="imageTextGap" value="4"/>
+               <att name="textAlignment" value="1"/>
+               <att name="location" value="LOC {5,5}"/>
+               <att name="size" value="DIM {230,681}"/>
+               <att name="text" value=""/>
+               <att name="BPELDocumentation" value=""/>
+               <att name="gap" value="50"/>
+               <node id="38" name="RECEIVE">
+                  <att name="objectId" value="125088045453101053"/>
+                  <att name="font" value="FONT {Tahoma,8,0}"/>
+                  <att name="fontColor" value="RGB {0,0,0}"/>
+                  <att name="imageDisplay" value="true"/>
+                  <att name="scaleImage" value="false"/>
+                  <att name="imageTextGap" value="4"/>
+                  <att name="textAlignment" value="1"/>
+                  <att name="textPlacement" value="16"/>
+                  <att name="location" value="LOC {21,9}"/>
+                  <att name="size" value="DIM {138,56}"/>
+                  <att name="name" value="RFQEnvelope"/>
+                  <att name="text" value="Receive RFQEnvelope"/>
+                  <att name="BPELDocumentation" value=""/>
+                  <att name="partnerLink" value="RFQProcess"/>
+                  <att name="portType" value="{http://www.solazyme.com/RequestIn}RequestIn"/>
+                  <att name="operation" value="RFQEnvelope"/>
+                  <att name="createInstance" value="true"/>
+                  <att name="variable" value="phpRFQin"/>
+                  <att name="attachments" value=""/>
+                  <att name="principal" value=""/>
+                  <att name="fromParts" value="0"/>
+               </node>
+               <att>
+                  <graph id="39" name="ASSIGN">
+                     <att name="objectId" value="125088051204601528"/>
+                     <att name="font" value="FONT {Tahoma,8,0}"/>
+                     <att name="fontColor" value="RGB {0,0,0}"/>
+                     <att name="imageDisplay" value="true"/>
+                     <att name="scaleImage" value="false"/>
+                     <att name="imageTextGap" value="4"/>
+                     <att name="textAlignment" value="1"/>
+                     <att name="textPlacement" value="16"/>
+                     <att name="location" value="LOC {93,111}"/>
+                     <att name="size" value="DIM {147,56}"/>
+                     <att name="name" value="asRequestData"/>
+                     <att name="text" value=""/>
+                     <att name="BPELDocumentation" value=""/>
+                     <att name="copy" value="4"/>
+                     <att name="validateVars" value="false"/>
+                     <node id="40" name="ASSIGN_COPY">
+                        <att name="fromVariable" value="phpRFQin"/>
+                        <att name="fromQuery" value="aeUser"/>
+                        <att name="fromType" value="0"/>
+                        <att name="objectId" value="125088051204601529"/>
+                        <att name="toVariable" value="aeUser"/>
+                        <att name="ignoreMissingFromData" value="false"/>
+                     </node>
+                     <node id="41" name="ASSIGN_COPY">
+                        <att name="fromVariable" value="phpRFQin"/>
+                        <att name="fromQuery" value="PurchaseRequestId"/>
+                        <att name="fromType" value="0"/>
+                        <att name="objectId" value="125088051204601530"/>
+                        <att name="toVariable" value="PurchaseRequestID"/>
+                        <att name="ignoreMissingFromData" value="false"/>
+                     </node>
+                     <node id="42" name="ASSIGN_COPY">
+                        <att name="fromVariable" value="phpRFQin"/>
+                        <att name="fromQuery" value="Total"/>
+                        <att name="fromType" value="0"/>
+                        <att name="objectId" value="125088051204601531"/>
+                        <att name="toVariable" value="fTotal"/>
+                        <att name="ignoreMissingFromData" value="false"/>
+                     </node>
+                     <node id="43" name="ASSIGN_COPY">
+                        <att name="fromVariable" value="phpRFQin"/>
+                        <att name="fromQuery" value="eManager"/>
+                        <att name="fromType" value="0"/>
+                        <att name="objectId" value="125088051204601532"/>
+                        <att name="toVariable" value="eManager"/>
+                        <att name="ignoreMissingFromData" value="false"/>
+                     </node>
+                  </graph>
+               </att>
+               <att>
+                  <graph id="44" name="INVOKE">
+                     <att name="objectId" value="125092319757801083"/>
+                     <att name="font" value="FONT {Tahoma,8,0}"/>
+                     <att name="fontColor" value="RGB {0,0,0}"/>
+                     <att name="imageDisplay" value="true"/>
+                     <att name="scaleImage" value="false"/>
+                     <att name="imageTextGap" value="4"/>
+                     <att name="textAlignment" value="1"/>
+                     <att name="textPlacement" value="16"/>
+                     <att name="location" value="LOC {0,0}"/>
+                     <att name="size" value="DIM {121,56}"/>
+                     <att name="name" value="RFQDetail"/>
+                     <att name="text" value="Invoke requestResponse"/>
+                     <att name="BPELDocumentation" value=""/>
+                     <att name="partnerLink" value="RESTService"/>
+                     <att name="portType"
+                          value="{http://www.activebpel.org/REST/2007/12/01/aeREST.wsdl}RESTPortType"/>
+                     <att name="operation" value="requestResponse"/>
+                     <att name="inputVariable" value="parameters"/>
+                     <att name="outputVariable" value="RFQDetailResponse"/>
+                     <att name="fromParts" value="0"/>
+                     <att name="toParts" value="0"/>
+                     <att name="attachments" value=""/>
+                     <att name="subprocessPath" value=""/>
+                     <node id="45" name="VARIABLE_CONTAINER">
+                        <att name="VariableName" value="parameters"/>
+                        <att name="VariableSpecification" value="MessageType=ns1:RESTRequest"/>
+                        <att name="objectId" value="125092330965601243"/>
+                     </node>
+                     <att>
+                        <graph id="46" name="ASSIGN">
+                           <att name="objectId" value="125092330965601245"/>
+                           <att name="font" value="FONT {Tahoma,8,0}"/>
+                           <att name="fontColor" value="RGB {0,0,0}"/>
+                           <att name="imageDisplay" value="true"/>
+                           <att name="scaleImage" value="false"/>
+                           <att name="imageTextGap" value="4"/>
+                           <att name="textAlignment" value="1"/>
+                           <att name="textPlacement" value="16"/>
+                           <att name="location" value="LOC {0,0}"/>
+                           <att name="size" value="DIM {-1,-1}"/>
+                           <att name="text" value=""/>
+                           <att name="BPELDocumentation" value=""/>
+                           <att name="copy" value="1"/>
+                           <att name="validateVars" value="false"/>
+                           <node id="47" name="ASSIGN_COPY">
+                              <att name="fromExpression"
+                                   value="&lt;types:RESTRequest xmlns:types=&#34;http://schemas.activebpel.org/REST/2007/12/01/aeREST.xsd&#34;&gt;&#xD;&#xA;   &lt;types:method&gt;GET&lt;/types:method&gt;&#xD;&#xA;   &lt;types:params&gt;&#xD;&#xA;&lt;types:param name=&#34;PurchaseRequestID&#34; value=&#34;{ $phpRFQin/PurchaseRequestId }&#34;/&gt;&#xD;&#xA;&lt;/types:params&gt;&#xD;&#xA;   &lt;types:headers&gt;&#xD;&#xA;&lt;/types:headers&gt;&#xD;&#xA;   &lt;types:payload contentType=&#34;text/xml&#34;&gt;&lt;/types:payload&gt;&#xD;&#xA;&lt;types:requestURI&gt;http://localhost:8090/xaware/bizview/BDSelectRFQDetail.xbd&lt;/types:requestURI&gt;&#xD;&#xA;&lt;/types:RESTRequest&gt;"/>
+                              <att name="fromType" value="3"/>
+                              <att name="objectId" value="125092353431201263"/>
+                              <att name="toVariable" value="parameters"/>
+                              <att name="toPart" value="RESTRequest"/>
+                              <att name="ignoreMissingFromData" value="false"/>
+                           </node>
+                        </graph>
+                     </att>
+                  </graph>
+               </att>
+               <att>
+                  <graph id="48" name="IF">
+                     <att name="objectId" value="125252517390601915"/>
+                     <att name="drawBorder" value="true"/>
+                     <att name="borderColor" value="RGB {128,128,128}"/>
+                     <att name="transparent" value="false"/>
+                     <att name="font" value="FONT {Tahoma,8,0}"/>
+                     <att name="fontColor" value="RGB {0,0,0}"/>
+                     <att name="imageDisplay" value="true"/>
+                     <att name="scaleImage" value="false"/>
+                     <att name="imageTextGap" value="4"/>
+                     <att name="textAlignment" value="1"/>
+                     <att name="location" value="LOC {0,0}"/>
+                     <att name="size" value="DIM {210,190}"/>
+                     <att name="text" value=""/>
+                     <att name="BPELDocumentation" value=""/>
+                     <att>
+                        <graph id="49" name="ELSE_IF">
+                           <att name="IF_EXPRESSION"
+                                value="exists($RFQDetailResponse//*[local-name()=&#34;Error&#34;])"/>
+                           <att name="IF_EXPR_LANG" value="urn:active-endpoints:expression-language:xquery1.0"/>
+                           <att name="BPELDocumentation" value=""/>
+                           <att name="objectId" value="125252517390601917"/>
+                           <att name="drawBorder" value="true"/>
+                           <att name="borderColor" value="RGB {128,128,128}"/>
+                           <att name="transparent" value="false"/>
+                           <att name="font" value="FONT {Tahoma,8,0}"/>
+                           <att name="fontColor" value="RGB {0,0,0}"/>
+                           <att name="imageDisplay" value="true"/>
+                           <att name="scaleImage" value="false"/>
+                           <att name="imageTextGap" value="4"/>
+                           <att name="textAlignment" value="1"/>
+                           <att name="textPlacement" value="16"/>
+                           <att name="location" value="LOC {0,0}"/>
+                           <att name="sizeToFit" value="true"/>
+                           <att name="size" value="DIM {180,120}"/>
+                           <node id="50" name="EMPTY">
+                              <att name="objectId" value="125252577935903281"/>
+                              <att name="font" value="FONT {Tahoma,8,0}"/>
+                              <att name="fontColor" value="RGB {0,0,0}"/>
+                              <att name="imageDisplay" value="true"/>
+                              <att name="scaleImage" value="false"/>
+                              <att name="imageTextGap" value="4"/>
+                              <att name="textAlignment" value="1"/>
+                              <att name="textPlacement" value="16"/>
+                              <att name="location" value="LOC {33,21}"/>
+                              <att name="size" value="DIM {119,56}"/>
+                              <att name="name" value="ErrorPath"/>
+                              <att name="text" value=""/>
+                              <att name="BPELDocumentation" value=""/>
+                           </node>
+                        </graph>
+                     </att>
+                  </graph>
+               </att>
+               <att>
+                  <graph id="51" name="ASSIGN">
+                     <att name="objectId" value="125253177529608571"/>
+                     <att name="font" value="FONT {Tahoma,8,0}"/>
+                     <att name="fontColor" value="RGB {0,0,0}"/>
+                     <att name="imageDisplay" value="true"/>
+                     <att name="scaleImage" value="false"/>
+                     <att name="imageTextGap" value="4"/>
+                     <att name="textAlignment" value="1"/>
+                     <att name="textPlacement" value="16"/>
+                     <att name="location" value="LOC {0,0}"/>
+                     <att name="size" value="DIM {104,56}"/>
+                     <att name="text" value=""/>
+                     <att name="BPELDocumentation" value=""/>
+                     <att name="copy" value="2"/>
+                     <att name="validateVars" value="false"/>
+                     <node id="52" name="ASSIGN_COPY">
+                        <att name="fromLiteral"
+                             value="&lt;ns2:PurReqDetail xmlns:ns2=&#34;http://www.solazyme.com/PurchaseRequest&#34;&gt;&#xD;&#xA;   &lt;ns2:PRQLineItem&gt;&#xD;&#xA;      &lt;ns2:LineItemID&gt;0&lt;/ns2:LineItemID&gt;&#xD;&#xA;      &lt;ns2:PurRequestID&gt;0&lt;/ns2:PurRequestID&gt;&#xD;&#xA;      &lt;ns2:PurOrderID&gt;0&lt;/ns2:PurOrderID&gt;&#xD;&#xA;      &lt;ns2:LineProductNum&gt;string&lt;/ns2:LineProductNum&gt;&#xD;&#xA;      &lt;ns2:Quantity&gt;0&lt;/ns2:Quantity&gt;&#xD;&#xA;      &lt;ns2:ItemCost&gt;1.0&lt;/ns2:ItemCost&gt;&#xD;&#xA;      &lt;ns2:TotalCost&gt;1.0&lt;/ns2:TotalCost&gt;&#xD;&#xA;      &lt;ns2:Description&gt;string&lt;/ns2:Description&gt;&#xD;&#xA;      &lt;ns2:Received&gt;true&lt;/ns2:Received&gt;&#xD;&#xA;   &lt;/ns2:PRQLineItem&gt;&#xD;&#xA;&lt;/ns2:PurReqDetail&gt;"/>
+                        <att name="fromType" value="4"/>
+                        <att name="objectId" value="125364597744104583"/>
+                        <att name="toVariable" value="Detail"/>
+                        <att name="ignoreMissingFromData" value="false"/>
+                     </node>
+                     <node id="53" name="ASSIGN_COPY">
+                        <att name="fromVariable" value="RFQDetailResponse"/>
+                        <att name="fromQuery" value="types:payload//*[local-name()=&#34;LineItemId&#34;]"/>
+                        <att name="fromType" value="0"/>
+                        <att name="objectId" value="125364598634704585"/>
+                        <att name="toVariable" value="Detail"/>
+                        <att name="toQuery" value="ns2:PRQLineItem/ns2:LineItemID"/>
+                        <att name="ignoreMissingFromData" value="false"/>
+                     </node>
+                  </graph>
+               </att>
+            </graph>
+         </att>
+      </graph>
+   </att>
+   <node id="54" name="SCOPE_FAULTHANDLER"/>
+   <node id="55" name="SCOPE_EVENTHANDLER"/>
+</graph>

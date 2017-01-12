@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding ="UTF-8"?>
+<rfq:purchaseRequest xmlns:rfq="http://domain.com/purchaserequest">
+<rfq:Header>
+  <rfq:date>1999-12-04</rfq:date>
+  <rfq:by>A.Name</rfq:by>
+  <rfq:vendor>126</rfq:vendor>
+  <rfq:reason>New Hire</rfq:reason>
+  <rfq:shipping>Standard</rfq:shipping>
+  <rfq:eta>1999-12-05</rfq:eta>
+  <rfq:approved>not approved</rfq:approved>
+  <rfq:comments>This is for standard settings</rfq:comments>
+</rfq:Header>  
+<rfq:Items>
+  <rfq:item LineNum="1">
+    <rfq:productNo>12312</rfq:productNo>
+    <rfq:description>Laptop Lenovo T400</rfq:description>
+    <rfq:quantity>2</rfq:quantity>
+    <rfq:price>999.99</rfq:price>
+    <rfq:total>1999.98</rfq:total>
+  </rfq:item>
+  <rfq:item LineNum="2">
+    <rfq:productNo>12345</rfq:productNo>
+    <rfq:description>Docking Station</rfq:description>
+    <rfq:quantity>2</rfq:quantity>
+    <rfq:price>100</rfq:price>
+    <rfq:total>200</rfq:total>
+  </rfq:item>
+</rfq:Items>
+</rfq:purchaseRequest>

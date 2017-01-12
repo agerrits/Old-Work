@@ -1,0 +1,491 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<bpel:process xmlns:bpel="http://docs.oasis-open.org/wsbpel/2.0/process/executable"
+              xmlns:ns="http://EMailApprovalExample/emailapprovalexample/public"
+              xmlns:ns21="http://EmailApproval"
+              xmlns:b4p="http://www.example.org/BPEL4People"
+              xmlns:ext="http://www.activebpel.org/2006/09/bpel/extension/query_handling"
+              xmlns:wsa="http://www.w3.org/2005/08/addressing"
+              xmlns:abx="http://www.activebpel.org/bpel/extension"
+              xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI"
+              xmlns:ns16="http://EmailApprovalExample/Vacation"
+              xmlns:ns17="http://schemas.active-endpoints.com/activebpeladmin/2007/01/activebpeladmin.xsd"
+              xmlns:htd="http://www.example.org/WS-HT"
+              xmlns:ns9="http://PONumberPropertyDefinition.wsdl"
+              xmlns:ns12="http://EmailApprovalExample.wsdl"
+              xmlns:ns5="http://EMailApprovalExample/emailapprovalexample"
+              xmlns:ns13="http://docs.active-endpoints/wsdl/activebpeladmin/2007/01/activebpeladmin.wsdl"
+              xmlns:ns6="http://ProcessIDCS.wsdl"
+              xmlns:ns10="http://EmailCallback.wsdl"
+              xmlns:aei="http://www.activebpel.org/2009/02/bpel/extension/ignorable"
+              xmlns:ns7="http://www.example.com/CMO"
+              xmlns:ns8="http://EmailApprovalExample/Invoke"
+              xmlns:ns11="http://wetseal/PO-Approval-One/config"
+              xmlns:ns2="http://schemas.activebpel.org/REST/2007/12/01/aeREST.xsd"
+              xmlns:ns1="http://www.activebpel.org/REST/2007/12/01/aeREST.wsdl"
+              xmlns:ns4="http://EmailApprovalExample.wsdl"
+              xmlns:ns3="http://EmailApprovalHT.wsdl"
+              xmlns:ext1="http://www.activebpel.org/2009/06/bpel/extension/links"
+              xmlns:email="http://docs.active-endpoints/wsdl/email/2007/04/email.wsdl"
+              xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+              aei:editStyle="BPMN"
+              ext1:linksAreTransitions="yes"
+              ext:createTargetXPath="yes"
+              ext:disableSelectionFailure="yes"
+              name="VacationApproval"
+              suppressJoinFailure="yes"
+              targetNamespace="http://EMailApprovalExample">
+   <b4p:humanInteractions>
+      <htd:logicalPeopleGroups/>
+      <htd:tasks/>
+      <htd:notifications/>
+   </b4p:humanInteractions>
+   <bpmndi:BPMNDiagram xmlns:di="http://www.omg.org/spec/DD/20100524/DI"
+                       xmlns:dc="http://www.omg.org/spec/DD/20100524/DC"
+                       aei:bpelDigest="88b5eb550cd5c81de7909e339a822a56"
+                       aei:editStyle="BPMN"
+                       aei:layoutNeeded="false"
+                       aei:modelVersion="5"
+                       aei:objectId="126460451432300629"
+                       aei:processInitiatorSim=""
+                       isHorizontal="false">
+      <bpmndi:BPMNPlane>
+         <bpmndi:BPMNShape aei:backgroundImageLocation="icons/bpmn/activity/ActivityBlock.png"
+                           aei:objectId="126460553838102311"
+                           aei:type="PARTNER_LINK"
+                           aei:visible="false,false,false,false,false,"
+                           bpmnElement="126460553838102311"/>
+         <bpmndi:BPMNShape aei:backgroundImageLocation="icons/bpmn/activity/ActivityBlock.png"
+                           aei:objectId="126460657046602875"
+                           aei:type="PARTNER_LINK"
+                           aei:visible="false,false,false,false,false,"
+                           bpmnElement="126460657046602875"/>
+         <bpmndi:BPMNShape aei:backgroundImageLocation="icons/bpmn/activity/ActivityBlock.png"
+                           aei:objectId="126989428374207507"
+                           aei:type="PARTNER_LINK"
+                           aei:visible="false,false,false,false,false,"
+                           bpmnElement="126989428374207507"/>
+         <bpmndi:BPMNShape aei:objectId="126989447031608913" aei:type="CORRELATION_CONTAINER"
+                           bpmnElement="126989447031608913"/>
+         <bpmndi:BPMNShape aei:absoluteLocation="LOC {90,95}" aei:absoluteSize="DIM {580,88}"
+                           aei:objectId="126989510004111709"
+                           aei:type="SEQUENCE"
+                           bpmnElement="126989510004111709"
+                           isHorizontal="true">
+            <dc:Bounds height="-1" width="-1" x="80" y="85"/>
+         </bpmndi:BPMNShape>
+         <bpmndi:BPMNShape aei:absoluteLocation="LOC {100,109}" aei:absoluteSize="DIM {70,60}"
+                           aei:attachments=""
+                           aei:name="Vacation Request"
+                           aei:objectId="126989510003111705"
+                           aei:principal=""
+                           aei:text="ApproveByEmail"
+                           aei:type="RECEIVE"
+                           bpmnElement="126989510003111705">
+            <dc:Bounds height="-1" width="-1" x="117" y="205"/>
+            <bpmndi:BPMNLabel aei:absoluteLocation="LOC {99,173}" aei:absoluteSize="DIM {99,16}"
+                              aei:anchor.location="0"
+                              aei:anchor.objectId="126989510003111705"
+                              aei:backgroundColor="RGB {255,255,255}"
+                              aei:objectId="126990152704543103"
+                              aei:relative.location="LOC {-46,54}"
+                              aei:text="Vacation Request"
+                              bpmnElement="126989510003111705label">
+               <dc:Bounds height="-1" width="-1" x="89" y="163"/>
+            </bpmndi:BPMNLabel>
+         </bpmndi:BPMNShape>
+         <bpmndi:BPMNShape aei:absoluteLocation="LOC {195,109}" aei:absoluteSize="DIM {70,60}"
+                           aei:name="Send Req Num"
+                           aei:objectId="126989510004111707"
+                           aei:text="ApproveByEmail-Reply"
+                           aei:type="REPLY"
+                           bpmnElement="126989510004111707">
+            <dc:Bounds height="-1" width="-1" x="0" y="0"/>
+            <bpmndi:BPMNLabel aei:absoluteLocation="LOC {208,172}" aei:absoluteSize="DIM {85,16}"
+                              aei:anchor.location="0"
+                              aei:anchor.objectId="126989510004111707"
+                              aei:backgroundColor="RGB {255,255,255}"
+                              aei:objectId="126989510005111713"
+                              aei:relative.location="LOC {-32,53}"
+                              aei:text="Send Req Num"
+                              bpmnElement="126989510004111707label">
+               <dc:Bounds height="-1" width="-1" x="198" y="162"/>
+            </bpmndi:BPMNLabel>
+         </bpmndi:BPMNShape>
+         <bpmndi:BPMNShape aei:absoluteLocation="LOC {290,105}" aei:absoluteSize="DIM {125,68}"
+                           aei:expanded="false"
+                           aei:expandedSize="DIM {815,124}"
+                           aei:name="Approve by email"
+                           aei:objectId="126987343299029675"
+                           aei:showTerminationHandler="false"
+                           aei:type="SCOPE"
+                           bpmnElement="126987343299029675"
+                           isHorizontal="false">
+            <dc:Bounds height="124" width="815" x="0" y="0"/>
+            <bpmndi:BPMNLabel aei:anchor.location="11" aei:anchor.objectId="126987343299029675"
+                              aei:backgroundColor="RGB {255,255,255}"
+                              aei:objectId="147154095968800315"
+                              aei:text="Approve by email"
+                              bpmnElement="126987343299029675label">
+               <dc:Bounds height="-1" width="-1" x="0" y="0"/>
+            </bpmndi:BPMNLabel>
+         </bpmndi:BPMNShape>
+         <bpmndi:BPMNShape aei:gap="50" aei:objectId="126987343299029693" aei:type="SEQUENCE"
+                           bpmnElement="126987343299029693"
+                           isHorizontal="true">
+            <dc:Bounds height="85" width="805" x="5" y="5"/>
+         </bpmndi:BPMNShape>
+         <bpmndi:BPMNShape aei:absoluteLocation="LOC {0,0}" aei:absoluteSize="DIM {-1,-1}"
+                           aei:backgroundColor="RGB {226,226,226}"
+                           aei:backgroundImageLocation="icons/bpmn/activity/ActivityBlock.png"
+                           aei:borderColor="RGB {0,0,255}"
+                           aei:bpmNotation="NoneEvent"
+                           aei:collapsed="false"
+                           aei:drawBorder="false"
+                           aei:font="${system.default}"
+                           aei:fontColor="RGB {0,0,0}"
+                           aei:imageDisplay="true"
+                           aei:imageTextGap="4"
+                           aei:joinCondition=""
+                           aei:joinConditionLang=""
+                           aei:name=""
+                           aei:objectId="126987343299029695"
+                           aei:scaleImage="false"
+                           aei:sizeToFit="true"
+                           aei:text=""
+                           aei:textAlignment="1"
+                           aei:textFormat="1"
+                           aei:textPlacement="16"
+                           aei:transparent="true"
+                           aei:type="NONE_EVENT"
+                           bpmnElement="126987343299029695">
+            <dc:Bounds height="-1" width="-1" x="0" y="0"/>
+         </bpmndi:BPMNShape>
+         <bpmndi:BPMNShape aei:attachments="" aei:name="Send email approval request"
+                           aei:objectId="126460454618101513"
+                           aei:subprocessPath=""
+                           aei:type="INVOKE"
+                           bpmnElement="126460454618101513">
+            <dc:Bounds height="53" width="125" x="0" y="0"/>
+         </bpmndi:BPMNShape>
+         <bpmndi:BPMNShape aei:attachments="" aei:name="Receive answer" aei:objectId="126961781513103861"
+                           aei:principal=""
+                           aei:type="RECEIVE"
+                           bpmnElement="126961781513103861">
+            <dc:Bounds height="60" width="70" x="0" y="0"/>
+            <bpmndi:BPMNLabel aei:anchor.location="0" aei:anchor.objectId="126961781513103861"
+                              aei:backgroundColor="RGB {255,255,255}"
+                              aei:objectId="126961781513103863"
+                              aei:relative.location="LOC {-38,48}"
+                              aei:text="Receive answer"
+                              bpmnElement="126961781513103861label">
+               <dc:Bounds height="-1" width="-1" x="541" y="73"/>
+            </bpmndi:BPMNLabel>
+         </bpmndi:BPMNShape>
+         <bpmndi:BPMNShape aei:name="Ack answer" aei:objectId="126460589905402673" aei:type="REPLY"
+                           bpmnElement="126460589905402673">
+            <dc:Bounds height="60" width="70" x="0" y="0"/>
+            <bpmndi:BPMNLabel aei:anchor.location="0" aei:anchor.objectId="126460589905402673"
+                              aei:backgroundColor="RGB {255,255,255}"
+                              aei:objectId="126460589907002675"
+                              aei:relative.location="LOC {-28,48}"
+                              aei:text="Ack answer"
+                              bpmnElement="126460589905402673label">
+               <dc:Bounds height="-1" width="-1" x="671" y="73"/>
+            </bpmndi:BPMNLabel>
+         </bpmndi:BPMNShape>
+         <bpmndi:BPMNShape aei:absoluteLocation="LOC {0,0}" aei:absoluteSize="DIM {-1,-1}"
+                           aei:backgroundColor="RGB {226,226,226}"
+                           aei:backgroundImageLocation="icons/bpmn/activity/ActivityBlock.png"
+                           aei:borderColor="RGB {0,0,255}"
+                           aei:bpmNotation="NoneEvent"
+                           aei:collapsed="false"
+                           aei:drawBorder="false"
+                           aei:font="${system.default}"
+                           aei:fontColor="RGB {0,0,0}"
+                           aei:imageDisplay="true"
+                           aei:imageTextGap="4"
+                           aei:joinCondition=""
+                           aei:joinConditionLang=""
+                           aei:name=""
+                           aei:objectId="126987343299029697"
+                           aei:scaleImage="false"
+                           aei:sizeToFit="true"
+                           aei:text=""
+                           aei:textAlignment="1"
+                           aei:textFormat="1"
+                           aei:textPlacement="16"
+                           aei:transparent="true"
+                           aei:type="NONE_EVENT"
+                           bpmnElement="126987343299029697">
+            <dc:Bounds height="-1" width="-1" x="0" y="0"/>
+         </bpmndi:BPMNShape>
+         <bpmndi:BPMNShape aei:absoluteLocation="LOC {440,113}" aei:absoluteSize="DIM {125,53}"
+                           aei:attachments=""
+                           aei:name="Send Approval Status Email"
+                           aei:objectId="126461075604013148"
+                           aei:subprocessPath=""
+                           aei:type="INVOKE"
+                           bpmnElement="126461075604013148">
+            <dc:Bounds height="53" width="125" x="10" y="10"/>
+         </bpmndi:BPMNShape>
+         <bpmndi:BPMNShape aei:backgroundColor="RGB {226,226,226}" aei:borderColor="RGB {0,0,255}"
+                           aei:imageLocation="icons/activity/large/paletteAssignLarge.png"
+                           aei:implicitScopeIO="INPUT"
+                           aei:objectId="126460616899702747"
+                           aei:type="ASSIGN"
+                           bpmnElement="126460616899702747">
+            <dc:Bounds height="-1" width="-1" x="0" y="0"/>
+         </bpmndi:BPMNShape>
+         <bpmndi:BPMNShape aei:absoluteLocation="LOC {590,109}" aei:absoluteSize="DIM {70,60}"
+                           aei:backgroundColor="RGB {226,226,226}"
+                           aei:backgroundImageLocation="icons/bpmn/activity/ActivityBlock.png"
+                           aei:borderColor="RGB {0,0,255}"
+                           aei:bpmNotation="NoneEvent"
+                           aei:collapsed="false"
+                           aei:drawBorder="false"
+                           aei:font="${system.default}"
+                           aei:fontColor="RGB {0,0,0}"
+                           aei:imageDisplay="true"
+                           aei:imageTextGap="4"
+                           aei:joinCondition=""
+                           aei:joinConditionLang=""
+                           aei:name=""
+                           aei:objectId="126989513217911825"
+                           aei:scaleImage="false"
+                           aei:sizeToFit="true"
+                           aei:text=""
+                           aei:textAlignment="1"
+                           aei:textFormat="1"
+                           aei:textPlacement="16"
+                           aei:transparent="true"
+                           aei:type="NONE_EVENT"
+                           bpmnElement="126989513217911825">
+            <dc:Bounds height="-1" width="-1" x="0" y="0"/>
+         </bpmndi:BPMNShape>
+      </bpmndi:BPMNPlane>
+   </bpmndi:BPMNDiagram>
+   <bpel:extensions>
+      <bpel:extension mustUnderstand="no"
+                      namespace="http://www.activebpel.org/2009/02/bpel/extension/ignorable"/>
+      <bpel:extension mustUnderstand="no" namespace="http://www.omg.org/spec/BPMN/20100524/DI"/>
+      <bpel:extension mustUnderstand="yes"
+                      namespace="http://www.activebpel.org/2006/09/bpel/extension/query_handling"/>
+      <bpel:extension mustUnderstand="yes"
+                      namespace="http://www.activebpel.org/2009/06/bpel/extension/links"/>
+      <bpel:extension mustUnderstand="yes" namespace="http://www.example.org/WS-HT"/>
+      <bpel:extension mustUnderstand="yes" namespace="http://www.example.org/BPEL4People"/>
+   </bpel:extensions>
+   <bpel:import importType="http://schemas.xmlsoap.org/wsdl/"
+                namespace="http://www.activebpel.org/REST/2007/12/01/aeREST.wsdl"/>
+   <bpel:import importType="http://schemas.xmlsoap.org/wsdl/"
+                namespace="http://docs.active-endpoints/wsdl/email/2007/04/email.wsdl"/>
+   <bpel:import aei:implicit="true" importType="http://schemas.xmlsoap.org/wsdl/"
+                location="../wsdl/bpel/VacationApproval.private.wsdl"
+                namespace="http://EMailApprovalExample/emailapprovalexample"/>
+   <bpel:import aei:implicit="true" importType="http://schemas.xmlsoap.org/wsdl/"
+                location="../wsdl/bpel/VacationApproval.public.wsdl"
+                namespace="http://EMailApprovalExample/emailapprovalexample/public"/>
+   <bpel:import importType="http://www.w3.org/2001/XMLSchema"
+                namespace="http://schemas.activebpel.org/REST/2007/12/01/aeREST.xsd"/>
+   <bpel:import importType="http://schemas.xmlsoap.org/wsdl/"
+                namespace="http://docs.active-endpoints/wsdl/activebpeladmin/2007/01/activebpeladmin.wsdl"/>
+   <bpel:import importType="http://schemas.xmlsoap.org/wsdl/"
+                location="../wsdl/EmailApprovalExample.wsdl"
+                namespace="http://EmailApproval"/>
+   <bpel:partnerLinks>
+      <bpel:partnerLink aei:id="126460553838102311" name="EmailSystem" partnerLinkType="email:emailPLT"
+                        partnerRole="sender"/>
+      <bpel:partnerLink aei:id="126460657046602875" myRole="process" name="ApproverByREST"
+                        partnerLinkType="ns1:RESTPLT"/>
+      <bpel:partnerLink aei:id="126989428374207507" aei:interface="ns21:EmailApprovalPortType"
+                        myRole="Provider"
+                        name="Requester"
+                        partnerLinkType="ns:EmailApprovalPortTypePLT"/>
+   </bpel:partnerLinks>
+   <bpel:variables>
+      <bpel:variable name="BossEmail" type="xsd:string"/>
+      <bpel:variable name="Answer" type="xsd:string"/>
+      <bpel:variable element="email:resultElement" name="EmailOutputVar"/>
+      <bpel:variable element="ns16:VacationRequest" name="Request"/>
+      <bpel:variable name="RequestNum" type="xsd:integer">
+         <bpel:from>abx:getProcessId()</bpel:from>
+      </bpel:variable>
+      <bpel:variable name="RequesterEmail" type="xsd:string"/>
+      <bpel:variable name="_peopleActivityAttachments" type="xsd:anyType"/>
+   </bpel:variables>
+   <bpel:correlationSets>
+      <bpel:correlationSet aei:id="126989447031608913" name="RequestCS" properties="ns21:RequestNum"/>
+   </bpel:correlationSets>
+   <bpel:sequence aei:id="126989510004111709">
+      <bpel:scope aei:implicit="true" name="Vacation_Request">
+         <bpel:variables>
+            <bpel:variable messageType="ns21:EmailApprovalRequest" name="result"/>
+         </bpel:variables>
+         <bpel:sequence>
+            <bpel:receive aei:id="126989510003111705" createInstance="yes" name="Vacation_Request"
+                          operation="ApproveByEmail"
+                          partnerLink="Requester"
+                          variable="result"/>
+            <bpel:assign aei:assignType="XPATHS" aei:id="126990139907142953">
+               <bpel:copy>
+                  <bpel:from>$result.request</bpel:from>
+                  <bpel:to variable="Request"/>
+               </bpel:copy>
+               <bpel:copy>
+                  <bpel:from>$result.request/ns16:BosssEmail</bpel:from>
+                  <bpel:to variable="BossEmail"/>
+               </bpel:copy>
+               <bpel:copy>
+                  <bpel:from>$result.request/ns16:Email</bpel:from>
+                  <bpel:to variable="RequesterEmail"/>
+               </bpel:copy>
+            </bpel:assign>
+         </bpel:sequence>
+      </bpel:scope>
+      <bpel:scope aei:implicit="true" name="Send_Req_Num">
+         <bpel:variables>
+            <bpel:variable messageType="ns21:EmailApprovalAck" name="parameters"/>
+            <bpel:variable name="attachmentCopyResult" type="xsd:string"/>
+         </bpel:variables>
+         <bpel:sequence>
+            <bpel:assign aei:assignType="XQUERY" aei:id="147630620137602327">
+               <bpel:copy>
+                  <bpel:from expressionLanguage="urn:active-endpoints:expression-language:xquery1.0">&lt;ns16:RequestNum xmlns:ns16="http://EmailApprovalExample/Vacation"&gt;{ $RequestNum }&lt;/ns16:RequestNum&gt;</bpel:from>
+                  <bpel:to part="ack" variable="parameters"/>
+               </bpel:copy>
+               <bpel:copy>
+                  <bpel:from expressionLanguage="urn:active-endpoints:expression-language:xquery1.0">abx:copyAllAttachments("_peopleActivityAttachments","parameters")</bpel:from>
+                  <bpel:to variable="attachmentCopyResult"/>
+               </bpel:copy>
+            </bpel:assign>
+            <bpel:reply aei:id="126989510004111707" name="Send_Req_Num" operation="ApproveByEmail"
+                        partnerLink="Requester"
+                        variable="parameters">
+               <bpel:correlations>
+                  <bpel:correlation initiate="yes" set="RequestCS"/>
+               </bpel:correlations>
+            </bpel:reply>
+         </bpel:sequence>
+      </bpel:scope>
+      <bpel:scope aei:id="126987343299029675" name="Approve_by_email">
+         <bpel:variables>
+            <bpel:variable name="RestEPR" type="xsd:anyType">
+               <bpel:from endpointReference="myRole" partnerLink="ApproverByREST"/>
+            </bpel:variable>
+            <bpel:variable name="MyAddress" type="xsd:string">
+               <bpel:from>abx:resolveURN(concat("urn:x-vos:rest:",$RestEPR/wsa:EndpointReference/wsa:Address))</bpel:from>
+            </bpel:variable>
+            <bpel:variable element="email:resultElement" name="EmailOutputVar"/>
+         </bpel:variables>
+         <bpel:sequence aei:id="126987343299029693">
+            <bpel:empty aei:id="126987343299029695"/>
+            <bpel:scope aei:implicit="true" name="Send_email_approval_request">
+               <bpel:variables>
+                  <bpel:variable messageType="email:emailMessage" name="parameters"/>
+               </bpel:variables>
+               <bpel:sequence>
+                  <bpel:assign aei:assignType="XQUERY" aei:id="126460556883302335">
+                     <bpel:copy>
+                        <bpel:from expressionLanguage="urn:active-endpoints:expression-language:xquery1.0">&lt;ns:emailMessage xmlns:ns="http://schemas.active-endpoints.com/email/2007/01/email.xsd"&gt;
+&lt;ns:from&gt;noreply@activevos.com&lt;/ns:from&gt;
+&lt;ns:to&gt;{$BossEmail}&lt;/ns:to&gt;
+&lt;ns:subject&gt;Vacation request for { $Request/ns16:Name/text() }&lt;/ns:subject&gt;
+&lt;ns:body mimeType="text/html"&gt;&lt;div&gt;
+
+{ $Request/ns16:Name/text() } would like to take vacation starting on 
+{ string( $Request/ns16:StartDate) } and lasting { $Request/ns16:Days } days.&lt;br/&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;a href="{$MyAddress}?Answer=approved&amp;amp;RequestNum={$RequestNum}"&gt;Click here to approve the request&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="{$MyAddress}?Answer=denied&amp;amp;RequestNum={$RequestNum}"&gt;Click here to deny the request&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;&lt;br/&gt;&lt;br/&gt;&lt;font style="font-size:smaller;"&gt;This is an automated message.  Please do not reply by email&lt;/font&gt;
+&lt;/div&gt;
+&lt;/ns:body&gt;
+&lt;/ns:emailMessage&gt;</bpel:from>
+                        <bpel:to part="emailPart" variable="parameters"/>
+                     </bpel:copy>
+                  </bpel:assign>
+                  <bpel:invoke aei:id="126460454618101513" inputVariable="parameters"
+                               name="Send_email_approval_request"
+                               operation="send"
+                               outputVariable="EmailOutputVar"
+                               partnerLink="EmailSystem"/>
+               </bpel:sequence>
+            </bpel:scope>
+            <bpel:scope aei:implicit="true" name="Receive_answer">
+               <bpel:variables>
+                  <bpel:variable messageType="ns1:RESTRequest" name="result"/>
+               </bpel:variables>
+               <bpel:sequence>
+                  <bpel:receive aei:id="126961781513103861" name="Receive_answer" operation="requestResponse"
+                                partnerLink="ApproverByREST"
+                                variable="result">
+                     <bpel:correlations>
+                        <bpel:correlation initiate="no" set="RequestCS"/>
+                     </bpel:correlations>
+                  </bpel:receive>
+                  <bpel:assign aei:assignType="XPATHS" aei:id="126961864371408461">
+                     <bpel:copy>
+                        <bpel:from>$result.RESTRequest/ns2:params/ns2:param[@name="Answer"]/@value</bpel:from>
+                        <bpel:to variable="Answer"/>
+                     </bpel:copy>
+                  </bpel:assign>
+               </bpel:sequence>
+            </bpel:scope>
+            <bpel:scope aei:implicit="true" name="Ack_answer">
+               <bpel:variables>
+                  <bpel:variable messageType="ns1:RESTResponse" name="parameters"/>
+               </bpel:variables>
+               <bpel:sequence>
+                  <bpel:assign aei:assignType="XQUERY" aei:id="126460683255003449">
+                     <bpel:copy>
+                        <bpel:from expressionLanguage="urn:active-endpoints:expression-language:xquery1.0">&lt;ns2:RESTResponse xmlns:ns2="http://schemas.activebpel.org/REST/2007/12/01/aeREST.xsd"
+                  statusCode="1"&gt;
+   &lt;ns2:headers&gt;
+ &lt;/ns2:headers&gt;
+   &lt;ns2:payload contentType="HTML"&gt;&lt;html&gt;&lt;head&gt;&lt;title&gt;Vacation approval status page&lt;/title&gt;
+&lt;/head&gt;&lt;body&gt;
+&lt;h2&gt;You have &lt;b&gt;{$Answer}&lt;/b&gt; the vacation request from { $Request/ns16:Name/text() }&lt;/h2&gt;&lt;/body&gt;&lt;/html&gt;&lt;/ns2:payload&gt;
+&lt;/ns2:RESTResponse&gt;</bpel:from>
+                        <bpel:to part="RESTResponse" variable="parameters"/>
+                     </bpel:copy>
+                  </bpel:assign>
+                  <bpel:reply aei:id="126460589905402673" name="Ack_answer" operation="requestResponse"
+                              partnerLink="ApproverByREST"
+                              variable="parameters"/>
+               </bpel:sequence>
+            </bpel:scope>
+            <bpel:empty aei:id="126987343299029697"/>
+         </bpel:sequence>
+      </bpel:scope>
+      <bpel:scope aei:implicit="true" name="Send_Approval_Status_Email">
+         <bpel:variables>
+            <bpel:variable messageType="email:emailMessage" name="parameters"/>
+         </bpel:variables>
+         <bpel:sequence>
+            <bpel:assign aei:id="126460616899702747">
+               <bpel:copy>
+                  <bpel:from expressionLanguage="urn:active-endpoints:expression-language:xquery1.0">&lt;ns:emailMessage xmlns:ns="http://schemas.active-endpoints.com/email/2007/01/email.xsd"&gt;
+   &lt;ns:from&gt;PO-Approval@activevos.com&lt;/ns:from&gt;
+  &lt;ns:to&gt;{$RequesterEmail}&lt;/ns:to&gt;
+  &lt;ns:cc&gt;{$BossEmail}&lt;/ns:cc&gt;
+ &lt;ns:subject&gt;{ $Request/ns16:Name/text() } vacation is {$Answer}&lt;/ns:subject&gt;
+ &lt;ns:body mimeType="text/html"&gt;
+&lt;div&gt;The vacation request for { $Request/ns16:Name/text() }  is {$Answer}.
+&lt;br/&gt;
+&lt;/div&gt;
+&lt;/ns:body&gt;
+&lt;/ns:emailMessage&gt;</bpel:from>
+                  <bpel:to part="emailPart" variable="parameters"/>
+               </bpel:copy>
+            </bpel:assign>
+            <bpel:invoke aei:id="126461075604013148" inputVariable="parameters"
+                         name="Send_Approval_Status_Email"
+                         operation="send"
+                         outputVariable="EmailOutputVar"
+                         partnerLink="EmailSystem"/>
+         </bpel:sequence>
+      </bpel:scope>
+      <bpel:empty aei:id="126989513217911825"/>
+   </bpel:sequence>
+</bpel:process>

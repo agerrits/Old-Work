@@ -1,0 +1,24 @@
+<avosScreenflow xmlns="http://schemas.active-endpoints.com/appmodules/screenflow/2010/10/avosScreenflow.xsd"
+                allowRestart="false"
+                doneOnEndStep="true"
+                name="IntakeCar"
+                runAsUser="$current">
+   <description/>
+   <appliesTo/>
+   <tags/>
+   <generator>ActiveVOS Screenflow Editor 4</generator>
+   <viewerTemplate/>
+   <flow>
+      <startScreen id="aesf-1348237857535">
+         <title>Start</title>
+         <body contentType="text/html"/>
+         <actions>
+            <action id="aesf-1348237857535_hf9yl2z5" targetScreen="hf9yl2z5">Continue</action>
+         </actions>
+         <screenData skipIfRequiredFilled="true"/>
+      </startScreen>
+      <empty id="hf9yl2z5">
+         <actions/>
+      </empty>
+   </flow>
+</avosScreenflow>

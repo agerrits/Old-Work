@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wsdl:definitions xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/"
+                  xmlns:ns1="http://xaware.org/xas/ns1/wsdl/"
+                  name="PurchaseBPEL.private"
+                  targetNamespace="PurchaseBPEL">
+   <plnk:partnerLinkType xmlns:plnk="http://docs.oasis-open.org/wsbpel/2.0/plnktype"
+                         name="SolaRFQMainSVISSoapPortTypePLT">
+      <plnk:role name="Provider" portType="ns1:SolaRFQMainSVISSoapPortType"/>
+   </plnk:partnerLinkType>
+   <plnk:partnerLinkType xmlns:plnk="http://docs.oasis-open.org/wsbpel/2.0/plnktype"
+                         name="SolaRFQDetailSVISSoapPortTypePLT">
+      <plnk:role name="Provider" portType="ns1:SolaRFQDetailSVISSoapPortType"/>
+   </plnk:partnerLinkType>
+   <plnk:partnerLinkType xmlns:plnk="http://docs.oasis-open.org/wsbpel/2.0/plnktype"
+                         name="SolaSelectRuleSVISSoapPortTypePLT">
+      <plnk:role name="Provider" portType="ns1:SolaSelectRuleSVISSoapPortType"/>
+   </plnk:partnerLinkType>  
+   <wsdl:import location="../SolaDataPack.wsdl" namespace="http://xaware.org/xas/ns1/wsdl/"/>
+</wsdl:definitions>

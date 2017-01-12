@@ -1,0 +1,65 @@
+<avosScreenflow xmlns="http://schemas.active-endpoints.com/appmodules/screenflow/2010/10/avosScreenflow.xsd"
+                allowRestart="false"
+                doneOnEndStep="true"
+                name="ApproveTask"
+                runAsUser="$current">
+   <description/>
+   <appliesTo/>
+   <tags>.ht</tags>
+   <generator>ActiveVOS Screenflow Editor 4</generator>
+   <viewerTemplate/>
+   <flow>
+      <startScreen id="aesf-1337013026211">
+         <title>Start</title>
+         <body contentType="text/html"/>
+         <actions>
+            <action id="aesf-1337013026211_aesf-1340311820528" targetScreen="aesf-1340311820528">Continue</action>
+         </actions>
+         <screenData skipIfRequiredFilled="true"/>
+      </startScreen>
+      <screen id="aesf-1340311820528">
+         <title>RFQ</title>
+         <body contentType="text/html">&lt;p&gt;Test Guiding&lt;/p&gt;</body>
+         <actionPrompt/>
+         <actions>
+            <action id="aesf-1340311820528_hjg0etjg" targetScreen="hjg0etjg">Request</action>
+            <action id="aesf-1340311820528_hjg0etjh" targetScreen="hjg0etjh">Search</action>
+         </actions>
+      </screen>
+      <screen id="hjg0etjg">
+         <title>Hello</title>
+         <body contentType="text/html">&lt;p&gt;&lt;input name="input.Current User" style="border: currentColor; background-color: lightgrey; -moz-appearance: none;" type="text" readonly="readonly" value="Current User (input)"&gt;&amp;nbsp;&lt;/p&gt;</body>
+         <actionPrompt/>
+         <actions>
+            <action id="hjg0etjg_hjj4pw0z" targetScreen="hjj4pw0z">Thanks</action>
+            <action id="hjg0etjg_hjj4pw10" targetScreen="hjj4pw10">Bye</action>
+         </actions>
+         <screenData skipIfRequiredFilled="false">
+            <screenDataItem name="input.Current User" readonly="true" required="false" type="string"/>
+         </screenData>
+      </screen>
+      <screen id="hjj4pw10">
+         <title>Say OK</title>
+         <body contentType="text/html">&lt;p&gt;Say Bye&lt;/p&gt;</body>
+         <actionPrompt/>
+         <actions>
+            <action alt="" id="hjj4pw10_hjk5t8ky" targetScreen="hjk5t8ky">OK</action>
+         </actions>
+      </screen>
+      <endScreen id="hjj4pw0z">
+         <title/>
+         <body contentType="text/html"/>
+         <redirectTo type="current_object"/>
+         <screenActionLabel>Done</screenActionLabel>
+      </endScreen>
+      <endScreen id="hjk5t8ky">
+         <title/>
+         <body contentType="text/html"/>
+         <redirectTo type="current_object"/>
+         <screenActionLabel>Done</screenActionLabel>
+      </endScreen>
+      <empty id="hjg0etjh">
+         <actions/>
+      </empty>
+   </flow>
+</avosScreenflow>

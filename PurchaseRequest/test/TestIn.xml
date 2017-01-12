@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<tns:phpRFQin xmlns:tns="http://www.solazyme.com/RequestIn">
+   <aeUser>string</aeUser>
+   <PurchaseRequestId>0</PurchaseRequestId>
+   <Total>1.0</Total>
+   <eManager>string</eManager>
+</tns:phpRFQin>

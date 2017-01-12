@@ -1,0 +1,11 @@
+<wsdl:definitions xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/"
+                  xmlns:ns2="http://domain.com/purchaseFRequest/RFQin"
+                  name="PurchaseRequest.public"
+                  targetNamespace="http://PurchaseRequest/public">
+   <plnk:partnerLinkType xmlns:plnk="http://docs.oasis-open.org/wsbpel/2.0/plnktype"
+                         name="purchaseRequestPTPLT">
+      <plnk:role name="Provider" portType="ns2:PurchaseRequest"/>
+   </plnk:partnerLinkType>  
+   <wsdl:import location="purchaseRequestIn.wsdl"
+                namespace="http://domain.com/purchaseFRequest/RFQin"/>
+</wsdl:definitions>

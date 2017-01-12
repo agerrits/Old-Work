@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wsdl:definitions xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/"
+                  xmlns:ns1="http://www.activebpel.org/REST/2007/12/01/aeREST.wsdl"
+                  xmlns:ns="http://schemas.activebpel.org/REST/2007/12/01/aeREST.xsd"
+                  xmlns:tns="http://EmailApproval"
+                  xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+                  xmlns:vac="http://EmailApprovalExample/Vacation"
+                  targetNamespace="http://EmailApproval">
+   <vprop:property xmlns:vprop="http://docs.oasis-open.org/wsbpel/2.0/varprop" name="Answer"
+                   type="xsd:string"/>
+   <vprop:property xmlns:vprop="http://docs.oasis-open.org/wsbpel/2.0/varprop" name="RequestNum"
+                   type="xsd:integer"/>
+   <vprop:propertyAlias xmlns:vprop="http://docs.oasis-open.org/wsbpel/2.0/varprop"
+                        messageType="ns1:RESTRequest"
+                        part="RESTRequest"
+                        propertyName="tns:Answer">
+      <vprop:query>ns:params/ns:param[@name="Answer"]/@value</vprop:query>
+   </vprop:propertyAlias>
+   <vprop:propertyAlias xmlns:vprop="http://docs.oasis-open.org/wsbpel/2.0/varprop"
+                        messageType="ns1:RESTRequest"
+                        part="RESTRequest"
+                        propertyName="tns:RequestNum">
+      <vprop:query>ns:params/ns:param[@name="RequestNum"]/@value</vprop:query>
+   </vprop:propertyAlias>
+   <vprop:propertyAlias xmlns:vprop="http://docs.oasis-open.org/wsbpel/2.0/varprop"
+                        messageType="tns:EmailApprovalAck"
+                        part="ack"
+                        propertyName="tns:RequestNum">
+      <vprop:query>.</vprop:query>
+   </vprop:propertyAlias>  
+   <wsdl:types>
+      <xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified"
+                 targetNamespace="http://EmailApprovalExample/Vacation">
+         <xs:element name="VacationRequest">
+            <xs:complexType>
+               <xs:sequence>
+                  <xs:element ref="vac:Name"/>
+                  <xs:element ref="vac:Email"/>
+                  <xs:element ref="vac:BosssEmail"/>
+                  <xs:element ref="vac:StartDate"/>
+                  <xs:element ref="vac:Days"/>
+               </xs:sequence>
+            </xs:complexType>
+         </xs:element>
+         <xs:element name="Name" type="xs:string"/>
+         <xs:element name="Email" type="xs:string"/>
+         <xs:element name="BosssEmail" type="xs:string"/>
+         <xs:element name="StartDate" type="xs:date"/>
+         <xs:element name="Days" type="xs:int"/>
+         <xs:element name="RequestNum" type="xs:int"/>
+      </xs:schema>
+  </wsdl:types>
+  <wsdl:message name="EmailApprovalAck">
+      <wsdl:part element="vac:RequestNum" name="ack">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="EmailApprovalRequest">
+      <wsdl:part element="vac:VacationRequest" name="request">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:portType name="EmailApprovalPortType">
+      <wsdl:operation name="ApproveByEmail">
+         <wsdl:input message="tns:EmailApprovalRequest">
+    </wsdl:input>
+         <wsdl:output message="tns:EmailApprovalAck">
+    </wsdl:output>
+      </wsdl:operation>
+  </wsdl:portType>
+</wsdl:definitions>

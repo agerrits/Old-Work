@@ -1,0 +1,230 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<aem:model xmlns:aem="urn:ae:xslrendering:meta"
+           xmlns:ns1="http://www.solazyme.com/PurchaseRequest"
+           xmlns:ns="http://www.solazyme.com/RFQ/PurchaseBPEL"
+           xmlns:ns2="http://domain.com/purchaserequest"
+           xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/"
+           processName="ns:PurchaseBPEL"
+           processNameNs="http://www.solazyme.com/RFQ/PurchaseBPEL"
+           processNamePrefix="ns"
+           projectName="PurchaseRequest"
+           taskName="ApproveTask">
+   <aem:portType xmlns:ns1="http://www.solazyme.com/RequestIn/HTA" name="ns1:PurchaseApprovePT"
+                 operation="PurRequestApprove"
+                 portTypeNs="http://www.solazyme.com/RequestIn/HTA"
+                 portTypePrefix="ns1">
+      <aem:inputMessage choiceStylePref="0" name="ns1:PurRequestApproveRequest"
+                        repeatingElementsPref="1">
+         <aem:part name="PurRequestApproveRequest">
+            <aem:form>
+               <aem:container label="PurRequestFull" name="ns:PurRequestFull" path="ns:PurRequestFull"
+                              repeatIndex="1"
+                              repeating="false">
+                  <aem:container label="RFQMain" name="ns1:RFQMain" path="ns:PurRequestFull/ns:RFQMain"
+                                 repeatIndex="1"
+                                 repeating="false">
+                     <aem:variable label="PurReqID" name="PurRequestApproveRequest_ns_PurReqID"
+                                   path="ns:PurRequestFull/ns:RFQMain/ns:PurReqID"
+                                   repeating="false"
+                                   required="true"
+                                   type="number"/>
+                     <aem:variable label="PurReqName" name="PurRequestApproveRequest_ns_PurReqName"
+                                   path="ns:PurRequestFull/ns:RFQMain/ns:PurReqName"
+                                   repeating="false"
+                                   required="true"
+                                   type="string"/>
+                     <aem:variable label="PurUserID" name="PurRequestApproveRequest_ns_PurUserID"
+                                   path="ns:PurRequestFull/ns:RFQMain/ns:PurUserID"
+                                   repeating="false"
+                                   required="true"
+                                   type="string"/>
+                     <aem:variable label="PurDep" name="PurRequestApproveRequest_ns_PurDep"
+                                   path="ns:PurRequestFull/ns:RFQMain/ns:PurDep"
+                                   repeating="false"
+                                   required="true"
+                                   type="string"/>
+                     <aem:variable label="PurVendor" name="PurRequestApproveRequest_ns_PurVendor"
+                                   path="ns:PurRequestFull/ns:RFQMain/ns:PurVendor"
+                                   repeating="false"
+                                   required="true"
+                                   type="string"/>
+                     <aem:variable label="PurDateReq" name="PurRequestApproveRequest_ns_PurDateReq"
+                                   path="ns:PurRequestFull/ns:RFQMain/ns:PurDateReq"
+                                   repeating="false"
+                                   required="true"
+                                   type="date"/>
+                     <aem:variable label="Shipping" name="PurRequestApproveRequest_ns_Shipping"
+                                   path="ns:PurRequestFull/ns:RFQMain/ns:Shipping"
+                                   repeating="false"
+                                   required="true"
+                                   type="string"/>
+                     <aem:variable label="PurSubmit" name="PurRequestApproveRequest_ns_PurSubmit"
+                                   path="ns:PurRequestFull/ns:RFQMain/ns:PurSubmit"
+                                   repeating="false"
+                                   required="true"
+                                   type="date"/>
+                     <aem:variable label="PurTotalQuantPr" name="PurRequestApproveRequest_ns_PurTotalQuantPr"
+                                   path="ns:PurRequestFull/ns:RFQMain/ns:PurTotalQuantPr"
+                                   repeating="false"
+                                   required="true"
+                                   type="number"/>
+                     <aem:variable label="PurTotalCost" name="PurRequestApproveRequest_ns_PurTotalCost"
+                                   path="ns:PurRequestFull/ns:RFQMain/ns:PurTotalCost"
+                                   repeating="false"
+                                   required="true"
+                                   type="number"/>
+                     <aem:variable label="PurReason" name="PurRequestApproveRequest_ns_PurReason"
+                                   path="ns:PurRequestFull/ns:RFQMain/ns:PurReason"
+                                   repeating="false"
+                                   required="true"
+                                   type="string"/>
+                     <aem:variable label="PurComments" name="PurRequestApproveRequest_ns_PurComments"
+                                   path="ns:PurRequestFull/ns:RFQMain/ns:PurComments"
+                                   repeating="false"
+                                   required="true"
+                                   type="string"/>
+                  </aem:container>
+                  <aem:container label="RFQDetail" name="ns1:RFQDetail" path="ns:PurRequestFull/ns:RFQDetail"
+                                 repeatIndex="1"
+                                 repeating="false">
+                     <aem:container label="PRQLineItems" name="ns1:PRQLineItems"
+                                    path="ns:PurRequestFull/ns:RFQDetail/ns:PRQLineItems"
+                                    repeatIndex="1"
+                                    repeating="false">
+                        <aem:variable label="LineItemID" name="PurRequestApproveRequest_ns_LineItemID"
+                                      path="ns:PurRequestFull/ns:RFQDetail/ns:PRQLineItems/ns:LineItemID"
+                                      repeating="false"
+                                      required="true"
+                                      type="number"/>
+                        <aem:variable label="PurRequestID" name="PurRequestApproveRequest_ns_PurRequestID"
+                                      path="ns:PurRequestFull/ns:RFQDetail/ns:PRQLineItems/ns:PurRequestID"
+                                      repeating="false"
+                                      required="true"
+                                      type="number"/>
+                        <aem:variable label="PurOrderID" name="PurRequestApproveRequest_ns_PurOrderID"
+                                      path="ns:PurRequestFull/ns:RFQDetail/ns:PRQLineItems/ns:PurOrderID"
+                                      repeating="false"
+                                      required="true"
+                                      type="number"/>
+                        <aem:variable label="LineProductNum" name="PurRequestApproveRequest_ns_LineProductNum"
+                                      path="ns:PurRequestFull/ns:RFQDetail/ns:PRQLineItems/ns:LineProductNum"
+                                      repeating="false"
+                                      required="true"
+                                      type="string"/>
+                        <aem:variable label="Quantity" name="PurRequestApproveRequest_ns_Quantity"
+                                      path="ns:PurRequestFull/ns:RFQDetail/ns:PRQLineItems/ns:Quantity"
+                                      repeating="false"
+                                      required="true"
+                                      type="number"/>
+                        <aem:variable label="ItemCost" name="PurRequestApproveRequest_ns_ItemCost"
+                                      path="ns:PurRequestFull/ns:RFQDetail/ns:PRQLineItems/ns:ItemCost"
+                                      repeating="false"
+                                      required="true"
+                                      type="number"/>
+                        <aem:variable label="TotalCost" name="PurRequestApproveRequest_ns_TotalCost"
+                                      path="ns:PurRequestFull/ns:RFQDetail/ns:PRQLineItems/ns:TotalCost"
+                                      repeating="false"
+                                      required="true"
+                                      type="number"/>
+                        <aem:variable label="Description" name="PurRequestApproveRequest_ns_Description"
+                                      path="ns:PurRequestFull/ns:RFQDetail/ns:PRQLineItems/ns:Description"
+                                      repeating="false"
+                                      required="true"
+                                      type="string"/>
+                        <aem:variable label="Received" name="PurRequestApproveRequest_ns_Received"
+                                      path="ns:PurRequestFull/ns:RFQDetail/ns:PRQLineItems/ns:Received"
+                                      repeating="false"
+                                      required="true"
+                                      type="boolean"/>
+                     </aem:container>
+                  </aem:container>
+               </aem:container>
+            </aem:form>
+            <aem:nsprefixes>
+               <aem:nsprefix namespace="http://www.solazyme.com/PurchaseRequest" prefix="ns"/>
+            </aem:nsprefixes>
+            <aem:data>
+               <ns:PurRequestFull xmlns:ns="http://www.solazyme.com/PurchaseRequest">
+                  <ns1:RFQMain xmlns:ns1="http://www.solazyme.com/PurchaseRequest">
+                     <ns1:PurReqID>PurRequestApproveRequest_ns_PurReqID</ns1:PurReqID>
+                     <ns1:PurReqName>PurRequestApproveRequest_ns_PurReqName</ns1:PurReqName>
+                     <ns1:PurUserID>PurRequestApproveRequest_ns_PurUserID</ns1:PurUserID>
+                     <ns1:PurDep>PurRequestApproveRequest_ns_PurDep</ns1:PurDep>
+                     <ns1:PurVendor>PurRequestApproveRequest_ns_PurVendor</ns1:PurVendor>
+                     <ns1:PurDateReq>PurRequestApproveRequest_ns_PurDateReq</ns1:PurDateReq>
+                     <ns1:Shipping>PurRequestApproveRequest_ns_Shipping</ns1:Shipping>
+                     <ns1:PurSubmit>PurRequestApproveRequest_ns_PurSubmit</ns1:PurSubmit>
+                     <ns1:PurTotalQuantPr>PurRequestApproveRequest_ns_PurTotalQuantPr</ns1:PurTotalQuantPr>
+                     <ns1:PurTotalCost>PurRequestApproveRequest_ns_PurTotalCost</ns1:PurTotalCost>
+                     <ns1:PurReason>PurRequestApproveRequest_ns_PurReason</ns1:PurReason>
+                     <ns1:PurComments>PurRequestApproveRequest_ns_PurComments</ns1:PurComments>
+                  </ns1:RFQMain>
+                  <ns1:RFQDetail xmlns:ns1="http://www.solazyme.com/PurchaseRequest">
+                     <ns1:PRQLineItems>
+                        <ns1:LineItemID>PurRequestApproveRequest_ns_LineItemID</ns1:LineItemID>
+                        <ns1:PurRequestID>PurRequestApproveRequest_ns_PurRequestID</ns1:PurRequestID>
+                        <ns1:PurOrderID>PurRequestApproveRequest_ns_PurOrderID</ns1:PurOrderID>
+                        <ns1:LineProductNum>PurRequestApproveRequest_ns_LineProductNum</ns1:LineProductNum>
+                        <ns1:Quantity>PurRequestApproveRequest_ns_Quantity</ns1:Quantity>
+                        <ns1:ItemCost>PurRequestApproveRequest_ns_ItemCost</ns1:ItemCost>
+                        <ns1:TotalCost>PurRequestApproveRequest_ns_TotalCost</ns1:TotalCost>
+                        <ns1:Description>PurRequestApproveRequest_ns_Description</ns1:Description>
+                        <ns1:Received>PurRequestApproveRequest_ns_Received</ns1:Received>
+                     </ns1:PRQLineItems>
+                  </ns1:RFQDetail>
+               </ns:PurRequestFull>
+            </aem:data>
+         </aem:part>
+      </aem:inputMessage>
+      <aem:outputMessage choiceStylePref="0" name="ns1:PurRequestApproveResponse"
+                         repeatingElementsPref="1">
+         <aem:part name="PurRequestApproveResponse">
+            <aem:form>
+               <aem:container label="Envelope" name="soapenv:Envelope" path="soapenv:Envelope"
+                              repeatIndex="1"
+                              repeating="false">
+                  <aem:container label="Header" name="soapenv:Header" path="soapenv:Envelope/soapenv:Header"
+                                 repeatIndex="1"
+                                 repeating="false"/>
+                  <aem:container label="Body" name="soapenv:Body" path="soapenv:Envelope/soapenv:Body"
+                                 repeatIndex="1"
+                                 repeating="false">
+                     <aem:container label="PurchaseRequest" name="ns2:purchaseRequest"
+                                    path="soapenv:Envelope/soapenv:Body/ns2:purchaseRequest"
+                                    repeatIndex="1"
+                                    repeating="false">
+                        <aem:container label="Header" name="ns2:Header"
+                                       path="soapenv:Envelope/soapenv:Body/ns2:purchaseRequest/ns2:Header"
+                                       repeatIndex="1"
+                                       repeating="false">
+                           <aem:variable label="Approval" name="PurRequestApproveResponse_ns2_Approval"
+                                         path="soapenv:Envelope/soapenv:Body/ns2:purchaseRequest/ns2:Header/ns2:Approval"
+                                         repeating="false"
+                                         required="true"
+                                         type="string"/>
+                        </aem:container>
+                     </aem:container>
+                  </aem:container>
+               </aem:container>
+            </aem:form>
+            <aem:nsprefixes>
+               <aem:nsprefix namespace="http://schemas.xmlsoap.org/soap/envelope/" prefix="soapenv"/>
+               <aem:nsprefix namespace="http://domain.com/purchaserequest" prefix="ns2"/>
+            </aem:nsprefixes>
+            <aem:data>
+               <soapenv:Envelope>
+                  <soapenv:Header/>
+                  <soapenv:Body>
+                     <ns2:purchaseRequest>
+                        <ns2:Header>
+                           <ns2:Approval>PurRequestApproveResponse_ns2_Approval</ns2:Approval>
+                        </ns2:Header>
+                     </ns2:purchaseRequest>
+                  </soapenv:Body>
+               </soapenv:Envelope>
+            </aem:data>
+         </aem:part>
+      </aem:outputMessage>
+      <aem:faults/>
+   </aem:portType>
+</aem:model>

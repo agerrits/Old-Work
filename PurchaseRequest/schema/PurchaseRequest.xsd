@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<schema targetNamespace="http://www.solazyme.com/PurchaseRequest" elementFormDefault="qualified" xmlns="http://www.w3.org/2001/XMLSchema" xmlns:vpr="http://www.solazyme.com/PurchaseRequest" attributeFormDefault="unqualified">
+
+    <element name="PurReqMain" type="vpr:PurReqMain"></element>
+    
+    <element name="PurReqDetail" type="vpr:PurReqDetail"></element>
+    
+    <element name="PurRequestFull" type="vpr:PurReqFull"></element>
+    
+    <complexType name="PurReqFull">
+    	<sequence>
+    		<element name="RFQMain" type="vpr:PurReqMain"></element>
+    		<element name="RFQDetail" type="vpr:PurReqDetail"></element>
+    	</sequence>
+    </complexType>
+
+    <complexType name="PurReqDetail">
+    	<sequence>
+    		<element name="PRQLineItem" type="vpr:PRQLineItem" maxOccurs="unbounded"></element>
+    	</sequence>
+    </complexType>
+    
+    <complexType name="PurReqMain">
+    	<sequence>
+    		<element name="PurReqID" type="int"></element>
+    		<element name="PurReqName" type="string"></element>
+    		<element name="PurUserID" type="string"></element>
+    		<element name="PurDep" type="string"></element>
+    		<element name="PurVendor" type="string"></element>
+    		<element name="PurDateReq" type="date"></element>
+    		<element name="Shipping" type="string"></element>
+    		<element name="PurSubmit" type="date"></element>
+    		<element name="PurTotalQuantPr" type="int"></element>
+    		<element name="PurTotalCost" type="float"></element>
+    		<element name="PurReason" type="string"></element>
+    		<element name="PurComments" type="string"></element>
+    	</sequence>
+    </complexType>
+
+    <complexType name="PRQLineItem">
+    	<sequence>
+    		<element name="LineItemID" type="int"></element>
+    		<element name="PurRequestID" type="int"></element>
+    		<element name="PurOrderID" type="int"></element>
+    		<element name="LineProductNum" type="string"></element>
+    		<element name="Quantity" type="int"></element>
+    		<element name="ItemCost" type="float"></element>
+    		<element name="TotalCost" type="float"></element>
+    		<element name="Description" type="string"></element>
+    		<element name="Received" type="boolean"></element>
+    	</sequence>
+    </complexType>
+</schema>

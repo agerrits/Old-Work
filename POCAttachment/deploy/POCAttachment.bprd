@@ -1,0 +1,91 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<project name="Service Archive" default='runDeploy' basedir=".">
+
+   <!-- The project root location. -->
+   <property name="project_loc" value="${basedir}/.." />
+
+   <!-- Some properties used by the script. -->
+   <property name="archive.filename" value="${project_loc}/deploy/POCAttachment.bpr" />
+
+   <!-- The deployment location.  Typically a server/container deployment directory. -->
+   <property name="archive.deploypath" value="http://10.15.11.118:8080/active-bpel/services/ActiveBpelDeployBPR" />
+
+   <!-- The type of deployment. -->
+   <property name="archive.deploytype" value="webservice" />
+
+   <!-- The username/password used during webservice deployment -->
+   <property name="deploy.username" value="avosuser" />
+   <property name="deploy.password" value="avos@123" />
+
+   <!-- A temp directory location. -->
+   <property name="archive.temppath" value="${java.io.tmpdir}" />
+
+   <!-- Taskdefs required when running this script from the command line. -->
+   <target name="init">
+      <property name="activevos.antlib" value="" />
+      <path id="activevos.classpath">
+         <fileset dir="${activevos.antlib}">
+            <include name="*.jar" />
+         </fileset>
+      </path>
+      <condition property="avos.tasks.available">
+         <and>
+            <available classpathref="activevos.classpath" classname="com.activee.ant.bpr.tasks.AeCreateCatalogTask"/>
+            <available classpathref="activevos.classpath" classname="com.activee.ant.bpr.tasks.AeDeployBPRTask"/>
+            <available classpathref="activevos.classpath" classname="com.activee.ant.bpr.tasks.AeCreateContributionTask"/>
+         </and>
+      </condition>
+   </target>
+
+   <target name="load.tasks" depends="init" if="avos.tasks.available">
+      <taskdef name="deploybpr" onerror="ignore" classpathref="activevos.classpath" classname="com.activee.ant.bpr.tasks.AeDeployBPRTask" />
+      <taskdef name="createcatalog" onerror="ignore" classpathref="activevos.classpath" classname="com.activee.ant.bpr.tasks.AeCreateCatalogTask" />
+      <taskdef name="createcontribution" onerror="ignore" classpathref="activevos.classpath" classname="com.activee.ant.bpr.tasks.AeCreateContributionTask" />
+   </target>
+
+   <!-- Build the BPR file from the following (generated) file set. -->
+   <target name="build" depends="load.tasks">
+      <delete file="${archive.filename}" />
+      <jar destfile="${archive.filename}">
+         <!-- PDD Files. -->
+         <zipfileset file="${project_loc}/deploy/POCAttachementProcess.pdd" fullpath="META-INF/pdd/POCAttachment/deploy/POCAttachementProcess.pdd" />
+         <!-- BPEL Files. -->
+         <zipfileset file="${project_loc}/bpel/POCAttachementProcess.bpel" fullpath="bpel/POCAttachment/bpel/POCAttachementProcess.bpel" />
+         <!-- WSDL Files. -->
+         <zipfileset file="${project_loc}/wsdl/attachment.wsdl" fullpath="wsdl/Users/arnoldus.gerrits/workspace/POCAttachment/wsdl/attachment.wsdl" />
+         <zipfileset file="${project_loc}/wsdl/bpel/POCAttachementProcess.public.wsdl" fullpath="wsdl/Users/arnoldus.gerrits/workspace/POCAttachment/wsdl/bpel/POCAttachementProcess.public.wsdl" />
+         <!-- XSD Files -->
+         <zipfileset file="${project_loc}/schema/POCAttachement.xsd" fullpath="wsdl/Users/arnoldus.gerrits/workspace/POCAttachment/schema/POCAttachement.xsd" />
+         <zipfileset file="${project_loc}/../ServiceNowCommon/schema/message.xsd" fullpath="wsdl/Users/arnoldus.gerrits/workspace/ServiceNowCommon/schema/message.xsd" />
+         <!-- Process Image Files. -->
+         <zipfileset file="${project_loc}/.image/bpel/POCAttachementProcess/*" prefix=".image/POCAttachment/bpel/POCAttachementProcess" />
+      </jar>
+      <createcatalog file="${archive.filename}" contributionURI="project:/POCAttachment">
+         <wsdlentry location="project:/POCAttachment/wsdl/attachment.wsdl" classpath="wsdl/Users/arnoldus.gerrits/workspace/POCAttachment/wsdl/attachment.wsdl" />
+         <wsdlentry location="project:/POCAttachment/wsdl/bpel/POCAttachementProcess.public.wsdl" classpath="wsdl/Users/arnoldus.gerrits/workspace/POCAttachment/wsdl/bpel/POCAttachementProcess.public.wsdl" />
+         <schemaentry location="project:/POCAttachment/schema/POCAttachement.xsd" classpath="wsdl/Users/arnoldus.gerrits/workspace/POCAttachment/schema/POCAttachement.xsd" />
+         <schemaentry location="project:/ServiceNowCommon/schema/message.xsd" classpath="wsdl/Users/arnoldus.gerrits/workspace/ServiceNowCommon/schema/message.xsd" />
+      </createcatalog>
+      <!-- The contribution task sets up a contribution file which documents the exported and imported namespaces for this contribution -->
+      <createcontribution file="${archive.filename}">
+         <!-- Namespaces exported by this contribution for use by other contributions  -->
+         <export namespace="http://avosinternal.servicenow.com/attachment"/>
+         <export namespace="http://POCAttachementProcess/pocattachementprocess/public"/>
+         <export namespace="http://www.example.org/POCAttachement"/>
+         <!-- Namespaces from other contributions (location) that this contribution is dependent on if any -->
+         <!-- Namespaces for system services used in this contribution on if any -->
+      </createcontribution>
+   </target>
+
+   <!-- Deploy the built BPR file to some kind of container/server. -->
+   <target name="deploy" depends="load.tasks">
+      <echo message="Deploying Business Process Archive." />
+      <deploybpr type="${archive.deploytype}" file="${archive.filename}" failonerror="true" username="${deploy.username}" password="${deploy.password}" tourl="${archive.deploypath}" />
+   </target>
+
+   <!-- The main entry point into this script, the run target calls various other targets in turn. -->
+   <target name="run" depends="build"/>
+
+   <target name="runDeploy" depends="run,deploy"/>
+
+</project>

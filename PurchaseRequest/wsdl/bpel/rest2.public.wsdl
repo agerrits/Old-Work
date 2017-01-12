@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wsdl:definitions xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/"
+                  xmlns:ns2="http://www.solazyme.com/RequestIn"
+                  name="rest2.public"
+                  targetNamespace="rest2/public">
+   <plnk:partnerLinkType xmlns:plnk="http://docs.oasis-open.org/wsbpel/2.0/plnktype" name="RequestInPLT">
+      <plnk:role name="Provider" portType="ns2:RequestIn"/>
+   </plnk:partnerLinkType>  
+   <wsdl:import location="../RFQEnvelope.wsdl" namespace="http://www.solazyme.com/RequestIn"/>
+</wsdl:definitions>

@@ -1,0 +1,892 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<graph id="0" name="PROCESS">
+   <att name="processName" value="PurchaseRequestChange"/>
+   <att name="targetNamespace" value="http://PurchaseRequest"/>
+   <att name="BPELDocumentation" value=""/>
+   <att name="enableInstanceCompensation" value="false"/>
+   <att name="exitStandardFault" value="false"/>
+   <att name="disableSelectionFailure" value="true"/>
+   <att name="createXPath" value="true"/>
+   <att name="WSBPEL_ExtensionElements">
+      <extensionElements>
+         <b4p:humanInteractions xmlns:b4p="http://www.example.org/BPEL4People"
+                                xmlns:htd="http://www.example.org/WS-HT">
+            <htd:logicalPeopleGroups>
+               <htd:logicalPeopleGroup name="Purchasers"/>
+               <htd:logicalPeopleGroup name="Managers"/>
+               <htd:logicalPeopleGroup name="Receivers"/>
+               <htd:logicalPeopleGroup name="Requesters"/>
+            </htd:logicalPeopleGroups>
+            <htd:tasks>
+               <htd:task name="Request">
+                  <htd:priority>9</htd:priority>
+                  <htd:peopleAssignments>
+                     <htd:potentialOwners>
+                        <htd:from logicalPeopleGroup="Requesters"/>
+                     </htd:potentialOwners>
+                     <htd:taskInitiator>
+                        <htd:from logicalPeopleGroup="Requesters"/>
+                     </htd:taskInitiator>
+                  </htd:peopleAssignments>
+                  <htd:presentationElements>
+                     <htd:name/>
+                     <htd:description/>
+                  </htd:presentationElements>
+               </htd:task>
+               <htd:task name="Approve">
+                  <htd:priority>2</htd:priority>
+                  <htd:peopleAssignments>
+                     <htd:potentialOwners>
+                        <htd:from logicalPeopleGroup="Managers"/>
+                     </htd:potentialOwners>
+                  </htd:peopleAssignments>
+                  <htd:presentationElements/>
+               </htd:task>
+               <htd:task name="CheckCorrect">
+                  <htd:interface xmlns:ns="http://undefined" operation="purchaseRequest"
+                                 portType="ns:checkCorrectRequestPT"/>
+                  <htd:peopleAssignments>
+                     <htd:potentialOwners>
+                        <htd:from logicalPeopleGroup="Purchasers"/>
+                     </htd:potentialOwners>
+                     <htd:businessAdministrators>
+                        <htd:from logicalPeopleGroup="Managers"/>
+                     </htd:businessAdministrators>
+                  </htd:peopleAssignments>
+                  <htd:presentationElements/>
+               </htd:task>
+               <htd:task name="GetBestPrice">
+                  <htd:peopleAssignments>
+                     <htd:potentialOwners>
+                        <htd:from logicalPeopleGroup="Purchasers"/>
+                     </htd:potentialOwners>
+                  </htd:peopleAssignments>
+                  <htd:presentationElements/>
+               </htd:task>
+               <htd:task name="Order">
+                  <htd:peopleAssignments>
+                     <htd:potentialOwners>
+                        <htd:from logicalPeopleGroup="Purchasers"/>
+                     </htd:potentialOwners>
+                  </htd:peopleAssignments>
+                  <htd:presentationElements/>
+               </htd:task>
+               <htd:task name="ReceiveItems">
+                  <htd:peopleAssignments>
+                     <htd:potentialOwners>
+                        <htd:from logicalPeopleGroup="Receivers"/>
+                     </htd:potentialOwners>
+                  </htd:peopleAssignments>
+                  <htd:presentationElements/>
+               </htd:task>
+               <htd:task name="Confirm">
+                  <htd:peopleAssignments>
+                     <htd:potentialOwners>
+                        <htd:from logicalPeopleGroup="Receivers"/>
+                     </htd:potentialOwners>
+                  </htd:peopleAssignments>
+                  <htd:presentationElements/>
+               </htd:task>
+            </htd:tasks>
+            <htd:notifications/>
+         </b4p:humanInteractions>
+      </extensionElements>
+   </att>
+   <att name="modelVersion" value="3"/>
+   <att name="processNamespace"
+        value="http://docs.oasis-open.org/wsbpel/2.0/process/executable"/>
+   <att name="objectId" value="124051874793500057"/>
+   <att name="layoutNeeded" value="false"/>
+   <att name="processInitiatorSim" value=""/>
+   <att name="processInitiatorExec" value=""/>
+   <att name="writePortType" value="false"/>
+   <att name="bpelDigest" value="8e755453e9c4bc1d62ab237278ac30a7"/>
+   <att name="processDetailLevel" value="0"/>
+   <att>
+      <graph id="1" name="EXTENSION_CONTAINER">
+         <att name="ExtensionCount" value="4"/>
+         <att name="BPELDocumentation" value=""/>
+         <node id="2" name="EXTENSION">
+            <att name="BPELDocumentation" value=""/>
+            <att name="extensionDetails"
+                 value="Namespace=http://www.activebpel.org/2006/09/bpel/extension/query_handling mustUnderstand=true"/>
+            <att name="objectId" value="124051874795000089"/>
+         </node>
+         <node id="3" name="EXTENSION">
+            <att name="BPELDocumentation" value=""/>
+            <att name="extensionDetails"
+                 value="Namespace=http://www.example.org/BPEL4People mustUnderstand=true"/>
+            <att name="objectId" value="124051876270900193"/>
+         </node>
+         <node id="4" name="EXTENSION">
+            <att name="BPELDocumentation" value=""/>
+            <att name="extensionDetails"
+                 value="Namespace=http://www.example.org/WS-HT mustUnderstand=true"/>
+            <att name="objectId" value="124051876270900195"/>
+         </node>
+         <node id="5" name="EXTENSION">
+            <att name="BPELDocumentation" value=""/>
+            <att name="extensionDetails"
+                 value="Namespace=http://www.activebpel.org/2009/02/bpel/extension/ignorable mustUnderstand=false"/>
+            <att name="objectId" value="124093948258502811"/>
+         </node>
+      </graph>
+   </att>
+   <att>
+      <graph id="6" name="IMPORTS">
+         <att name="ImportCount" value="2"/>
+         <node id="7" name="IMPORT">
+            <att name="ImportLocation"
+                 value="../wsdl/purchaseRequest.wsdl;http://domain.com/demoPurchaseOrder;http://schemas.xmlsoap.org/wsdl/"/>
+            <att name="ImportNamespace" value="http://domain.com/demoPurchaseOrder"/>
+            <att name="ImportType" value="http://schemas.xmlsoap.org/wsdl/"/>
+            <att name="objectId" value="124093946742802785"/>
+         </node>
+         <node id="8" name="IMPLICIT_IMPORT">
+            <att name="ImportLocation"
+                 value="../wsdl/PurchaseRequestChange.public.wsdl;http://PurchaseRequest/public;http://schemas.xmlsoap.org/wsdl/"/>
+            <att name="ImportNamespace" value="http://PurchaseRequest/public"/>
+            <att name="ImportType" value="http://schemas.xmlsoap.org/wsdl/"/>
+            <att name="objectId" value="124093948235102797"/>
+            <att name="WSBPEL_ExtensionAttributes">
+               <extensionAttributes>
+                  <extensionAttribute namespace="http://www.activebpel.org/2009/02/bpel/extension/ignorable"
+                                      qualifiedName="aei:implicit"
+                                      value="true"/>
+               </extensionAttributes>
+            </att>
+         </node>
+      </graph>
+   </att>
+   <att>
+      <graph id="9" name="NAMESPACES">
+         <att name="NamespaceCount" value="10"/>
+         <node id="10" name="NAMESPACE">
+            <att name="Prefix" value="ext"/>
+            <att name="Namespace"
+                 value="http://www.activebpel.org/2006/09/bpel/extension/query_handling"/>
+            <att name="objectId" value="124051874795000083"/>
+         </node>
+         <node id="11" name="NAMESPACE">
+            <att name="Prefix" value="xsd"/>
+            <att name="Namespace" value="http://www.w3.org/2001/XMLSchema"/>
+            <att name="objectId" value="124051874795000085"/>
+         </node>
+         <node id="12" name="NAMESPACE">
+            <att name="Prefix" value="bpel"/>
+            <att name="Namespace"
+                 value="http://docs.oasis-open.org/wsbpel/2.0/process/executable"/>
+            <att name="objectId" value="124051874795000087"/>
+         </node>
+         <node id="13" name="NAMESPACE">
+            <att name="Prefix" value="htd"/>
+            <att name="Namespace" value="http://www.example.org/WS-HT"/>
+            <att name="objectId" value="124051876272400197"/>
+         </node>
+         <node id="14" name="NAMESPACE">
+            <att name="Prefix" value="b4p"/>
+            <att name="Namespace" value="http://www.example.org/BPEL4People"/>
+            <att name="objectId" value="124051876272400199"/>
+         </node>
+         <node id="15" name="NAMESPACE">
+            <att name="Prefix" value="ns1"/>
+            <att name="Namespace" value="http://domain.com/demoPurchaseOrder"/>
+            <att name="objectId" value="124093946744402787"/>
+         </node>
+         <node id="16" name="NAMESPACE">
+            <att name="Prefix" value="aei"/>
+            <att name="Namespace"
+                 value="http://www.activebpel.org/2009/02/bpel/extension/ignorable"/>
+            <att name="objectId" value="124093948258502813"/>
+         </node>
+         <node id="17" name="NAMESPACE">
+            <att name="Prefix" value="types1"/>
+            <att name="Namespace" value="http://domain.com/purchaserequest"/>
+            <att name="objectId" value="124093948258502815"/>
+         </node>
+         <node id="18" name="NAMESPACE">
+            <att name="Prefix" value="ns"/>
+            <att name="Namespace" value="http://PurchaseRequest/public"/>
+            <att name="objectId" value="124093948260102817"/>
+         </node>
+         <node id="19" name="NAMESPACE">
+            <att name="Prefix" value="ns2"/>
+            <att name="Namespace" value="http://undefined"/>
+            <att name="objectId" value="124094203428101747"/>
+         </node>
+      </graph>
+   </att>
+   <att>
+      <graph id="20" name="PARTNER_LINKS">
+         <att name="PartnerLinkCount" value="1"/>
+         <node id="21" name="PARTNER_LINK">
+            <att name="PartnerLinkName" value="Process_Consumer"/>
+            <att name="PartnerLinkType" value="ns:purchaseRequestPTPLT"/>
+            <att name="MyRole" value="Provider"/>
+            <att name="ParticipantType" value="Consumer"/>
+            <att name="PartnerRoleState" value=""/>
+            <att name="MyRoleState" value=""/>
+            <att name="visible" value="false,false,false,false,false,"/>
+            <att name="objectId" value="124093948257002799"/>
+            <att name="InitializePartnerRole" value=""/>
+         </node>
+      </graph>
+   </att>
+   <att>
+      <graph id="22" name="VARIABLE_CONTAINERS">
+         <att name="VariableCount" value="2"/>
+         <node id="23" name="VARIABLE_CONTAINER">
+            <att name="VariableName" value="purchaseRequestIn"/>
+            <att name="VariableSpecification" value="Element=types1:purchaseRequest"/>
+            <att name="objectId" value="124093953630602851"/>
+         </node>
+      </graph>
+   </att>
+   <node id="24" name="CORRELATION_CONTAINERS">
+      <att name="CorrSetCount" value="0"/>
+   </node>
+   <att>
+      <graph id="25" name="SCOPE_ACTIVITY">
+         <node id="26" name="RECEIVE">
+            <att name="objectId" value="124052599079400331"/>
+            <att name="font" value="FONT {Tahoma,8,0}"/>
+            <att name="fontColor" value="RGB {0,0,0}"/>
+            <att name="imageDisplay" value="true"/>
+            <att name="scaleImage" value="false"/>
+            <att name="imageTextGap" value="4"/>
+            <att name="textAlignment" value="1"/>
+            <att name="textPlacement" value="16"/>
+            <att name="location" value="LOC {198,5}"/>
+            <att name="size" value="DIM {151,56}"/>
+            <att name="name" value="ReceiveRequest"/>
+            <att name="text" value=""/>
+            <att name="BPELDocumentation" value=""/>
+            <att name="partnerLink" value="Process_Consumer"/>
+            <att name="portType"
+                 value="{http://domain.com/purchaseFRequest/RFQin}PurchaseRequest"/>
+            <att name="operation" value="purchaseRequest"/>
+            <att name="createInstance" value="true"/>
+            <att name="variable" value="purchaseRequestIn"/>
+            <att name="attachments" value=""/>
+            <att name="principal" value=""/>
+            <att name="fromParts" value="0"/>
+         </node>
+         <att>
+            <graph id="27" name="IF">
+               <att name="objectId" value="124052641659500887"/>
+               <att name="drawBorder" value="true"/>
+               <att name="borderColor" value="RGB {128,128,128}"/>
+               <att name="transparent" value="false"/>
+               <att name="font" value="FONT {Tahoma,8,0}"/>
+               <att name="fontColor" value="RGB {0,0,0}"/>
+               <att name="imageDisplay" value="true"/>
+               <att name="scaleImage" value="false"/>
+               <att name="imageTextGap" value="4"/>
+               <att name="textAlignment" value="1"/>
+               <att name="location" value="LOC {5,217}"/>
+               <att name="size" value="DIM {460,279}"/>
+               <att name="name" value="Correctness"/>
+               <att name="text" value=""/>
+               <att name="BPELDocumentation" value=""/>
+               <att>
+                  <graph id="28" name="ELSE_IF">
+                     <att name="IF_EXPRESSION" value=""/>
+                     <att name="IF_EXPR_LANG" value=""/>
+                     <att name="BPELDocumentation" value=""/>
+                     <att name="objectId" value="124052641659500889"/>
+                     <att name="drawBorder" value="true"/>
+                     <att name="borderColor" value="RGB {128,128,128}"/>
+                     <att name="transparent" value="false"/>
+                     <att name="font" value="FONT {Tahoma,8,0}"/>
+                     <att name="fontColor" value="RGB {0,0,0}"/>
+                     <att name="imageDisplay" value="true"/>
+                     <att name="scaleImage" value="false"/>
+                     <att name="imageTextGap" value="4"/>
+                     <att name="textAlignment" value="1"/>
+                     <att name="textPlacement" value="16"/>
+                     <att name="location" value="LOC {0,0}"/>
+                     <att name="sizeToFit" value="true"/>
+                     <att name="size" value="DIM {220,210}"/>
+                     <node id="29" name="ASSIGN">
+                        <att name="objectId" value="124052667010401189"/>
+                        <att name="font" value="FONT {Tahoma,8,0}"/>
+                        <att name="fontColor" value="RGB {0,0,0}"/>
+                        <att name="imageDisplay" value="true"/>
+                        <att name="scaleImage" value="false"/>
+                        <att name="imageTextGap" value="4"/>
+                        <att name="textAlignment" value="1"/>
+                        <att name="textPlacement" value="16"/>
+                        <att name="location" value="LOC {5,5}"/>
+                        <att name="size" value="DIM {186,56}"/>
+                        <att name="name" value="AssignDataForApproval"/>
+                        <att name="text" value=""/>
+                        <att name="BPELDocumentation" value=""/>
+                        <att name="copy" value="0"/>
+                        <att name="validateVars" value="false"/>
+                     </node>
+                     <node id="30" name="EXTENSION_ACTIVITY">
+                        <att name="extensionActivityId"
+                             value="com.activee.bpel4peopleep.activities.peopleActivity"/>
+                        <att name="objectId" value="124052670076001223"/>
+                        <att name="drawBorder" value="false"/>
+                        <att name="borderColor" value="RGB {0,0,255}"/>
+                        <att name="transparent" value="true"/>
+                        <att name="backgroundColor" value="RGB {226,226,226}"/>
+                        <att name="font" value="FONT {Tahoma,8,0}"/>
+                        <att name="fontColor" value="RGB {0,0,0}"/>
+                        <att name="imageDisplay" value="true"/>
+                        <att name="scaleImage" value="false"/>
+                        <att name="imageTextGap" value="4"/>
+                        <att name="textAlignment" value="1"/>
+                        <att name="textPlacement" value="16"/>
+                        <att name="location" value="LOC {5,111}"/>
+                        <att name="sizeToFit" value="true"/>
+                        <att name="size" value="DIM {114,56}"/>
+                        <att name="name" value="Approve"/>
+                        <att name="text" value=""/>
+                        <att name="BPELDocumentation" value=""/>
+                        <att name="isSkipable" value="false"/>
+                        <att name="extensionActivityFromParts" value="0"/>
+                        <att name="extensionActivityToParts" value="0"/>
+                        <att name="taskType">
+                           <b4p:localTask xmlns:b4p="http://www.example.org/BPEL4People"
+                                          xmlns:htd="http://www.example.org/WS-HT"
+                                          reference="Approve">
+                              <htd:priority/>
+                              <htd:peopleAssignments>
+                                 <htd:potentialOwners>
+                                    <htd:from/>
+                                 </htd:potentialOwners>
+                                 <htd:excludedOwners>
+                                    <htd:from/>
+                                 </htd:excludedOwners>
+                                 <htd:taskInitiator>
+                                    <htd:from/>
+                                 </htd:taskInitiator>
+                                 <htd:taskStakeholders>
+                                    <htd:from/>
+                                 </htd:taskStakeholders>
+                                 <htd:businessAdministrators>
+                                    <htd:from/>
+                                 </htd:businessAdministrators>
+                                 <htd:recipients>
+                                    <htd:from/>
+                                 </htd:recipients>
+                              </htd:peopleAssignments>
+                           </b4p:localTask>
+                        </att>
+                        <att name="paPriorityOverride">
+                           <aeds:expression xmlns:aeds="urn:active-endpoints:dataSpec">
+                              <aeds:value/>
+                              <aeds:language/>
+                           </aeds:expression>
+                        </att>
+                        <att name="paComments">
+                           <aeds:expression xmlns:aeds="urn:active-endpoints:dataSpec">
+                              <aeds:value/>
+                              <aeds:language/>
+                           </aeds:expression>
+                        </att>
+                        <att name="paSimulationResult" value="0"/>
+                        <att name="paSimulationFaultName" value=""/>
+                        <att name="actualOwnerSim" value=""/>
+                        <att name="paAttachmentPropagationFromProcess" value=""/>
+                        <att name="paAttachmentPropagationToProcess" value=""/>
+                     </node>
+                  </graph>
+               </att>
+               <att>
+                  <graph id="31" name="ELSE">
+                     <att name="BPELDocumentation" value=""/>
+                     <att name="objectId" value="124052780415001531"/>
+                     <att name="drawBorder" value="true"/>
+                     <att name="borderColor" value="RGB {128,128,128}"/>
+                     <att name="transparent" value="false"/>
+                     <att name="font" value="FONT {Tahoma,8,0}"/>
+                     <att name="fontColor" value="RGB {0,0,0}"/>
+                     <att name="imageDisplay" value="true"/>
+                     <att name="scaleImage" value="false"/>
+                     <att name="imageTextGap" value="4"/>
+                     <att name="textAlignment" value="1"/>
+                     <att name="textPlacement" value="16"/>
+                     <att name="location" value="LOC {0,0}"/>
+                     <att name="sizeToFit" value="true"/>
+                     <att name="size" value="DIM {210,210}"/>
+                     <node id="32" name="ASSIGN">
+                        <att name="objectId" value="124052787375901647"/>
+                        <att name="font" value="FONT {Tahoma,8,0}"/>
+                        <att name="fontColor" value="RGB {0,0,0}"/>
+                        <att name="imageDisplay" value="true"/>
+                        <att name="scaleImage" value="false"/>
+                        <att name="imageTextGap" value="4"/>
+                        <att name="textAlignment" value="1"/>
+                        <att name="textPlacement" value="16"/>
+                        <att name="location" value="LOC {5,5}"/>
+                        <att name="size" value="DIM {178,56}"/>
+                        <att name="name" value="AssignDataForUpdate"/>
+                        <att name="text" value=""/>
+                        <att name="BPELDocumentation" value=""/>
+                        <att name="copy" value="0"/>
+                        <att name="validateVars" value="false"/>
+                     </node>
+                     <node id="33" name="EXTENSION_ACTIVITY">
+                        <att name="extensionActivityId"
+                             value="com.activee.bpel4peopleep.activities.peopleActivity"/>
+                        <att name="objectId" value="124052792015001681"/>
+                        <att name="drawBorder" value="false"/>
+                        <att name="borderColor" value="RGB {0,0,255}"/>
+                        <att name="transparent" value="true"/>
+                        <att name="backgroundColor" value="RGB {226,226,226}"/>
+                        <att name="font" value="FONT {Tahoma,8,0}"/>
+                        <att name="fontColor" value="RGB {0,0,0}"/>
+                        <att name="imageDisplay" value="true"/>
+                        <att name="scaleImage" value="false"/>
+                        <att name="imageTextGap" value="4"/>
+                        <att name="textAlignment" value="1"/>
+                        <att name="textPlacement" value="16"/>
+                        <att name="location" value="LOC {5,111}"/>
+                        <att name="sizeToFit" value="true"/>
+                        <att name="size" value="DIM {113,56}"/>
+                        <att name="name" value="Request"/>
+                        <att name="text" value=""/>
+                        <att name="BPELDocumentation" value=""/>
+                        <att name="isSkipable" value="false"/>
+                        <att name="extensionActivityFromParts" value="0"/>
+                        <att name="extensionActivityToParts" value="0"/>
+                        <att name="taskType">
+                           <b4p:localTask xmlns:b4p="http://www.example.org/BPEL4People"
+                                          xmlns:htd="http://www.example.org/WS-HT"
+                                          reference="Request">
+                              <htd:priority/>
+                              <htd:peopleAssignments>
+                                 <htd:potentialOwners>
+                                    <htd:from/>
+                                 </htd:potentialOwners>
+                                 <htd:excludedOwners>
+                                    <htd:from/>
+                                 </htd:excludedOwners>
+                                 <htd:taskInitiator>
+                                    <htd:from/>
+                                 </htd:taskInitiator>
+                                 <htd:taskStakeholders>
+                                    <htd:from/>
+                                 </htd:taskStakeholders>
+                                 <htd:businessAdministrators>
+                                    <htd:from/>
+                                 </htd:businessAdministrators>
+                                 <htd:recipients>
+                                    <htd:from/>
+                                 </htd:recipients>
+                              </htd:peopleAssignments>
+                           </b4p:localTask>
+                        </att>
+                        <att name="paPriorityOverride">
+                           <aeds:expression xmlns:aeds="urn:active-endpoints:dataSpec">
+                              <aeds:value/>
+                              <aeds:language/>
+                           </aeds:expression>
+                        </att>
+                        <att name="paComments">
+                           <aeds:expression xmlns:aeds="urn:active-endpoints:dataSpec">
+                              <aeds:value/>
+                              <aeds:language/>
+                           </aeds:expression>
+                        </att>
+                        <att name="paSimulationResult" value="0"/>
+                        <att name="paSimulationFaultName" value=""/>
+                        <att name="actualOwnerSim" value=""/>
+                        <att name="paAttachmentPropagationFromProcess" value=""/>
+                        <att name="paAttachmentPropagationToProcess" value=""/>
+                     </node>
+                  </graph>
+               </att>
+            </graph>
+         </att>
+         <node id="34" name="EXTENSION_ACTIVITY">
+            <att name="extensionActivityId"
+                 value="com.activee.bpel4peopleep.activities.peopleActivity"/>
+            <att name="objectId" value="124093987634703209"/>
+            <att name="drawBorder" value="false"/>
+            <att name="borderColor" value="RGB {0,0,255}"/>
+            <att name="transparent" value="true"/>
+            <att name="backgroundColor" value="RGB {226,226,226}"/>
+            <att name="font" value="FONT {Tahoma,8,0}"/>
+            <att name="fontColor" value="RGB {0,0,0}"/>
+            <att name="imageDisplay" value="true"/>
+            <att name="scaleImage" value="false"/>
+            <att name="imageTextGap" value="4"/>
+            <att name="textAlignment" value="1"/>
+            <att name="textPlacement" value="16"/>
+            <att name="location" value="LOC {198,111}"/>
+            <att name="sizeToFit" value="true"/>
+            <att name="size" value="DIM {138,56}"/>
+            <att name="name" value="CheckCorrect"/>
+            <att name="text" value=""/>
+            <att name="BPELDocumentation" value=""/>
+            <att name="isSkipable" value="false"/>
+            <att name="extensionActivityFromParts" value="0"/>
+            <att name="extensionActivityToParts" value="0"/>
+            <att name="taskType">
+               <b4p:localTask xmlns:b4p="http://www.example.org/BPEL4People"
+                              xmlns:htd="http://www.example.org/WS-HT"
+                              reference="CheckCorrect">
+                  <htd:priority/>
+                  <htd:peopleAssignments>
+                     <htd:potentialOwners>
+                        <htd:from/>
+                     </htd:potentialOwners>
+                     <htd:excludedOwners>
+                        <htd:from/>
+                     </htd:excludedOwners>
+                     <htd:taskInitiator>
+                        <htd:from/>
+                     </htd:taskInitiator>
+                     <htd:taskStakeholders>
+                        <htd:from/>
+                     </htd:taskStakeholders>
+                     <htd:businessAdministrators>
+                        <htd:from/>
+                     </htd:businessAdministrators>
+                     <htd:recipients>
+                        <htd:from/>
+                     </htd:recipients>
+                  </htd:peopleAssignments>
+               </b4p:localTask>
+            </att>
+            <att name="paPriorityOverride">
+               <aeds:expression xmlns:aeds="urn:active-endpoints:dataSpec">
+                  <aeds:value/>
+                  <aeds:language/>
+               </aeds:expression>
+            </att>
+            <att name="paComments">
+               <aeds:expression xmlns:aeds="urn:active-endpoints:dataSpec">
+                  <aeds:value/>
+                  <aeds:language/>
+               </aeds:expression>
+            </att>
+            <att name="paSimulationResult" value="0"/>
+            <att name="paSimulationFaultName" value=""/>
+            <att name="actualOwnerSim" value=""/>
+            <att name="paAttachmentPropagationFromProcess" value=""/>
+            <att name="paAttachmentPropagationToProcess" value=""/>
+         </node>
+         <att>
+            <graph id="35" name="FOR_EACH">
+               <att name="objectId" value="124148202878106595"/>
+               <att name="drawBorder" value="true"/>
+               <att name="borderColor" value="RGB {128,128,128}"/>
+               <att name="transparent" value="false"/>
+               <att name="font" value="FONT {Tahoma,8,0}"/>
+               <att name="fontColor" value="RGB {0,0,0}"/>
+               <att name="imageDisplay" value="true"/>
+               <att name="scaleImage" value="false"/>
+               <att name="imageTextGap" value="4"/>
+               <att name="textAlignment" value="1"/>
+               <att name="location" value="LOC {165,545}"/>
+               <att name="size" value="DIM {200,344}"/>
+               <att name="name" value="ForEachItem"/>
+               <att name="text" value=""/>
+               <att name="BPELDocumentation" value=""/>
+               <att name="counterName" value="AIndex"/>
+               <att name="startExpression" value="aStartValue"/>
+               <att name="finalExpression" value="aFinalValue"/>
+               <att>
+                  <graph id="36" name="SCOPE">
+                     <att name="objectId" value="124148202878106597"/>
+                     <att name="drawBorder" value="true"/>
+                     <att name="borderColor" value="RGB {128,128,128}"/>
+                     <att name="transparent" value="false"/>
+                     <att name="font" value="FONT {Tahoma,8,0}"/>
+                     <att name="fontColor" value="RGB {0,0,0}"/>
+                     <att name="imageDisplay" value="true"/>
+                     <att name="scaleImage" value="false"/>
+                     <att name="imageTextGap" value="4"/>
+                     <att name="textAlignment" value="1"/>
+                     <att name="location" value="LOC {5,5}"/>
+                     <att name="size" value="DIM {180,278}"/>
+                     <att name="text" value=""/>
+                     <att name="BPELDocumentation" value=""/>
+                     <att name="exitStandardFaultScope" value=""/>
+                     <att name="showTerminationHandler" value="false"/>
+                     <att>
+                        <graph id="37" name="VARIABLE_CONTAINERS">
+                           <att name="VariableCount" value="1"/>
+                        </graph>
+                     </att>
+                     <node id="38" name="CORRELATION_CONTAINERS">
+                        <att name="CorrSetCount" value="0"/>
+                     </node>
+                     <node id="39" name="PARTNER_LINKS">
+                        <att name="PartnerLinkCount" value="0"/>
+                     </node>
+                     <att>
+                        <graph id="40" name="SCOPE_ACTIVITY">
+                           <att name="objectId" value="124148202878106605"/>
+                           <att name="drawBorder" value="true"/>
+                           <att name="borderColor" value="RGB {128,128,128}"/>
+                           <att name="transparent" value="false"/>
+                           <att name="font" value="FONT {Tahoma,8,0}"/>
+                           <att name="fontColor" value="RGB {0,0,0}"/>
+                           <att name="imageDisplay" value="true"/>
+                           <att name="scaleImage" value="false"/>
+                           <att name="imageTextGap" value="4"/>
+                           <att name="textAlignment" value="1"/>
+                           <att name="textPlacement" value="16"/>
+                           <att name="location" value="LOC {0,0}"/>
+                           <att name="sizeToFit" value="false"/>
+                           <att name="size" value="DIM {150,210}"/>
+                           <node id="41" name="EXTENSION_ACTIVITY">
+                              <att name="extensionActivityId"
+                                   value="com.activee.bpel4peopleep.activities.peopleActivity"/>
+                              <att name="objectId" value="124052816417901991"/>
+                              <att name="drawBorder" value="false"/>
+                              <att name="borderColor" value="RGB {0,0,255}"/>
+                              <att name="transparent" value="true"/>
+                              <att name="backgroundColor" value="RGB {226,226,226}"/>
+                              <att name="font" value="FONT {Tahoma,8,0}"/>
+                              <att name="fontColor" value="RGB {0,0,0}"/>
+                              <att name="imageDisplay" value="true"/>
+                              <att name="scaleImage" value="false"/>
+                              <att name="imageTextGap" value="4"/>
+                              <att name="textAlignment" value="1"/>
+                              <att name="textPlacement" value="16"/>
+                              <att name="location" value="LOC {5,111}"/>
+                              <att name="sizeToFit" value="true"/>
+                              <att name="size" value="DIM {101,56}"/>
+                              <att name="name" value="Order"/>
+                              <att name="text" value=""/>
+                              <att name="BPELDocumentation" value=""/>
+                              <att name="isSkipable" value="false"/>
+                              <att name="extensionActivityFromParts" value="0"/>
+                              <att name="extensionActivityToParts" value="0"/>
+                              <att name="taskType">
+                                 <b4p:localTask xmlns:b4p="http://www.example.org/BPEL4People"
+                                                xmlns:htd="http://www.example.org/WS-HT"
+                                                reference="Order">
+                                    <htd:priority/>
+                                    <htd:peopleAssignments>
+                                       <htd:potentialOwners>
+                                          <htd:from/>
+                                       </htd:potentialOwners>
+                                       <htd:excludedOwners>
+                                          <htd:from/>
+                                       </htd:excludedOwners>
+                                       <htd:taskInitiator>
+                                          <htd:from/>
+                                       </htd:taskInitiator>
+                                       <htd:taskStakeholders>
+                                          <htd:from/>
+                                       </htd:taskStakeholders>
+                                       <htd:businessAdministrators>
+                                          <htd:from/>
+                                       </htd:businessAdministrators>
+                                       <htd:recipients>
+                                          <htd:from/>
+                                       </htd:recipients>
+                                    </htd:peopleAssignments>
+                                 </b4p:localTask>
+                              </att>
+                              <att name="paPriorityOverride">
+                                 <aeds:expression xmlns:aeds="urn:active-endpoints:dataSpec">
+                                    <aeds:value/>
+                                    <aeds:language/>
+                                 </aeds:expression>
+                              </att>
+                              <att name="paComments">
+                                 <aeds:expression xmlns:aeds="urn:active-endpoints:dataSpec">
+                                    <aeds:value/>
+                                    <aeds:language/>
+                                 </aeds:expression>
+                              </att>
+                              <att name="paSimulationResult" value="0"/>
+                              <att name="paSimulationFaultName" value=""/>
+                              <att name="actualOwnerSim" value=""/>
+                              <att name="paAttachmentPropagationFromProcess" value=""/>
+                              <att name="paAttachmentPropagationToProcess" value=""/>
+                           </node>
+                           <node id="42" name="EXTENSION_ACTIVITY">
+                              <att name="extensionActivityId"
+                                   value="com.activee.bpel4peopleep.activities.peopleActivity"/>
+                              <att name="objectId" value="124052803528901819"/>
+                              <att name="drawBorder" value="false"/>
+                              <att name="borderColor" value="RGB {0,0,255}"/>
+                              <att name="transparent" value="true"/>
+                              <att name="backgroundColor" value="RGB {226,226,226}"/>
+                              <att name="font" value="FONT {Tahoma,8,0}"/>
+                              <att name="fontColor" value="RGB {0,0,0}"/>
+                              <att name="imageDisplay" value="true"/>
+                              <att name="scaleImage" value="false"/>
+                              <att name="imageTextGap" value="4"/>
+                              <att name="textAlignment" value="1"/>
+                              <att name="textPlacement" value="16"/>
+                              <att name="location" value="LOC {5,5}"/>
+                              <att name="sizeToFit" value="true"/>
+                              <att name="size" value="DIM {134,56}"/>
+                              <att name="name" value="GetBestPrice"/>
+                              <att name="text" value=""/>
+                              <att name="BPELDocumentation" value=""/>
+                              <att name="isSkipable" value="false"/>
+                              <att name="extensionActivityFromParts" value="0"/>
+                              <att name="extensionActivityToParts" value="0"/>
+                              <att name="taskType">
+                                 <b4p:localTask xmlns:b4p="http://www.example.org/BPEL4People"
+                                                xmlns:htd="http://www.example.org/WS-HT"
+                                                reference="GetBestPrice">
+                                    <htd:priority/>
+                                    <htd:peopleAssignments>
+                                       <htd:potentialOwners>
+                                          <htd:from/>
+                                       </htd:potentialOwners>
+                                       <htd:excludedOwners>
+                                          <htd:from/>
+                                       </htd:excludedOwners>
+                                       <htd:taskInitiator>
+                                          <htd:from/>
+                                       </htd:taskInitiator>
+                                       <htd:taskStakeholders>
+                                          <htd:from/>
+                                       </htd:taskStakeholders>
+                                       <htd:businessAdministrators>
+                                          <htd:from/>
+                                       </htd:businessAdministrators>
+                                       <htd:recipients>
+                                          <htd:from/>
+                                       </htd:recipients>
+                                    </htd:peopleAssignments>
+                                 </b4p:localTask>
+                              </att>
+                              <att name="paPriorityOverride">
+                                 <aeds:expression xmlns:aeds="urn:active-endpoints:dataSpec">
+                                    <aeds:value/>
+                                    <aeds:language/>
+                                 </aeds:expression>
+                              </att>
+                              <att name="paComments">
+                                 <aeds:expression xmlns:aeds="urn:active-endpoints:dataSpec">
+                                    <aeds:value/>
+                                    <aeds:language/>
+                                 </aeds:expression>
+                              </att>
+                              <att name="paSimulationResult" value="0"/>
+                              <att name="paSimulationFaultName" value=""/>
+                              <att name="actualOwnerSim" value=""/>
+                              <att name="paAttachmentPropagationFromProcess" value=""/>
+                              <att name="paAttachmentPropagationToProcess" value=""/>
+                           </node>
+                        </graph>
+                     </att>
+                     <node id="43" name="SCOPE_FAULTHANDLER">
+                        <att name="objectId" value="124148202878106609"/>
+                        <att name="drawBorder" value="true"/>
+                        <att name="borderColor" value="RGB {128,128,128}"/>
+                        <att name="transparent" value="false"/>
+                        <att name="font" value="FONT {Tahoma,8,0}"/>
+                        <att name="fontColor" value="RGB {0,0,0}"/>
+                        <att name="imageDisplay" value="true"/>
+                        <att name="scaleImage" value="false"/>
+                        <att name="imageTextGap" value="4"/>
+                        <att name="textAlignment" value="1"/>
+                        <att name="textPlacement" value="16"/>
+                        <att name="location" value="LOC {0,0}"/>
+                        <att name="size" value="DIM {-1,-1}"/>
+                     </node>
+                     <node id="44" name="SCOPE_EVENTHANDLER">
+                        <att name="objectId" value="124148202878106611"/>
+                        <att name="drawBorder" value="true"/>
+                        <att name="borderColor" value="RGB {128,128,128}"/>
+                        <att name="transparent" value="false"/>
+                        <att name="font" value="FONT {Tahoma,8,0}"/>
+                        <att name="fontColor" value="RGB {0,0,0}"/>
+                        <att name="imageDisplay" value="true"/>
+                        <att name="scaleImage" value="false"/>
+                        <att name="imageTextGap" value="4"/>
+                        <att name="textAlignment" value="1"/>
+                        <att name="textPlacement" value="16"/>
+                        <att name="location" value="LOC {0,0}"/>
+                        <att name="size" value="DIM {-1,-1}"/>
+                     </node>
+                     <node id="45" name="SCOPE_TERMINATIONHANDLER">
+                        <att name="objectId" value="124148202878106613"/>
+                        <att name="drawBorder" value="true"/>
+                        <att name="borderColor" value="RGB {128,128,128}"/>
+                        <att name="transparent" value="false"/>
+                        <att name="font" value="FONT {Tahoma,8,0}"/>
+                        <att name="fontColor" value="RGB {0,0,0}"/>
+                        <att name="imageDisplay" value="true"/>
+                        <att name="scaleImage" value="false"/>
+                        <att name="imageTextGap" value="4"/>
+                        <att name="textAlignment" value="1"/>
+                        <att name="textPlacement" value="16"/>
+                        <att name="location" value="LOC {0,0}"/>
+                        <att name="sizeToFit" value="false"/>
+                     </node>
+                     <node id="46" name="SCOPE_COMPENSATOR">
+                        <att name="objectId" value="124148202878106607"/>
+                        <att name="drawBorder" value="true"/>
+                        <att name="borderColor" value="RGB {128,128,128}"/>
+                        <att name="transparent" value="false"/>
+                        <att name="font" value="FONT {Tahoma,8,0}"/>
+                        <att name="fontColor" value="RGB {0,0,0}"/>
+                        <att name="imageDisplay" value="true"/>
+                        <att name="scaleImage" value="false"/>
+                        <att name="imageTextGap" value="4"/>
+                        <att name="textAlignment" value="1"/>
+                        <att name="textPlacement" value="16"/>
+                        <att name="location" value="LOC {0,0}"/>
+                        <att name="sizeToFit" value="false"/>
+                     </node>
+                  </graph>
+               </att>
+            </graph>
+         </att>
+         <node id="47" name="ASSIGN">
+            <att name="objectId" value="124148214101507217"/>
+            <att name="font" value="FONT {Tahoma,8,0}"/>
+            <att name="fontColor" value="RGB {0,0,0}"/>
+            <att name="imageDisplay" value="true"/>
+            <att name="scaleImage" value="false"/>
+            <att name="imageTextGap" value="4"/>
+            <att name="textAlignment" value="1"/>
+            <att name="textPlacement" value="16"/>
+            <att name="location" value="LOC {371,531}"/>
+            <att name="size" value="DIM {112,56}"/>
+            <att name="name" value="InitEach"/>
+            <att name="text" value=""/>
+            <att name="BPELDocumentation" value=""/>
+            <att name="copy" value="0"/>
+            <att name="validateVars" value="false"/>
+         </node>
+      </graph>
+   </att>
+   <node id="48" name="SCOPE_FAULTHANDLER"/>
+   <node id="49" name="SCOPE_EVENTHANDLER"/>
+   <edge id="0" source="26" target="34">
+      <att name="objectId" value="124093989094103215"/>
+      <att name="linkName" value="L1"/>
+   </edge>
+   <edge id="1" source="27" target="47">
+      <att name="objectId" value="124052806375801879"/>
+      <att name="linkName" value="L6"/>
+   </edge>
+   <edge id="2" source="29" target="30">
+      <att name="objectId" value="124052671599401295"/>
+      <att name="linkName" value="L3"/>
+   </edge>
+   <edge id="3" source="32" target="33">
+      <att name="objectId" value="124052793813401717"/>
+      <att name="linkName" value="L5"/>
+   </edge>
+   <edge id="4" source="34" target="27">
+      <att name="objectId" value="124093989094103217"/>
+      <att name="linkName" value="L2"/>
+   </edge>
+   <edge id="5" source="42" target="41">
+      <att name="objectId" value="124052817416402017"/>
+      <att name="linkName" value="L7"/>
+   </edge>
+   <edge id="6" source="47" target="35">
+      <att name="objectId" value="124148215010907227"/>
+      <att name="linkName" value="L4"/>
+   </edge>
+</graph>

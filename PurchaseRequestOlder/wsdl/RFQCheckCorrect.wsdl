@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wsdl:definitions targetNamespace="http://domain.com/purchaseFRequest/RFQCheckCorrect" xmlns:tns="http://domain.com/purchaseFRequest/RFQCheckCorrect" xmlns:types1="http://domain.com/CheckResponse" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:types2="http://domain.com/purchaserequest">
+  <wsdl:types>
+    <xs:schema elementFormDefault="qualified" targetNamespace="http://domain.com/CheckResponse" xmlns:chkresp="http://domain.com/CheckResponse" xmlns:types1="http://domain.com/purchaserequest" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:import namespace="http://domain.com/purchaserequest"/>
+  <xs:element name="purchaseResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element ref="chkresp:approved"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="approved" type="xs:string"/>
+</xs:schema>
+    <xs:schema elementFormDefault="qualified" targetNamespace="http://domain.com/purchaserequest" xmlns:chkresp="http://domain.com/CheckResponse" xmlns:types1="http://domain.com/purchaserequest" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:import namespace="http://domain.com/CheckResponse"/>
+  <xs:element name="purchaseRequest">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element ref="types1:Header"/>
+        <xs:element ref="types1:Items"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="Header">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element ref="types1:date"/>
+        <xs:element ref="types1:by"/>
+        <xs:element ref="types1:vendor"/>
+        <xs:element ref="types1:reason"/>
+        <xs:element ref="types1:shipping"/>
+        <xs:element ref="types1:eta"/>
+        <xs:element ref="types1:approved"/>
+        <xs:element ref="types1:comments"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="date" type="xs:NCName"/>
+  <xs:element name="by" type="xs:NCName"/>
+  <xs:element name="vendor" type="xs:integer"/>
+  <xs:element name="reason" type="xs:NCName"/>
+  <xs:element name="shipping" type="xs:NCName"/>
+  <xs:element name="eta" type="xs:NCName"/>
+  <xs:element name="approved" type="xs:NCName"/>
+  <xs:element name="comments" type="xs:NCName"/>
+  <xs:element name="Items">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element ref="types1:item"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="item">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element ref="types1:productNo"/>
+        <xs:element ref="types1:description"/>
+        <xs:element ref="types1:quantity"/>
+        <xs:element ref="types1:price"/>
+        <xs:element ref="types1:total"/>
+      </xs:sequence>
+      <xs:attribute name="LineNum" type="xs:integer" use="required"/>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="productNo" type="xs:integer"/>
+  <xs:element name="description" type="xs:NCName"/>
+  <xs:element name="quantity" type="xs:integer"/>
+  <xs:element name="price" type="xs:integer"/>
+  <xs:element name="total" type="xs:integer"/>
+</xs:schema>
+  </wsdl:types>
+  <wsdl:message name="purchaseRequestRequest">
+    <wsdl:part name="purchaseRequestRequest" element="types2:purchaseRequest"/>
+  </wsdl:message>
+  <wsdl:message name="purchaseRequestResponse">
+    <wsdl:part name="purchaseRequestResponse" element="types1:purchaseResponse"/>
+  </wsdl:message>
+  <wsdl:portType name="PurchaseRequest">
+    <wsdl:operation name="purchaseRequest">
+      <wsdl:input message="tns:purchaseRequestRequest"/>
+      <wsdl:output message="tns:purchaseRequestResponse"/>
+    </wsdl:operation>
+  </wsdl:portType>
+</wsdl:definitions>

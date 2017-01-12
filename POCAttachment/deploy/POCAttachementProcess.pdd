@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<pdd:process xmlns:bpelns="http://POCAttachementProcess" xmlns:pdd="http://schemas.active-endpoints.com/pdd/2006/08/pdd.xsd" location="bpel/POCAttachment/bpel/POCAttachementProcess.bpel" name="bpelns:POCAttachementProcess" platform="enterprise">
+  <pdd:partnerLinks>
+    <pdd:partnerLink name="Attachment">
+      <pdd:myRole allowedRoles="" binding="MSG" service="POCAttachement"/>
+    </pdd:partnerLink>
+  </pdd:partnerLinks>
+  <pdd:references>
+    <pdd:wsdl location="project:/POCAttachment/wsdl/attachment.wsdl" namespace="http://avosinternal.servicenow.com/attachment"/>
+    <pdd:wsdl location="project:/POCAttachment/wsdl/bpel/POCAttachementProcess.public.wsdl" namespace="http://POCAttachementProcess/pocattachementprocess/public"/>
+  </pdd:references>
+</pdd:process>

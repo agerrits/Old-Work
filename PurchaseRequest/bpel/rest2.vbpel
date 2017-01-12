@@ -1,0 +1,254 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<graph id="0" name="PROCESS">
+   <att name="processName" value="rest2"/>
+   <att name="targetNamespace" value="rest2"/>
+   <att name="BPELDocumentation" value=""/>
+   <att name="enableInstanceCompensation" value="false"/>
+   <att name="exitStandardFault" value="false"/>
+   <att name="disableSelectionFailure" value="true"/>
+   <att name="createXPath" value="true"/>
+   <att name="modelVersion" value="3"/>
+   <att name="processNamespace"
+        value="http://docs.oasis-open.org/wsbpel/2.0/process/executable"/>
+   <att name="objectId" value="125253058337507307"/>
+   <att name="layoutNeeded" value="false"/>
+   <att name="processInitiatorSim" value=""/>
+   <att name="processInitiatorExec" value=""/>
+   <att name="writePortType" value="false"/>
+   <att name="bpelDigest" value="7cf9eee52b615b7c2afc20dd82acdf20"/>
+   <att name="processDetailLevel" value="0"/>
+   <att>
+      <graph id="1" name="EXTENSION_CONTAINER">
+         <att name="ExtensionCount" value="2"/>
+         <att name="BPELDocumentation" value=""/>
+         <node id="2" name="EXTENSION">
+            <att name="BPELDocumentation" value=""/>
+            <att name="extensionDetails"
+                 value="Namespace=http://www.activebpel.org/2006/09/bpel/extension/query_handling mustUnderstand=true"/>
+            <att name="objectId" value="125253058337507339"/>
+         </node>
+         <node id="3" name="EXTENSION">
+            <att name="BPELDocumentation" value=""/>
+            <att name="extensionDetails"
+                 value="Namespace=http://www.activebpel.org/2009/02/bpel/extension/ignorable mustUnderstand=false"/>
+            <att name="objectId" value="125253061971807455"/>
+         </node>
+      </graph>
+   </att>
+   <att>
+      <graph id="4" name="IMPORTS">
+         <att name="ImportCount" value="5"/>
+         <node id="5" name="IMPLICIT_IMPORT">
+            <att name="ImportLocation"
+                 value="../wsdl/bpel/rest2.public.wsdl;rest2/public;http://schemas.xmlsoap.org/wsdl/"/>
+            <att name="ImportNamespace" value="rest2/public"/>
+            <att name="ImportType" value="http://schemas.xmlsoap.org/wsdl/"/>
+            <att name="objectId" value="125253061943707453"/>
+            <att name="WSBPEL_ExtensionAttributes">
+               <extensionAttributes>
+                  <extensionAttribute namespace="http://www.activebpel.org/2009/02/bpel/extension/ignorable"
+                                      qualifiedName="aei:implicit"
+                                      value="true"/>
+               </extensionAttributes>
+            </att>
+         </node>
+         <node id="6" name="IMPORT">
+            <att name="ImportLocation"
+                 value="../wsdl/SolaDataPack.wsdl;http://xaware.org/xas/ns1/wsdl/;http://schemas.xmlsoap.org/wsdl/"/>
+            <att name="ImportNamespace" value="http://xaware.org/xas/ns1/wsdl/"/>
+            <att name="ImportType" value="http://schemas.xmlsoap.org/wsdl/"/>
+            <att name="objectId" value="125253061978107459"/>
+         </node>
+         <node id="7" name="IMPORT">
+            <att name="ImportLocation"
+                 value="../wsdl/RFQEnvelope.wsdl;http://www.solazyme.com/RequestIn;http://schemas.xmlsoap.org/wsdl/"/>
+            <att name="ImportNamespace" value="http://www.solazyme.com/RequestIn"/>
+            <att name="ImportType" value="http://schemas.xmlsoap.org/wsdl/"/>
+            <att name="objectId" value="125253070856207479"/>
+         </node>
+         <node id="8" name="IMPORT">
+            <att name="ImportLocation"
+                 value=";http://www.activebpel.org/REST/2007/12/01/aeREST.wsdl;http://schemas.xmlsoap.org/wsdl/"/>
+            <att name="ImportNamespace"
+                 value="http://www.activebpel.org/REST/2007/12/01/aeREST.wsdl"/>
+            <att name="ImportType" value="http://schemas.xmlsoap.org/wsdl/"/>
+            <att name="objectId" value="125253073260907673"/>
+         </node>
+         <node id="9" name="IMPORT">
+            <att name="ImportLocation"
+                 value="../sample-data/SampleGood.wsdl;http://www.ari.org/samples/customer/wsdl/custinfo/1.0;http://schemas.xmlsoap.org/wsdl/"/>
+            <att name="ImportNamespace"
+                 value="http://www.ari.org/samples/customer/wsdl/custinfo/1.0"/>
+            <att name="ImportType" value="http://schemas.xmlsoap.org/wsdl/"/>
+            <att name="objectId" value="125253212871809561"/>
+         </node>
+      </graph>
+   </att>
+   <att>
+      <graph id="10" name="NAMESPACES">
+         <att name="NamespaceCount" value="10"/>
+         <node id="11" name="NAMESPACE">
+            <att name="Prefix" value="ext"/>
+            <att name="Namespace"
+                 value="http://www.activebpel.org/2006/09/bpel/extension/query_handling"/>
+            <att name="objectId" value="125253058337507333"/>
+         </node>
+         <node id="12" name="NAMESPACE">
+            <att name="Prefix" value="xsd"/>
+            <att name="Namespace" value="http://www.w3.org/2001/XMLSchema"/>
+            <att name="objectId" value="125253058337507335"/>
+         </node>
+         <node id="13" name="NAMESPACE">
+            <att name="Prefix" value="bpel"/>
+            <att name="Namespace"
+                 value="http://docs.oasis-open.org/wsbpel/2.0/process/executable"/>
+            <att name="objectId" value="125253058337507337"/>
+         </node>
+         <node id="14" name="NAMESPACE">
+            <att name="Prefix" value="aei"/>
+            <att name="Namespace"
+                 value="http://www.activebpel.org/2009/02/bpel/extension/ignorable"/>
+            <att name="objectId" value="125253061971807457"/>
+         </node>
+         <node id="15" name="NAMESPACE">
+            <att name="Prefix" value="wsdlns"/>
+            <att name="Namespace" value="http://xaware.org/xas/ns1/wsdl/"/>
+            <att name="objectId" value="125253061982807461"/>
+         </node>
+         <node id="16" name="NAMESPACE">
+            <att name="Prefix" value="typens"/>
+            <att name="Namespace" value="http://xaware.org/xas/ns1/type"/>
+            <att name="objectId" value="125253061982807463"/>
+         </node>
+         <node id="17" name="NAMESPACE">
+            <att name="Prefix" value="ns"/>
+            <att name="Namespace" value="rest2/public"/>
+            <att name="objectId" value="125253061982807465"/>
+         </node>
+         <node id="18" name="NAMESPACE">
+            <att name="Prefix" value="ns2"/>
+            <att name="Namespace" value="http://www.solazyme.com/RequestIn"/>
+            <att name="objectId" value="125253070856207481"/>
+         </node>
+         <node id="19" name="NAMESPACE">
+            <att name="Prefix" value="ns1"/>
+            <att name="Namespace" value="http://www.activebpel.org/REST/2007/12/01/aeREST.wsdl"/>
+            <att name="objectId" value="125253073260907675"/>
+         </node>
+         <node id="20" name="NAMESPACE">
+            <att name="Prefix" value="ns3"/>
+            <att name="Namespace" value="http://www.ari.org/samples/customer/wsdl/custinfo/1.0"/>
+            <att name="objectId" value="125253212875009563"/>
+         </node>
+      </graph>
+   </att>
+   <att>
+      <graph id="21" name="PARTNER_LINKS">
+         <att name="PartnerLinkCount" value="2"/>
+         <node id="22" name="PARTNER_LINK">
+            <att name="PartnerLinkName" value="Process_Consumer"/>
+            <att name="PartnerLinkType" value="ns:RequestInPLT"/>
+            <att name="MyRole" value="Provider"/>
+            <att name="ParticipantType" value="Consumer"/>
+            <att name="PartnerRoleState" value=""/>
+            <att name="MyRoleState" value=""/>
+            <att name="visible" value="false,false,false,false,false,"/>
+            <att name="objectId" value="125253069409307467"/>
+            <att name="InitializePartnerRole" value=""/>
+         </node>
+         <node id="23" name="PARTNER_LINK">
+            <att name="PartnerLinkName" value="RESTPT"/>
+            <att name="PartnerLinkType" value="ns1:RESTPLT"/>
+            <att name="PartnerRole" value="process"/>
+            <att name="ParticipantType" value="Provider"/>
+            <att name="PartnerRoleState" value=""/>
+            <att name="MyRoleState" value=""/>
+            <att name="visible" value="false,false,false,false,false,"/>
+            <att name="objectId" value="125253072414007661"/>
+            <att name="InitializePartnerRole" value=""/>
+         </node>
+      </graph>
+   </att>
+   <att>
+      <graph id="24" name="VARIABLE_CONTAINERS">
+         <att name="VariableCount" value="1"/>
+         <node id="25" name="VARIABLE_CONTAINER">
+            <att name="VariableName" value="phpRFQin"/>
+            <att name="VariableSpecification" value="Element=ns2:phpRFQin"/>
+            <att name="objectId" value="125253079264007891"/>
+         </node>
+      </graph>
+   </att>
+   <node id="26" name="CORRELATION_CONTAINERS">
+      <att name="CorrSetCount" value="0"/>
+   </node>
+   <att>
+      <graph id="27" name="SCOPE_ACTIVITY">
+         <att>
+            <graph id="28" name="SEQUENCE">
+               <att name="objectId" value="125253077400007839"/>
+               <att name="drawBorder" value="true"/>
+               <att name="borderColor" value="RGB {128,128,128}"/>
+               <att name="transparent" value="false"/>
+               <att name="font" value="FONT {Tahoma,8,0}"/>
+               <att name="fontColor" value="RGB {0,0,0}"/>
+               <att name="scaleImage" value="false"/>
+               <att name="imageTextGap" value="4"/>
+               <att name="textAlignment" value="1"/>
+               <att name="location" value="LOC {295,120}"/>
+               <att name="size" value="DIM {200,219}"/>
+               <att name="text" value=""/>
+               <att name="BPELDocumentation" value=""/>
+               <node id="29" name="RECEIVE">
+                  <att name="objectId" value="125253071360907565"/>
+                  <att name="font" value="FONT {Tahoma,8,0}"/>
+                  <att name="fontColor" value="RGB {0,0,0}"/>
+                  <att name="imageDisplay" value="true"/>
+                  <att name="scaleImage" value="false"/>
+                  <att name="imageTextGap" value="4"/>
+                  <att name="textAlignment" value="1"/>
+                  <att name="textPlacement" value="16"/>
+                  <att name="location" value="LOC {0,0}"/>
+                  <att name="size" value="DIM {155,56}"/>
+                  <att name="name" value="RFQEnvelope"/>
+                  <att name="text" value="Receive RFQEnvelope"/>
+                  <att name="BPELDocumentation" value=""/>
+                  <att name="partnerLink" value="Process_Consumer"/>
+                  <att name="portType" value="{http://www.solazyme.com/RequestIn}RequestIn"/>
+                  <att name="operation" value="RFQEnvelope"/>
+                  <att name="createInstance" value="true"/>
+                  <att name="variable" value="phpRFQin"/>
+                  <att name="attachments" value=""/>
+                  <att name="principal" value=""/>
+                  <att name="fromParts" value="0"/>
+               </node>
+               <node id="30" name="INVOKE">
+                  <att name="objectId" value="125253076937507789"/>
+                  <att name="font" value="FONT {Tahoma,8,0}"/>
+                  <att name="fontColor" value="RGB {0,0,0}"/>
+                  <att name="imageDisplay" value="true"/>
+                  <att name="scaleImage" value="false"/>
+                  <att name="imageTextGap" value="4"/>
+                  <att name="textAlignment" value="1"/>
+                  <att name="textPlacement" value="16"/>
+                  <att name="location" value="LOC {0,0}"/>
+                  <att name="size" value="DIM {178,56}"/>
+                  <att name="name" value="requestResponse"/>
+                  <att name="text" value="Invoke requestResponse"/>
+                  <att name="BPELDocumentation" value=""/>
+                  <att name="partnerLink" value="RESTPT"/>
+                  <att name="portType"
+                       value="{http://www.activebpel.org/REST/2007/12/01/aeREST.wsdl}RESTPortType"/>
+                  <att name="operation" value="requestResponse"/>
+                  <att name="fromParts" value="0"/>
+                  <att name="toParts" value="0"/>
+                  <att name="attachments" value=""/>
+                  <att name="subprocessPath" value=""/>
+               </node>
+            </graph>
+         </att>
+      </graph>
+   </att>
+   <node id="31" name="SCOPE_FAULTHANDLER"/>
+   <node id="32" name="SCOPE_EVENTHANDLER"/>
+</graph>

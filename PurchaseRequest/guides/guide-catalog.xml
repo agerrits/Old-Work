@@ -1,0 +1,3 @@
+<cat:guideCatalog xmlns:cat="http://schemas.active-endpoints.com/guides/2012/09/guides.xsd" overwrite="true">
+   <cat:guide name="ApproveTask" location="project:/PurchaseRequest/guides/ApproveTask.gt.xml" publish="true"/>
+</cat:guideCatalog>

@@ -1,0 +1,6 @@
+concat($eManager,'@solazyme.com')
+concat('Please Approve request:', $PurchaseRequestID ,'. Urgentie needed.')
+concat('We invite you to go to this URL: aURL.', 'After approval you can submit')
+
+
+concat( $eManager ,"@solazyme.com")

@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wsdl:definitions targetNamespace="http://domain.com/purchaseFRequest" xmlns:tns="http://domain.com/purchaseFRequest" xmlns:types1="http://domain.com/CheckRequest" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:types2="http://domain.com/CheckResponse">
+  <wsdl:types>
+    <xs:schema elementFormDefault="qualified" targetNamespace="http://domain.com/CheckRequest" xmlns:chkreq="http://domain.com/CheckRequest" xmlns:chkresp="http://domain.com/CheckResponse" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:import namespace="http://domain.com/CheckResponse"/>
+  <xs:element name="purchaseRequest">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element ref="chkreq:Header"/>
+        <xs:element ref="chkreq:Items"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="Header">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element ref="chkreq:date"/>
+        <xs:element ref="chkreq:by"/>
+        <xs:element ref="chkreq:vendor"/>
+        <xs:element ref="chkreq:reason"/>
+        <xs:element ref="chkreq:shipping"/>
+        <xs:element ref="chkreq:eta"/>
+        <xs:element ref="chkreq:approved"/>
+        <xs:element ref="chkreq:comments"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="date" type="xs:NMTOKEN"/>
+  <xs:element name="by" type="xs:NCName"/>
+  <xs:element name="vendor" type="xs:integer"/>
+  <xs:element name="reason" type="xs:string"/>
+  <xs:element name="shipping" type="xs:NCName"/>
+  <xs:element name="eta" type="xs:NMTOKEN"/>
+  <xs:element name="approved" type="xs:string"/>
+  <xs:element name="comments" type="xs:string"/>
+  <xs:element name="Items">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element maxOccurs="unbounded" ref="chkreq:item"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="item">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element ref="chkreq:productNo"/>
+        <xs:element ref="chkreq:description"/>
+        <xs:element ref="chkreq:quantity"/>
+        <xs:element ref="chkreq:price"/>
+        <xs:element ref="chkreq:total"/>
+      </xs:sequence>
+      <xs:attribute name="LineNum" type="xs:integer" use="required"/>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="productNo" type="xs:integer"/>
+  <xs:element name="description" type="xs:string"/>
+  <xs:element name="quantity" type="xs:integer"/>
+  <xs:element name="price" type="xs:decimal"/>
+  <xs:element name="total" type="xs:decimal"/>
+</xs:schema>
+    <xs:schema elementFormDefault="qualified" targetNamespace="http://domain.com/CheckResponse" xmlns:chkreq="http://domain.com/CheckRequest" xmlns:chkresp="http://domain.com/CheckResponse" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:import namespace="http://domain.com/CheckRequest"/>
+  <xs:element name="purchaseResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element ref="chkresp:approved"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="approved" type="xs:string"/>
+</xs:schema>
+  </wsdl:types>
+  <wsdl:message name="purchaseRequestRequest">
+    <wsdl:part name="purchaseRequestRequest" element="types1:purchaseRequest"/>
+  </wsdl:message>
+  <wsdl:message name="purchaseRequestResponse">
+    <wsdl:part name="purchaseRequestResponse" element="types2:purchaseResponse"/>
+  </wsdl:message>
+  <wsdl:portType name="checkCorrectRequest">
+    <wsdl:operation name="purchaseRequest">
+      <wsdl:input message="tns:purchaseRequestRequest"/>
+      <wsdl:output message="tns:purchaseRequestResponse"/>
+    </wsdl:operation>
+  </wsdl:portType>
+</wsdl:definitions>
